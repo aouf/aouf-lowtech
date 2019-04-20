@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
 ?>
 
 <h2>Compte Délogé (soumis à modération)</h2>
-<form action='/register' method='post'>
+<form method='post'>
 Identifiant : <input type='text' name='login'>*<br>
 Nom : <input type='text' name='nom'>*<br>
 Prénom : <input type='text' name='prenom'>*<br>
@@ -37,13 +37,13 @@ Adresse : <input type='text' name='adresse'><br>
 <input type='radio' name='gender' value='femme'>Femme
 <input type='radio' name='gender' value='nonbinaire'>Non binaire
 <input type='radio' name='gender' value='famille'>Famille
-<input type='hidden' name='type' value='deloge'><br>
+<input type='hidden' name='category' value='deloge'><br>
 Mot de passe : <input type='text' name='password'>*<br>
 <input type='submit' value="S'enregistrer">
 </form>
 
 <h2>Compte Bénévole</h2>
-<form action='/register' method='post'>
+<form method='post'>
 Identifiant : <input type='text' name='login'>*<br>
 Nom : <input type='text' name='nom'>*<br>
 Prénom : <input type='text' name='prenom'>*<br>
@@ -54,7 +54,7 @@ Adresse : <input type='text' name='adresse'><br>
 <input type='radio' name='gender' value='femme'>Femme
 <input type='radio' name='gender' value='nonbinaire'>Non binaire
 <input type='radio' name='gender' value='famille'>Famille
-<input type='hidden' name='type' value='benevole'><br>
+<input type='hidden' name='category' value='benevole'><br>
 Mot de passe : <input type='text' name='password'>*<br>
 <input type='submit' value="S'enregistrer">
 </form>
