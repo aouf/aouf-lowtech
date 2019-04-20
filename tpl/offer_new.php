@@ -47,17 +47,17 @@ où le récupérez ? etc.)
 } 
 ?>
 
-<h2>Proposer une offer</h2>
+<h2>Proposer une offre</h2>
 
 <form action='/offer/new' method='post'>
 Titre : <input type='text' name='titre'>*<br>
-Type de l'offre : <?php print $type; ?><br>
+Type de l'offre : <?php print $category; ?><br>
 Adresse : <input type='text' name='adresse'><br>
 Désactivation de l'offer le : <input type='text'><br>
 <?php print $description ?> <br>
 <textarea name='description'></textarea>*
 <br><br>
-<input type='hidden' name='type' value='<?php print $type; ?>'>
+<input type='hidden' name='category' value='<?php print $category; ?>'>
 <input type='submit' value='Publier'>
 </form>
 
