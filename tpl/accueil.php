@@ -5,7 +5,7 @@ if ($_SESSION['user_category']=='admin') {
 
 <h2>Admin</h2>
 <a href='/admin/register'>Créer un accès</a><br>
-<a href='/admin/deloges'>Modération accès Délogé</a><br>
+<a href='/admin/moderation'>Modération accès Délogé</a><br>
 
 <?php
 }
