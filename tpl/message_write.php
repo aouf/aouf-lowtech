@@ -1,13 +1,13 @@
 <?php
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-$login_id = $_SESSION['login_id'];
+$user_id = $_SESSION['user_id'];
 
 $uri = $_SERVER['REQUEST_URI'];
 preg_match('#^/message/write/(\d+)$#', $uri, $matches);
-$annonce_id = (int)$matches[1];
-if (!is_int($annonce_id)) {
-    print "Erreur, annonce inexistante";
+$offer_id = (int)$matches[1];
+if (!is_int($offer_id)) {
+    print "Erreur, offre inexistante";
     die();
 }
 
@@ -16,7 +16,7 @@ if (isset($_POST['message'])) {
     $to = $_POST['to'];
     $req = "INSERT INTO messages(offer_id,from_id,to_id,message) VALUES (?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$annonce_id, $login_id, $to, $message]);
+    $statement->execute([$offer_id, $user_id, $to, $message]);
 }
 
 ?>
@@ -25,7 +25,7 @@ if (isset($_POST['message'])) {
 
 <?php
 
-$req = "SELECT * FROM offers where id = $annonce_id LIMIT 1";
+$req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
 $statement = $pdo->query($req);
 $data = $statement->fetch();
 $offer_title = $data['title'];
@@ -34,7 +34,7 @@ $offer_userid = $data['user_id'];
 
 print "<h3>Annonce $offer_title</h3>";
 
-$req = "SELECT * FROM messages WHERE offer_id = $annonce_id AND ( from_id=$login_id OR to_id=$login_id )";
+$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( from_id=$user_id OR to_id=$user_id )";
 $statement = $pdo->query($req);
 
 while ($data2 = $statement->fetch()) {

@@ -14,21 +14,21 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $login = $_POST['login'];
 $password = $_POST['password'];
 
-$req = "SELECT id,user_type,password,status FROM users where login='$login' LIMIT 1";
+$req = "SELECT id,category,password,status FROM users where login='$login' LIMIT 1";
 $statement = $pdo->query($req);
 $data = $statement->fetch();
 
 $hash_password = $data['password'];
-$type = $data['user_type'];
+$category = $data['category'];
 $status = $data['status'];
-$login_id = $data['id'];
+$user_id = $data['id'];
 
 if (!password_verify($password,$hash_password)) die("password error");
 if ($status != 'enabled') die("compte non actif");
 
-$_SESSION['login'] = $login;
-$_SESSION['login_id'] = $login_id;
-$_SESSION['login_type'] = $type;
+$_SESSION['user_login'] = $login;
+$_SESSION['user_id'] = $user_id;
+$_SESSION['user_category'] = $category;
 
 header("Location: accueil");
 

@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['login_id'])) {
+if (isset($_SESSION['user_id'])) {
     header("Location: accueil");
 }
 

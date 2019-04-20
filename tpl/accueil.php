@@ -1,6 +1,6 @@
 <?php
 
-if ($_SESSION['login_type']=='admin') {
+if ($_SESSION['user_category']=='admin') {
 ?>
 
 <h2>Admin</h2>
@@ -10,34 +10,34 @@ if ($_SESSION['login_type']=='admin') {
 <?php
 }
 
-if (($_SESSION['login_type']=='admin')||($_SESSION['login_type']=='deloge')) {
+if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
 ?>
 
 <h2>Consulter les offres</h2>
-<a href='/annonce/list/restauration'>Restauration</a><br>
-<a href='/annonce/list/blanchisserie'>Blanchisserie</a><br>
-<a href='/annonce/list/mobilite'>Mobilité</a><br>
-<a href='/annonce/list/loisir'>Loisir</a><br>
-<a href='/annonce/list/don'>Dons</a><br>
-<a href='/annonce/list/autre'>Autres services</a><br>
+<a href='/offer/list/restauration'>Restauration</a><br>
+<a href='/offer/list/blanchisserie'>Blanchisserie</a><br>
+<a href='/offer/list/mobilite'>Mobilité</a><br>
+<a href='/offer/list/loisir'>Loisir</a><br>
+<a href='/offer/list/don'>Dons</a><br>
+<a href='/offer/list/autre'>Autres services</a><br>
 <br>
 
 <?php
 }
 
-if (($_SESSION['login_type']=='admin')||($_SESSION['login_type']=='benevole')) {
+if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
 ?>
-<h2>Déposer une annonce</h2>
+<h2>Déposer une offre</h2>
 
-<a href='/annonce/new/restauration'>Restauration</a><br>
-<a href='/annonce/new/blanchisserie'>Blanchisserie</a><br>
-<a href='/annonce/new/mobilite'>Mobilité</a><br>
-<a href='/annonce/new/loisir'>Loisir</a><br>
-<a href='/annonce/new/don'>Don</a><br>
-<a href='/annonce/new/autre'>Autres services</a><br>
+<a href='/offer/new/restauration'>Restauration</a><br>
+<a href='/offer/new/blanchisserie'>Blanchisserie</a><br>
+<a href='/offer/new/mobilite'>Mobilité</a><br>
+<a href='/offer/new/loisir'>Loisir</a><br>
+<a href='/offer/new/don'>Don</a><br>
+<a href='/offer/new/autre'>Autres services</a><br>
 
 <br>
-<a href='/annonce/mylist'>Mes offres</a><br>
+<a href='/offer/mylist'>Mes offres</a><br>
 <?php
 }
 ?>
