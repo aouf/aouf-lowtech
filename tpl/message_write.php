@@ -49,3 +49,10 @@ print $data2['date_create'].":<br>".$data2['message']."<br><br>";
 <input type='hidden' name='to' value='<?php print $offer_userid; ?>'>
 <input type='submit' value='Publier'>
 </form>
+
+<br>
+<a href='/accueil'>Accueil</a><br>
+<a href='/offer/mylist'>Mes offres</a><br>
+<a href='/message/list'>Messagerie</a><br>
+<a href='/parametres'>Mes paramètres</a><br>
+<a href='/auth'>Déconnexion</a><br>

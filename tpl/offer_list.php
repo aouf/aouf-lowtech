@@ -27,4 +27,8 @@ while ($data = $statement->fetch()) {
 
 ?>
 
-
+<br>
+<a href='/accueil'>Accueil</a><br>
+<a href='/message/list'>Messagerie</a><br>
+<a href='/parametres'>Mes paramètres</a><br>
+<a href='/auth'>Déconnexion</a><br>

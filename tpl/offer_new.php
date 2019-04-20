@@ -53,7 +53,7 @@ où le récupérez ? etc.)
 Titre : <input type='text' name='titre'>*<br>
 Catégorie de l'offre : <?php print $category; ?><br>
 Adresse : <input type='text' name='adresse'><br>
-Désactivation de l'offer le : <input type='text'><br>
+Désactivation de l'offre le : <input type='text'><br>
 <?php print $description ?> <br>
 <textarea name='description'></textarea>*
 <br><br>
