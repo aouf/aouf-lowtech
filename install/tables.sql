@@ -33,16 +33,16 @@ CREATE TABLE offers (
     PRIMARY KEY (`id`)
 );
 
-//CREATE TABLE asks (
-//    id BIGINT NOT NULL AUTO_INCREMENT,
-//    date_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-//    asker_id BIGINT,
-//    benevole_id BIGINT,
-//    offer_id BIGINT,
-//    message_id BIGINT,
-//    status VARCHAR(100),
-//    PRIMARY KEY (`id`)
-//);
+--CREATE TABLE asks (
+--    id BIGINT NOT NULL AUTO_INCREMENT,
+--    date_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--    asker_id BIGINT,
+--    benevole_id BIGINT,
+--    offer_id BIGINT,
+--    message_id BIGINT,
+--    status VARCHAR(100),
+--    PRIMARY KEY (`id`)
+--);
 
 CREATE TABLE messages (
     id BIGINT NOT NULL AUTO_INCREMENT,
