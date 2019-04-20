@@ -9,7 +9,7 @@ while ($data = $statement->fetch()) {
 $titre = $data['title'];
 $description = $data['description'];
 
-echo "$titre - $description : <a href='#'>Réserver cette offre</a><br>";
+echo "$titre - $description : <a href='/message/write/'>Réserver cette offre</a><br>";
 
 }
 
