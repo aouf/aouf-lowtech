@@ -1,4 +1,15 @@
-<a href='/deloge/'>Accès Délogé</a><br>
-<a href='/benevole/'>Accès Bénévole</a><br>
-<a href='/admin/'>Accès Admin</a><br>
-<a href='/register'>S'inscrire</a><br>
+<?php
+
+if (isset($_SESSION['login_id'])) {
+    header("Location: accueil");
+}
+
+?>
+
+<h2>Aouf low-tech</h2>
+<form action='/auth' method='post'>
+Identifiant : <input type='text' name='login'><br>
+Mot de passe : <input type='password' name='password'><br>
+<input type='submit' value='Connexion'><br>
+</form>
+<a href='/register'>S'inscrire</a><br><br>

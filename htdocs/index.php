@@ -16,20 +16,23 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))) {
+    if (!isset($_SESSION['login_id']))
+    header("Location: /");
+}
+
 if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/index.php');
-} elseif (preg_match('#^/admin#', $uri)) {
-    include( AOUF_BASE . '../tpl/admin.php');
-} elseif (preg_match('#^/deloge/#', $uri)) {
-    include( AOUF_BASE . '../tpl/deloge.php');
-} elseif (preg_match('#^/benevole/#', $uri)) {
-    include( AOUF_BASE . '../tpl/benevole.php');
+} elseif (preg_match('#^/auth#', $uri)) {
+    include( AOUF_BASE . '../tpl/auth.php');
+} elseif (preg_match('#^/accueil#', $uri)) {
+    include( AOUF_BASE . '../tpl/accueil.php');
 } elseif (preg_match('#^/annonce/new#', $uri)) {
     include( AOUF_BASE . '../tpl/annonce_new.php');
-} elseif (preg_match('#^/annonce/create#', $uri)) {
-    include( AOUF_BASE . '../tpl/annonce_create.php');
 } elseif (preg_match('#^/annonce/list#', $uri)) {
     include( AOUF_BASE . '../tpl/annonce_list.php');
+} elseif (preg_match('#^/annonce/mylist#', $uri)) {
+    include( AOUF_BASE . '../tpl/annonce_mylist.php');
 } elseif (preg_match('#^/register#', $uri)) {
     include( AOUF_BASE . '../tpl/register.php');
 } elseif (preg_match('#^/message/list#', $uri)) {
@@ -38,6 +41,10 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/message_write.php');
 } elseif (preg_match('#^/parametres#', $uri)) {
     include( AOUF_BASE . '../tpl/parametres.php');
+} elseif (preg_match('#^/admin/register#', $uri)) {
+    include( AOUF_BASE . '../tpl/admin_register.php');
+} elseif (preg_match('#^/admin/deloges#', $uri)) {
+    include( AOUF_BASE . '../tpl/admin_deloges.php');
 } else {
     echo '404: NOT FOUND';
 }

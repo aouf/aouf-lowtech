@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
     
     $req = "INSERT INTO users(login,user_type,status,email,phonenumber,name,firstname,genre,address,password) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$login,$type,'unvalidated',$email,$phone,$nom,$prenom,$genre,$adresse,$password]);
+    $statement->execute([$login,$type,'enabled',$email,$phone,$nom,$prenom,$genre,$adresse,$password]);
 
     if ($type == 'benevole') {
     // send email for validation
@@ -25,8 +25,8 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-<h2>Compte Délogé (soumis à modération)</h2>
-<form action='/register' method='post'>
+<h2>Compte Délogé</h2>
+<form method='post'>
 Identifiant : <input type='text' name='login'>*<br>
 Nom : <input type='text' name='nom'>*<br>
 Prénom : <input type='text' name='prenom'>*<br>
@@ -43,7 +43,7 @@ Mot de passe : <input type='text' name='password'>*<br>
 </form>
 
 <h2>Compte Bénévole</h2>
-<form action='/register' method='post'>
+<form method='post'>
 Identifiant : <input type='text' name='login'>*<br>
 Nom : <input type='text' name='nom'>*<br>
 Prénom : <input type='text' name='prenom'>*<br>
