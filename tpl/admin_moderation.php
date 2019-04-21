@@ -1,5 +1,9 @@
 <?php
 
+if ($_SESSION['user_category']!='admin') {
+    die("permission denied");
+}
+
 $user_id = $_SESSION['user_id'];
 
 ?>
