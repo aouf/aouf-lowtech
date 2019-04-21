@@ -4,14 +4,25 @@ if ($_SESSION['user_category']!='admin') {
     die("permission denied");
 }
 
+$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $user_id = $_SESSION['user_id'];
+
+$uri = $_SERVER['REQUEST_URI'];
+preg_match('#^/admin/moderation/(\d+)$#', $uri, $matches);
+$moderation_id = (int)$matches[1];
+
+if ($moderation_id>0) {
+    $req = "UPDATE users set status='enabled' WHERE id = $moderation_id";
+    $statement = $pdo->prepare($req);
+    $statement->execute();
+    echo "Compte n° <strong>$moderation_id</strong> activé&nbsp;!<br>";
+}
 
 ?>
 
 <h2>Liste des comptes à modérer</h2>
 
 <?php
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $req = "SELECT * from users WHERE status='unvalidated'";
 $statement = $pdo->query($req);
 
@@ -24,7 +35,7 @@ $moderation_prenom = $data['firstname'];
 $moderation_email = $data['email'];
 $moderation_phonenumber = $data['phonenumber'];
 
-echo "- $moderation_prenom $moderation_nom ($moderation_login) : $moderation_phonenumber / $moderation_email <a href='/admin/moderate/$moderation_id'>Activer</a><br>";
+echo "- Compte $moderation_prenom $moderation_nom ($moderation_login) : $moderation_phonenumber / $moderation_email <a href='/admin/moderation/$moderation_id'>Activer</a><br>";
 
 }
 

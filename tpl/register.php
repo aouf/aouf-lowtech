@@ -38,7 +38,7 @@ Adresse : <input type='text' name='adresse'><br>
 <input type='radio' name='gender' value='nonbinaire'>Non binaire
 <input type='radio' name='gender' value='famille'>Famille
 <input type='hidden' name='category' value='deloge'><br>
-Mot de passe : <input type='text' name='password'>*<br>
+Mot de passe : <input type='password' name='password'>*<br>
 <input type='submit' value="S'enregistrer">
 </form>
 
@@ -55,7 +55,7 @@ Adresse : <input type='text' name='adresse'><br>
 <input type='radio' name='gender' value='nonbinaire'>Non binaire
 <input type='radio' name='gender' value='famille'>Famille
 <input type='hidden' name='category' value='benevole'><br>
-Mot de passe : <input type='text' name='password'>*<br>
+Mot de passe : <input type='password' name='password'>*<br>
 <input type='submit' value="S'enregistrer">
 </form>
 
