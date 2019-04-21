@@ -12,7 +12,7 @@ $offer_category = trim($matches[1]);
 <h2>Liste des offres</h2>
 <?php
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-$req = "SELECT * FROM offers WHERE category = '$offer_category'";
+$req = "SELECT * FROM offers WHERE category = '$offer_category' AND status='enabled'";
 $statement = $pdo->query($req);
 
 while ($data = $statement->fetch()) {

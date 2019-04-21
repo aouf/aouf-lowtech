@@ -14,9 +14,9 @@ if (isset($_POST['titre'])) {
     $description = $_POST['description'];
     $category = $_POST['category'];
 
-    $req = "INSERT INTO offers(user_id,category,title,description) VALUES (?,?,?,?)";
+    $req = "INSERT INTO offers(user_id,category,title,description,status) VALUES (?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$user_id, $category, $titre, $description]);
+    $statement->execute([$user_id, $category, $titre, $description,'enabled']);
 
     echo "Annonce <strong>$titre</strong> postée, merci&nbsp;!<br>";
 }
@@ -54,10 +54,10 @@ où le récupérez ? etc.)
 
 <h2>Proposer une offre</h2>
 
-<form action='/offer/new' method='post'>
+<form method='post'>
 Titre : <input type='text' name='titre'>*<br>
 Catégorie de l'offre : <?php print $category; ?><br>
-Adresse : <input type='text' name='adresse'><br>
+Adresse : <input type='text' name='address'><br>
 Désactivation de l'offre le : <input type='text'><br>
 <?php print $description ?> <br>
 <textarea name='description'></textarea>*

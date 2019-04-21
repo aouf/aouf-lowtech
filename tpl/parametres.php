@@ -12,3 +12,9 @@ Nouveau mot de passe : <input type='password'><br>
 <input type='checkbox'>email
 <input type='checkbox'>SMS<br><br>
 <input type='submit' value='Valider'>
+
+<br>
+<a href='/accueil'>Accueil</a><br>
+<a href='/message/list'>Messagerie</a><br>
+<a href='/parametres'>Mes paramètres</a><br>
+<a href='/auth'>Déconnexion</a><br>

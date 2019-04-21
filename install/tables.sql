@@ -30,6 +30,8 @@ CREATE TABLE offers (
     date_end TIMESTAMP,
     title TEXT,
     description TEXT,
+    address TEXT,
+    geolocalisation INT,
     PRIMARY KEY (`id`)
 );
 

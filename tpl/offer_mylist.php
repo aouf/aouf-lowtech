@@ -19,11 +19,18 @@ while ($data = $statement->fetch()) {
     $offer_id = $data['id'];
     $titre = $data['title'];
     $description = $data['description'];
+    $status = $data['status'];
+    $status_text = "";
+    if ($status == 'disabled') $status_text = "(désactivée)";
     
-    echo "Annonce $offer_id : $titre - $description : <a href='/offer/suppr/$offer_id'>Désactiver cette offre</a><br>";
+    echo "Offre $offer_id $status_text : $titre - $description : <a href='/offer/edit/$offer_id'>Éditer cette offre</a><br>";
 
 }
 
 ?>
 
-
+<br>
+<a href='/accueil'>Accueil</a><br>
+<a href='/message/list'>Messagerie</a><br>
+<a href='/parametres'>Mes paramètres</a><br>
+<a href='/auth'>Déconnexion</a><br>
