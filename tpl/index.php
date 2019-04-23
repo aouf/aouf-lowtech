@@ -10,7 +10,9 @@ require_once 'head.php';
 <body>
     <div class='home flex column center bg-noir'>
         <div class="content">
-            <div id='logo-accueil-deco'></div>
+            <a href='/'>
+                <div class='logo-accueil-deco'></div>
+            </a>
             <div id='connexion-div' class='flex column center'>
                 <form id='connexion-form' class='flex center column' action='/auth' method='post'>
                     <label for='login'>Identifiant</label>

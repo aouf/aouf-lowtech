@@ -148,7 +148,7 @@ div.home h1,div.home label {
     color: #ffffff;
 }
 
-#logo-accueil-deco {
+.logo-accueil-deco {
     width: 100%;
     height: 150px;
     background-image: url('../images/logo.png');

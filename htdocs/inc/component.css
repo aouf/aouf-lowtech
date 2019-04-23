@@ -82,6 +82,7 @@
 	-moz-transform: translateY(-90%);
 	-ms-transform: translateY(-90%);
 	transform: translateY(-90%);
+    color: #5be79b;
 }
 
 .dr-menu ul {
@@ -96,8 +97,8 @@
 	-moz-transition: opacity 0s linear 205ms;
 	transition: opacity 0s linear 205ms;
     height: 300px;
-    background-color: #ffffff;
-    border:1px solid #5be79b;
+    background-color: #122b33;
+    border:1px solid #8c979b;
 }
 
 .dr-menu.dr-menu-open ul {
@@ -107,6 +108,7 @@
 	-webkit-transition: opacity 0s linear 0s;
 	-moz-transition: opacity 0s linear 0s;
 	transition: opacity 0s linear 0s;
+    background-color: #122b33;
 }
 
 .dr-menu ul li {

@@ -1,4 +1,4 @@
-<body>
+<body class="bg-noir">
     <header>
         <nav class="dr-menu">
             <div class="dr-trigger">
