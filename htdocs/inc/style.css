@@ -8,6 +8,10 @@ body {
     font-size: 18px;
     color: #122b33;
 }
+.content {
+    width: 100%;
+    max-width: 400px;
+}
 
 /* Textes */
 h1, h2 {
@@ -217,12 +221,19 @@ div.home h1,div.home label {
 }
 #connexion-div a{
     font-size: 16px;
+    width: 100%;
 }
 #connexion-form{
     margin: 20px;
+    width: 100%;
 }
 #connexion-form *{
     margin: 10px;
+}
+#connexion-form input{
+    width: 100%;
+    margin: 10px;
+    height: 45px;
 }
 
 /* Accueil */
