@@ -6,6 +6,7 @@
                 <a class="dr-label"><?php echo $_SESSION['user_login']; ?></a>
             </div>
             <ul class="flex column center">
+                <li><a href='/accueil'>Accueil</a><br></li>
                 <?php 
                     if ($_SESSION['user_category']=='admin') { ?>
                         <li><a href='/admin/register'>Créer un accès</a></li>
