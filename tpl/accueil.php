@@ -1,46 +1,77 @@
 <?php
-
-if ($_SESSION['user_category']=='admin') {
+require_once 'head.php';
+require_once 'header.php';
 ?>
 
-<h2>Admin</h2>
-<a href='/admin/register'>Créer un accès</a><br>
-<a href='/admin/moderation'>Modération accès Délogé</a><br>
-
-<?php
-}
-
-if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
-?>
-
-<h2>Consulter les offres</h2>
-<a href='/offer/list/restauration'>Restauration</a><br>
-<a href='/offer/list/blanchisserie'>Blanchisserie</a><br>
-<a href='/offer/list/mobilite'>Mobilité</a><br>
-<a href='/offer/list/loisir'>Loisir</a><br>
-<a href='/offer/list/don'>Dons</a><br>
-<a href='/offer/list/autre'>Autres services</a><br>
-<br>
-
-<?php
-}
-
-if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
-?>
-<h2>Déposer une offre</h2>
-
-<a href='/offer/new/restauration'>Restauration</a><br>
-<a href='/offer/new/blanchisserie'>Blanchisserie</a><br>
-<a href='/offer/new/mobilite'>Mobilité</a><br>
-<a href='/offer/new/loisir'>Loisir</a><br>
-<a href='/offer/new/don'>Don</a><br>
-<a href='/offer/new/autre'>Autres services</a><br>
-
-<br>
-<a href='/offer/mylist'>Mes offres</a><br>
-<?php
-}
-?>
-<a href='/message/list'>Messagerie</a><br>
-<a href='/parametres'>Mes paramètres</a><br>
-<a href='/auth'>Déconnexion</a><br>
+<div class="container">
+    <?php
+    if ($_SESSION['user_category']=='admin') {
+        ?>
+        
+        <h2>Admin</h2>
+        <section class="tableau-de-bord flex center wrap">
+            <a class="flex center" href='/admin/register'><div>Créer un accès</div></a>
+            <a class="flex center" href='/admin/moderation'><div>Modération accès Délogé</div></a>
+        </section>
+        
+        <?php
+    }
+    
+    if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
+        ?>
+        
+        <h2>Consulter les offres</h2>
+        <section class="tableau-de-bord flex center wrap">
+            <a class="flex center column" href='/offer/list/restauration'>
+                <img class="icone" src="./images/restauration.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/list/blanchisserie'>
+                <img class="icone" src="./images/blanchisserie.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/list/mobilite'>
+                <img class="icone" src="./images/mobilite.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/list/loisir'>
+                <img class="icone" src="./images/loisir.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/list/don'>
+                <img class="icone" src="./images/dons.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/list/autre'>
+                <img class="icone" src="./images/restauration.png" alt="">
+            </a>
+        </section>
+        
+        <?php
+    }
+    
+    if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
+        ?>
+        <h2>Déposer une offre</h2>
+        <section class="tableau-de-bord flex center wrap">
+            <a class="flex center" href='/offer/new/restauration'>
+                <img class="icone" src="./images/restauration.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/new/blanchisserie'>
+                <img class="icone" src="./images/blanchisserie.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/new/mobilite'>
+                <img class="icone" src="./images/mobilite.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/new/loisir'>
+                <img class="icone" src="./images/loisir.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/new/don'>
+                <img class="icone" src="./images/dons.png" alt="">
+            </a>
+            <a class="flex center" href='/offer/new/autre'>
+                <img class="icone" src="./images/autre.png" alt="">
+            </a>
+        </section>
+        
+        <br>
+        <?php
+    }
+    ?>
+</div>
+<?php require_once 'footer.php'; ?>

@@ -1,7 +1,8 @@
 <?php
 
 $user_id = $_SESSION['user_id'];
-
+require_once 'head.php';
+require_once 'header.php';
 ?>
 
 <h2>Liste des messages</h2>
