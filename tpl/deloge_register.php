@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
 ?>
 <body>
     <div class='container no-margin full-size'>
-        <div class="titre bg-saumon">
+        <div class="titre bg-vert">
             <h2>Compte Délogé <br><span class="small-text">(soumis à modération)</span></h2>
         </div>
         <center><a class="small-text" href='/register'>Retour</a></center>

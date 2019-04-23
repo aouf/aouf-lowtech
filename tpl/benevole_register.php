@@ -66,7 +66,7 @@ if (isset($_POST['login'])) {
         <input type='hidden' name='category' value='benevole'>
         <label for="password">Mot de passe <span class="saumon">*</span></label>
         <input type='password' name='password'>
-        <input type='submit' value="S'enregistrer">
+        <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
     </form>
 </div>
 <?php 

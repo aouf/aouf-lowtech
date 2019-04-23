@@ -13,7 +13,7 @@ require_once 'head.php';
                         <button class='bg-vert' type="submit"value='Connexion'>Je suis délogé(e)</button>
                     </form>
                     <form class="flex column center" action="/benevole/register" method="post">
-                        <button class='bg-saumon' type='submit' value='Connexion'>Je veux aider</button>
+                        <button class='bg-saumon blanc' type='submit' value='Connexion'>Je veux aider</button>
                     </form>
                     <center><a class="small-text" href='/'>Retour</a></center>
                     </div>

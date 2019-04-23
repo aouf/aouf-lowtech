@@ -47,6 +47,9 @@ a {
 }
 
 /* Couleur */
+.blanc {
+    color: #ffffff;
+}
 .noir {
     color: #122b33;
 }
@@ -61,6 +64,10 @@ a {
 }
 .gris-clair {
     color: #8c979b;
+}
+.bg-blanc {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
 }
 .bg-noir {
     background-color: #122b33;
