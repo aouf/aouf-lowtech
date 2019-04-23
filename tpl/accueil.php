@@ -3,7 +3,7 @@ require_once 'head.php';
 require_once 'header.php';
 ?>
 
-<div class="container">
+<div class="container bg-saumon">
     <?php
     if ($_SESSION['user_category']=='admin') {
         ?>

@@ -28,3 +28,5 @@ echo "Annonce $offer_id : <a href='/message/write/$offer_id'>Voir messages</a><b
 <a href='/message/list'>Messagerie</a><br>
 <a href='/parametres'>Mes paramètres</a><br>
 <a href='/auth'>Déconnexion</a><br>
+<?php
+require_once 'header.php';

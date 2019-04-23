@@ -1,4 +1,7 @@
 <?php
+require_once 'head.php';
+require_once 'header.php';
+
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 $user_id = $_SESSION['user_id'];
@@ -56,3 +59,6 @@ print $data2['date_create'].":<br>".$data2['message']."<br><br>";
 <a href='/message/list'>Messagerie</a><br>
 <a href='/parametres'>Mes paramètres</a><br>
 <a href='/auth'>Déconnexion</a><br>
+
+<?php
+require_once 'footer.php';

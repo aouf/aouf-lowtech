@@ -1,3 +1,8 @@
+<?php
+require_once 'head.php';
+require_once 'header.php';
+?>
+
 <h2>Mes parametres</h2>
 <h3>Mon profil</h3>
 Nom : <input type='text'>*<br>
@@ -18,3 +23,6 @@ Nouveau mot de passe : <input type='password'><br>
 <a href='/message/list'>Messagerie</a><br>
 <a href='/parametres'>Mes paramètres</a><br>
 <a href='/auth'>Déconnexion</a><br>
+
+<?php
+require_once 'footer.php';

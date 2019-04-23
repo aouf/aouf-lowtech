@@ -10,8 +10,27 @@ body {
 }
 .content {
     width: 100%;
-    max-width: 400px;
 }
+
+form {
+    width: 100%;
+    margin: 20px 0 20px 0;
+}
+form *:not(span) {
+    margin: 10px;
+}
+input:not([type=radio]) {
+    width: 90%;
+    margin: 10px;
+    height: 45px;
+}
+.full-size {
+    width: 100%;
+}
+.no-margin {
+    margin: 0 !important
+}
+
 
 /* Textes */
 h1, h2 {
@@ -22,13 +41,46 @@ h1, h2 {
 }
 a {
     color:#358565;
-    text-decoration: none;
+}
+.small-text {
+    font-size: 15px;
 }
 
 /* Couleur */
-.bg-green {
+.noir {
+    color: #122b33;
+}
+.vert {
+    color: #5be79b;
+}
+.vert-fonce {
+    color: #358565;
+}
+.saumon {
+    color: #FD7C66;
+}
+.gris-clair {
+    color: #8c979b;
+}
+.bg-noir {
+    background-color: #122b33;
+    border: 1px solid #122b33;
+}
+.bg-vert {
     background-color: #5be79b;
     border: 1px solid #5be79b;
+}
+.bg-vert-fonce {
+    background-color: #358565;
+    border: 1px solid #358565;
+}
+.bg-saumon {
+    background-color: #FD7C66;
+    border: 1px solid #FD7C66;
+}
+.bg-gris-clair {
+    background-color: #8c979b;
+    border: 1px solid #8c979b;
 }
 
 /* Positons */
@@ -74,11 +126,52 @@ a {
 
 /* Éléments*/
 button {
-    border-radius: 15px;
-    height: 30px;
+    border-radius: 30px;
+    height: 60px;
     font-weight: bold;
-    width: 120px;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
 }
+
+
+
+/* Page de connexion*/
+div.home {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div.home h1,div.home label {
+    color: #ffffff;
+}
+
+#logo-accueil-deco {
+    width: 100%;
+    height: 150px;
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+#connexion-div a{
+    width: 100%;
+}
+#connexion-form{
+    margin: 20px;
+}
+
+
+
+/* Page de liens pour inscription*/
+
+.formulaires {
+    margin-top: 40px;
+}
+
+
 
 /* Menu */
 
@@ -88,17 +181,6 @@ button {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
-
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before,
-.clearfix:after {
-	content: " ";
-	display: table;
-}
-
-.clearfix:after {
-	clear: both;
 }
 
 .main,
@@ -197,44 +279,7 @@ button {
 	}
 }
 
-/* Page de connexion*/
-div.home {
-    background-color: #122b33;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-div.home h1,div.home label {
-    color: #ffffff;
-}
-
-#logo-accueil-deco {
-    width: 100%;
-    height: 150px;
-    background-image: url('../images/logo.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
-#connexion-div a{
-    font-size: 16px;
-    width: 100%;
-}
-#connexion-form{
-    margin: 20px;
-    width: 100%;
-}
-#connexion-form *{
-    margin: 10px;
-}
-#connexion-form input{
-    width: 90%;
-    margin: 10px;
-    height: 45px;
-}
 
 /* Accueil */
 .tableau-de-bord {
@@ -249,7 +294,6 @@ div.home h1,div.home label {
     z-index: 2;
     position: absolute;
     margin-top: calc(100% - 600px);
-    background-color: #fd7c66;
 }
 .icone {
     height: 100px;

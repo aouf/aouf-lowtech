@@ -1,4 +1,6 @@
 <?php
+require_once 'head.php';
+require_once 'header.php';
 
 if ($_SESSION['user_category']!='admin') {
     die("permission denied");
@@ -39,6 +41,5 @@ echo "- Compte $moderation_prenom $moderation_nom ($moderation_login) : $moderat
 
 }
 
+require_once 'footer.php';
 ?>
-
-

@@ -8,7 +8,7 @@ require_once 'head.php';
 
 ?>
 <body>
-    <div class='home flex column center'>
+    <div class='home flex column center bg-noir'>
         <div class="content">
             <div id='logo-accueil-deco'></div>
             <div id='connexion-div' class='flex column center'>
@@ -17,9 +17,9 @@ require_once 'head.php';
                     <input type='text' name='login' autofocus placeholder=''>
                     <label for='password'>Mot de passe</label>
                     <input type='password' name='password'>
-                    <button class='bg-green' type='submit' value='Connexion'>Connexion</button>
+                    <button class='bg-vert' type='submit' value='Connexion'>Connexion</button>
                 </form>
-                <center><a href='/register'>S'inscrire</a></center>
+                <center><a class="small-text" href='/register'>S'inscrire</a></center>
             </div>
         </div>
     </div>

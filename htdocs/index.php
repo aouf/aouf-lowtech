@@ -16,10 +16,11 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
+
 
 if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/index.php');
@@ -45,6 +46,10 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/parametres.php');
 } elseif (preg_match('#^/admin/register#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_register.php');
+} elseif (preg_match('#^/benevole/register#', $uri)) {
+    include( AOUF_BASE . '../tpl/benevole_register.php');
+} elseif (preg_match('#^/deloge/register#', $uri)) {
+    include( AOUF_BASE . '../tpl/deloge_register.php');
 } elseif (preg_match('#^/admin/moderation#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
 } else {
