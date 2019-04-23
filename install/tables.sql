@@ -32,6 +32,7 @@ CREATE TABLE offers (
     description TEXT,
     address TEXT,
     geolocalisation INT,
+    admin_comments TEXT,
     PRIMARY KEY (`id`)
 );
 

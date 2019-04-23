@@ -1,6 +1,9 @@
 - page de validation d'un compte bénévole
 - gestion date de fin d'une offre
+- gestion d'un upload de photo pour une offre
 - gestion des headers/footers en commun
 - front adapté au mobile
 - notifications emails
 - notifications SMS
+- ajout d'un bouton "Signaler un abus" sur annonce / un compte
+- permettre aux admins de désactiver une annonce / un compte
