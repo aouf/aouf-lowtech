@@ -27,47 +27,47 @@ if (isset($_POST['login'])) {
 }
 ?>
 <body>
-    <div class='container no-margin full-size'>
-        <div class="titre bg-saumon">
+    <div class='container no-margin full-size noir'>
+        <div class="titre bg-vert noir">
             <h2>Compte Bénévole</h2>
         </div>
-    <center><a class="small-text" href='/register'>Retour</a></center>
-    <form class='full-size flex center column' method='post'>
-        <label for="login">Identifiant <span class="saumon">*</span></label>
-        <input type='text' name='login'>
-        <label for="nom">Nom <span class="saumon">*</span></label>
-        <input type='text' name='nom'>
-        <label for="prenom">Prénom <span class="saumon">*</span></label>
-        <input type='text' name='prenom'>
-        <label for="email">Email <span class="saumon">*</span></label>
-        <input type='text' name='email'>
-        <label for="phone">Numéro de téléphone</label>
-        <input type='text' name='phone'>
-        <label for="adresse">Adresse</label>
-        <input type='text' name='adresse'>
-        <section class="gender">
-            <div>
-                <input type="radio" id='homme' name="gender" value="homme">
-                <label for="homme">Homme</label>
-            </div>
-            <div>
-                <input type="radio" id='femme' name="gender" value="femme">
-                <label for="femme">Femme</label>
-            </div>
-            <div>
-                <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
-                <label for="nonbinaire">Non binaire</label>
-            </div>
-            <div>
-                <input type="radio" id='famille' name="gender" value="famille">
-                <label for="famille">Famille</label>
-            </div>
-        </section>
-        <input type='hidden' name='category' value='benevole'>
-        <label for="password">Mot de passe <span class="saumon">*</span></label>
-        <input type='password' name='password'>
-        <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
-    </form>
+        <center><a class="small-text" href='/register'>Retour</a></center>
+        <form class='full-size flex center column' method='post'>
+            <label for="login">Identifiant <span class="saumon">*</span></label>
+            <input type='text' name='login'>
+            <label for="nom">Nom <span class="saumon">*</span></label>
+            <input type='text' name='nom'>
+            <label for="prenom">Prénom <span class="saumon">*</span></label>
+            <input type='text' name='prenom'>
+            <label for="email">Email <span class="saumon">*</span></label>
+            <input type='text' name='email'>
+            <label for="phone">Numéro de téléphone</label>
+            <input type='text' name='phone'>
+            <label for="adresse">Adresse</label>
+            <input type='text' name='adresse'>
+            <section class="gender">
+                <div>
+                    <input type="radio" id='homme' name="gender" value="homme">
+                    <label for="homme">Homme</label>
+                </div>
+                <div>
+                    <input type="radio" id='femme' name="gender" value="femme">
+                    <label for="femme">Femme</label>
+                </div>
+                <div>
+                    <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
+                    <label for="nonbinaire">Non binaire</label>
+                </div>
+                <div>
+                    <input type="radio" id='famille' name="gender" value="famille">
+                    <label for="famille">Famille</label>
+                </div>
+            </section>
+            <input type='hidden' name='category' value='benevole'>
+            <label for="password">Mot de passe <span class="saumon">*</span></label>
+            <input type='password' name='password'>
+            <button class='bg-vert noir' type="submit" value="S'enregistrer">S'enregistrer</button>
+        </form>
 </div>
 <?php 
     require_once 'footer.php';

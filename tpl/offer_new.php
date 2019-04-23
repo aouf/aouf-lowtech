@@ -53,27 +53,21 @@ où le récupérez ? etc.)
 ";
 } 
 ?>
-
+<div class="container bg-blanc noir full-size">
 <h2>Proposer une offre</h2>
 
-<form method='post'>
-Titre : <input type='text' name='titre'>*<br>
-Catégorie de l'offre : <?php print $category; ?><br>
-Adresse : <input type='text' name='address'><br>
-Désactivation de l'offre le : <input type='text'><br>
-<?php print $description ?> <br>
-<textarea name='description'></textarea>*
-<br><br>
-<input type='hidden' name='category' value='<?php print $category; ?>'>
-<input type='submit' value='Publier'>
-</form>
+    <form method='post'>
+    Titre : <input type='text' name='titre'>*<br>
+    Catégorie de l'offre : <?php print $category; ?><br>
+    Adresse : <input type='text' name='address'><br>
+    Désactivation de l'offre le : <input type='text'><br>
+    <?php print $description ?> <br>
+    <textarea name='description'></textarea>*
+    <br><br>
+    <input type='hidden' name='category' value='<?php print $category; ?>'>
+    <input type='submit' value='Publier'>
+    </form>
 
-<br>
-<a href='/accueil'>Accueil</a><br>
-<a href='/offer/mylist'>Mes offres</a><br>
-<a href='/message/list'>Messagerie</a><br>
-<a href='/parametres'>Mes paramètres</a><br>
-<a href='/auth'>Déconnexion</a><br>
-
+</div>
 <?php
 require_once 'footer.php';

@@ -6,7 +6,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-size: 18px;
-    color: #122b33;
+    color: #ffffff;
 }
 .content {
     width: 100%;
@@ -294,7 +294,6 @@ div.home h1,div.home label {
 .container .flex a {
     width: 48%;
     height: 33%;
-    border: 1px solid #fd7c66;
 }
 .container {
     z-index: 2;

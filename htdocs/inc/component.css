@@ -41,7 +41,6 @@
 }
 
 .dr-menu.dr-menu-open > div .dr-icon {
-	color: #5be79b;
 	left: 100%;
 	-webkit-transform: translateX(-100%);
 	-moz-transform: translateX(-100%);
@@ -74,7 +73,6 @@
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
 	transition: all 0.2s ease;
-    color: #FD7C66;
 }
 
 .dr-menu.dr-menu-open > div .dr-label {
@@ -82,7 +80,6 @@
 	-moz-transform: translateY(-90%);
 	-ms-transform: translateY(-90%);
 	transform: translateY(-90%);
-    color: #5be79b;
 }
 
 .dr-menu ul {
@@ -124,7 +121,6 @@
 	opacity: 1;
 }
 .dr-menu.dr-menu-open ul li a{
-	color: #5be79b;
     font-weight: bold;
     text-decoration: none;
 }

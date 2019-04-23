@@ -27,8 +27,8 @@ if (isset($_POST['login'])) {
 }
 ?>
 <body>
-    <div class='container no-margin full-size'>
-        <div class="titre bg-vert noir">
+    <div class='container no-margin full-size noir'>
+        <div class="titre bg-saumon blanc">
             <h2>Compte Délogé <br><span class="small-text">(soumis à modération)</span></h2>
         </div>
         <center><a class="small-text" href='/register'>Retour</a></center>
@@ -65,7 +65,7 @@ if (isset($_POST['login'])) {
             </section>
             <input type='hidden' name='category' value='deloge'>
             <label for="password">Mot de passe <span class="saumon">*</span></label><input type='password' name='password'>
-            <button class='bg-vert' type="submit" value="S'enregistrer">S'enregistrer</button>
+            <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>
     </div>
 <?php 

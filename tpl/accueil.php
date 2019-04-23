@@ -2,11 +2,11 @@
 require_once 'head.php';
 require_once 'header.php';
 ?>
-    <div class="container bg-saumon full-size">
         <?php
         if ($_SESSION['user_category']=='admin') {
             ?>
-            
+            <div class="container bg-saumon full-size">
+
             <h2>Admin</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center" href='/admin/register'><div>Créer un accès</div></a>
@@ -18,6 +18,7 @@ require_once 'header.php';
         
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
             ?>
+            <div class="container bg-saumon full-size">
             
             <h2 class="blanc">Consulter les offres</h2>
             <section class="tableau-de-bord flex center wrap">
@@ -46,6 +47,8 @@ require_once 'header.php';
         
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
             ?>
+            <div class="container bg-vert full-size">
+
             <h2 class="blanc">Déposer une offre</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center" href='/offer/new/restauration'>
