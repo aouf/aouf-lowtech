@@ -38,7 +38,7 @@ require_once 'header.php';
                 <img class="icone" src="./images/dons.png" alt="">
             </a>
             <a class="flex center" href='/offer/list/autre'>
-                <img class="icone" src="./images/restauration.png" alt="">
+                <img class="icone" src="./images/autre.png" alt="">
             </a>
         </section>
         
