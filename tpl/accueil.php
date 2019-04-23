@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 ?>
-    <div class="container bg-saumon">
+    <div class="container bg-saumon full-size">
         <?php
         if ($_SESSION['user_category']=='admin') {
             ?>
@@ -19,7 +19,7 @@ require_once 'header.php';
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
             ?>
             
-            <h2>Consulter les offres</h2>
+            <h2 class="blanc">Consulter les offres</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center column" href='/offer/list/restauration'>
                     <img class="icone" src="./images/restauration.png" alt="">
@@ -46,7 +46,7 @@ require_once 'header.php';
         
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
             ?>
-            <h2>Déposer une offre</h2>
+            <h2 class="blanc">Déposer une offre</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center" href='/offer/new/restauration'>
                     <img class="icone" src="./images/restauration.png" alt="">
