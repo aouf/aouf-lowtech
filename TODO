@@ -1,9 +1,17 @@
-- page de validation d'un compte bénévole
-- gestion date de fin d'une offre
+- page de validation d'un compte bénévole suite envoi d'un email de confirmation
+- améliorer les erreurs en cas d'authentification incorrecte
+- gérer un lostpassword
+- forcer à avoir une complexité de mot de passe
+- gestion date de début et fin d'offre + option "toute la journée"
 - gestion d'un upload de photo pour une offre
-- gestion des headers/footers en commun
-- front adapté au mobile
 - notifications emails
 - notifications SMS
 - ajout d'un bouton "Signaler un abus" sur annonce / un compte
+- gestion des feedbacks vers toctoc@
 - permettre aux admins de désactiver une annonce / un compte
+- upload d'une photo pour une annonce
+- gérer la confirmation RGPD : proposer l'envoi de news par email / SMS 
+- stocker la date de la dernière activité d'une annonce / compte
+- ajouter un choix d'arrondissement pour une annonce / compte
+- découper la description d'une annonce en plusieurs textarea pour avoir plusieurs placeholders
+- front mobilefirst compatible aussi dans un navigateur web
