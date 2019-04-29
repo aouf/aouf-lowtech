@@ -33,12 +33,13 @@ input:not([type=radio]) {
 
 
 /* Textes */
-h1, h2, h3 {
+h1, h2 {
     text-align: center;
     margin: 0;
     padding: 20px;
 }
 h3 {
+    margin:5px;
     color: #ffffff;
 }
 a {
