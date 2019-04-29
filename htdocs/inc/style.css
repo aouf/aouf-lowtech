@@ -15,14 +15,16 @@ body {
 form {
     width: 100%;
     margin: 20px 0 20px 0;
+    padding: 10px;
 }
 form *:not(span) {
     margin: 10px 0 10px 0;
 }
-input:not([type=radio]) {
+input:not([type=radio]):not([type=checkbox]), select {
     width: 90%;
     margin: 10px;
     height: 45px;
+    background: #ffffff;
 }
 .full-size {
     width: 100%;
@@ -305,6 +307,7 @@ div.home h1,div.home label {
     height: 33%;
     margin: 1%;
 }
+
 #container-accueil {
     height: calc(100% - 125px);
 }

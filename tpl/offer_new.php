@@ -57,11 +57,10 @@ où le récupérez ? etc.)
 ?>
 <div class="container bg-blanc noir full-size">
 <h2>Proposer une offre</h2>
-
-    <form method='post' enctype='multipart/form-data'>
-    Titre : <input type='text' name='title'>*<br>
-    Catégorie de l'offre : <?php print $category; ?><br>
-    Arrondissement : <select name='arrondissement'>
+    <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
+    <label for="title">Titre <span class="saumon">*</span></label><input type='text' name='title'>
+    <p>Catégorie de l'offre : <?php print $category; ?></p>
+    <label for="">Arrondissement<span class="saumon">*</span></label><select name='arrondissement'>
     <option value='0'>-</option>
     <option value='1'>1er</option>
     <option value='2'>2eme</option>
@@ -78,15 +77,30 @@ où le récupérez ? etc.)
     <option value='13'>13eme</option>
     <option value='14'>14eme</option>
     <option value='15'>15eme</option>
-    <option value='16'>16eme</option></select>*<br>
-    Adresse : <input type='text' name='address'><br>
-    Début de l'offre : <input type='text'><br>
-    Fin de l'offre : <input type='text'><br>
+    <option value='16'>16eme</option></select>
+    <label for="address">Adresse</label><input type='text' name='address'>
+    <label for="allDay">Toute la journée <input type="checkbox" name="allDay" value="yes"></label>
+    <section class="flex column center">
+        <span>Début de l'offre</span>
+            <section class="flex">
+                <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" value="<?php echo date('Y-m-d') ;?>"></section>
+                <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value=""></section>
+            </section>
+    </section>
+    <section class="flex column center">
+        <span>Fin de l'offre</span>
+            <section class="flex">
+                <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" value="<?php echo date('Y-m-d', time() + 86400); ?>"></section>
+                <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value=""></section>
+            </section>
+    </section>
+    <label for="end">Fin de l'offre</label><input type='date' name="dateEnd" value="<?php echo date('Y-m-d', time() + 86400); ?>">
+    <label for="timeEnd"><input type='time' name="timeEnd" value=""></label>
     <?php print $description ?> <br>
     <textarea name='description1'></textarea><br>
     <textarea name='description2'></textarea><br>
     <textarea name='description3'></textarea>*<br>
-    Photo : <input type='file' name='picture'><br>
+    <label for="">Photo</label><input type='file' name='picture'>
     <input type='hidden' name='category' value='<?php print $category; ?>'>
     <input type='submit' value='Publier'>
     </form>
