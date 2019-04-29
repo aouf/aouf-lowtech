@@ -16,10 +16,31 @@ if (!is_int($offer_id)) {
 
 if (isset($_POST['message'])) {
     $message = $_POST['message'];
-    $to = $_POST['to'];
+    $to_id = $_POST['to'];
     $req = "INSERT INTO messages(offer_id,from_id,to_id,message) VALUES (?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$offer_id, $user_id, $to, $message]);
+    $statement->execute([$offer_id, $user_id, $to_id, $message]);
+
+    // send email for notification
+    $req = "SELECT email FROM users WHERE id=$to_id LIMIT 1";
+    $statement = $pdo->query($req);
+    $data = $statement->fetch();
+    $email_addr = $data['email'];
+    $headers_mail = "MIME-Version: 1.0\n";
+    $headers_mail .= 'From: '.$conf['mail']['from']."\n";
+    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+    $body_mail = "Bonjour,
+
+Vous avez reçu un nouveau message via AOUF :
+https://low.aouf.fr/message/list
+
+$message
+
+-- 
+L'equipe Aouf
+";
+    mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+
 }
 
 ?>
