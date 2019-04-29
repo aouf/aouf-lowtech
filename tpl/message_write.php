@@ -7,10 +7,15 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $user_id = $_SESSION['user_id'];
 
 $uri = $_SERVER['REQUEST_URI'];
-preg_match('#^/message/write/(\d+)$#', $uri, $matches);
+preg_match('#^/message/write/(\d+)/(\d+)$#', $uri, $matches);
 $offer_id = (int)$matches[1];
+$with_id = (int)$matches[2];
 if (!is_int($offer_id)) {
     print "Erreur, offre inexistante";
+    die();
+}
+if (!is_int($offer_id)) {
+    print "Erreur, user inexistant";
     die();
 }
 
@@ -39,7 +44,7 @@ $message
 -- 
 L'equipe Aouf
 ";
-    mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+    mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
 
 }
 
@@ -58,7 +63,7 @@ $offer_userid = $data['user_id'];
 
 print "<h3>Annonce $offer_title</h3>";
 
-$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( from_id=$user_id OR to_id=$user_id )";
+$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id OR to_id=$with_id ) OR ( from_id=$with_id OR to_id=$user_id ) )";
 $statement = $pdo->query($req);
 
 while ($data2 = $statement->fetch()) {
