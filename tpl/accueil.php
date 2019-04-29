@@ -18,7 +18,7 @@ require_once 'header.php';
         
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
             ?>
-            <div class="container bg-saumon full-size">
+            <div id="container-accueil" class="container bg-saumon full-size">
             
             <h2 class="blanc">Consulter les offres</h2>
             <section class="tableau-de-bord flex center wrap">
@@ -53,7 +53,7 @@ require_once 'header.php';
         
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
             ?>
-            <div class="container bg-vert full-size">
+            <div id="container-accueil" class="container bg-vert full-size">
 
             <h2 class="blanc">Déposer une offre</h2>
             <section class="tableau-de-bord flex center wrap">

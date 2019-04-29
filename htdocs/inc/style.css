@@ -39,7 +39,6 @@ h1, h2, h3 {
     padding: 20px;
 }
 h3 {
-    text-decoration: none !important;
     color: #ffffff;
 }
 a {
@@ -296,6 +295,7 @@ div.home h1,div.home label {
 
 
 /* Accueil */
+
 .tableau-de-bord {
     height: calc(100vh - 300px);
 }
@@ -308,7 +308,9 @@ div.home h1,div.home label {
     position: absolute;
     margin-top: calc(100% - 600px);
 }
+#container-accueil a.flex.center.column * {
+    height: 48%;
+}
 .icone {
     max-height: 100px;
-    height: 100%;
 }
