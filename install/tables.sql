@@ -18,6 +18,7 @@ CREATE TABLE users (
     rgpd_ack TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     password VARCHAR(100) DEFAULT NULL,
     admin_comments TEXT,
+    create_token VARCHAR(100),
     PRIMARY KEY (`id`)
 );
 

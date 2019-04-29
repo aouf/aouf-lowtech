@@ -17,7 +17,7 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))&&(!preg_match('#^/lostpassword#', $uri))&&(!preg_match('#^/validation#', $uri))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
@@ -29,6 +29,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/auth.php');
 } elseif (preg_match('#^/accueil#', $uri)) {
     include( AOUF_BASE . '../tpl/accueil.php');
+} elseif (preg_match('#^/lostpassword#', $uri)) {
+    include( AOUF_BASE . '../tpl/lostpassword.php');
 } elseif (preg_match('#^/offer/new#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_new.php');
 } elseif (preg_match('#^/offer/list#', $uri)) {
@@ -39,6 +41,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_edit.php');
 } elseif (preg_match('#^/register#', $uri)) {
     include( AOUF_BASE . '../tpl/register.php');
+} elseif (preg_match('#^/validation#', $uri)) {
+    include( AOUF_BASE . '../tpl/validation.php');
 } elseif (preg_match('#^/message/list#', $uri)) {
     include( AOUF_BASE . '../tpl/message_list.php');
 } elseif (preg_match('#^/message/write#', $uri)) {

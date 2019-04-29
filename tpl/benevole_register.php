@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
 
 Validez votre compte en cliquant sur ce lien :
 
-https://low.aouf.fr/TODO
+https://low.aouf.fr/validation/TODO
 
 (valable pendant 24h)
 

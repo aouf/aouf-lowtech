@@ -14,6 +14,9 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $login = $_POST['login'];
 $password = $_POST['password'];
 
+// éviter brute force bourrin (TODO: à améliorer)
+sleep(1);
+
 $req = "SELECT id,category,password,status FROM users where login='$login' LIMIT 1";
 $statement = $pdo->query($req);
 $data = $statement->fetch();

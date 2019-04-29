@@ -22,6 +22,7 @@ require_once 'head.php';
                     <button class='bg-vert' type='submit' value='Connexion'>Connexion</button>
                 </form>
                 <center><a class="small-text under" href='/register'>S'inscrire</a></center>
+                <center><a class="small-text under" href='/lostpassword'>Mot de passe oublié</a></center>
             </div>
         </div>
     </div>
