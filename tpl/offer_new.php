@@ -94,8 +94,6 @@ où le récupérez ? etc.)
                 <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value=""></section>
             </section>
     </section>
-    <label for="end">Fin de l'offre</label><input type='date' name="dateEnd" value="<?php echo date('Y-m-d', time() + 86400); ?>">
-    <label for="timeEnd"><input type='time' name="timeEnd" value=""></label>
     <?php print $description ?> <br>
     <textarea name='description1'></textarea><br>
     <textarea name='description2'></textarea><br>
