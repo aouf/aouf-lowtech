@@ -36,6 +36,23 @@ input:not([type=radio]):not([type=checkbox]), select {
     height: 45px;
     background: #ffffff;
 }
+form textarea {
+    margin-top: 0;
+    margin-bottom: 0;
+    resize: none;
+    width: 90%;
+    height: 100px;
+}
+form textarea:first-of-type:not(:only-of-type) {
+    border-bottom: none;
+}
+form textarea:nth-of-type(2n) {
+    border-top: none;
+    border-bottom: none;
+}
+form textarea:last-of-type:not(:only-of-type) {
+    border-top: none;
+}
 .full-size {
     width: 100%;
 }
