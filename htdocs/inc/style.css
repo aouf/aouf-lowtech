@@ -27,6 +27,9 @@ form {
 form *:not(span) {
     margin: 10px 0 10px 0;
 }
+form p {
+    text-align: justify;
+}
 input:not([type=radio]):not([type=checkbox]), select {
     width: 90%;
     margin: 10px;
