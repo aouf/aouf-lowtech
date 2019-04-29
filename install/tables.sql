@@ -13,6 +13,7 @@ CREATE TABLE users (
     firstname VARCHAR(100),
     gender VARCHAR(100),
     address TEXT,
+    arrondissement TEXT,
     geolocalisation INT,
     rgpd_ack TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     password VARCHAR(100) DEFAULT NULL,
@@ -30,10 +31,13 @@ CREATE TABLE offers (
     status VARCHAR(100),
     date_start TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     date_end TIMESTAMP,
+    date_type TEXT,
     title TEXT,
     description TEXT,
     address TEXT,
+    arrondissement TEXT,
     geolocalisation INT,
+    picture LONGBLOB,
     admin_comments TEXT,
     PRIMARY KEY (`id`)
 );
