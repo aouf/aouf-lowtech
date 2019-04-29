@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $phone = $_POST['phone'];
-    $email = $_POST['email'];
+    $email_addr = $_POST['email'];
     $arrondissement = $_POST['arrondissement'];
     $address = $_POST['address'];
     $gender = $_POST['gender'];
@@ -17,10 +17,25 @@ if (isset($_POST['login'])) {
     
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$adresse,$password]);
+    $statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$adresse,$password]);
 
-    // send email for validation : TODO
-    echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
+    // send email for validation
+    $headers_mail = "MIME-Version: 1.0\n";
+    $headers_mail .= 'From: '.$conf['mail']['from']."\n";
+    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+    $body_mail = "Bonjour,
+
+Validez votre compte en cliquant sur ce lien :
+
+https://low.aouf.fr/TODO
+
+(valable pendant 24h)
+
+--
+L'equipe Aouf
+";
+    mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+    echo "Compte <strong>$login</strong> en cours de création, vous allez recevoir un email pour validation&nbsp;!<br>";
 }
 ?>
 <body>
