@@ -6,7 +6,7 @@ require_once 'header.php';
         if ($_SESSION['user_category']=='admin') {
             ?>
             <div class="container bg-saumon full-size">
-
+                <div class="content">
             <h2>Admin</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center" href='/admin/register'><div>Créer un accès</div></a>
@@ -19,7 +19,7 @@ require_once 'header.php';
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
             ?>
             <div id="container-accueil" class="container bg-saumon full-size">
-            
+                <div class="content">
             <h2 class="blanc">Consulter les offres</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center column" href='/offer/list/restauration'>
@@ -54,7 +54,7 @@ require_once 'header.php';
         if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
             ?>
             <div id="container-accueil" class="container bg-vert full-size">
-
+                <div class="content">
             <h2 class="blanc">Déposer une offre</h2>
             <section class="tableau-de-bord flex center wrap">
                 <a class="flex center column" href='/offer/new/restauration'>
@@ -85,5 +85,6 @@ require_once 'header.php';
             
             <br>
         <?php } ?>
+    </div>
 </div>
 <?php require_once 'footer.php'; ?>

@@ -56,6 +56,8 @@ if (isset($_POST['title'])) {
     <br><br>
     <input type='submit' value='Modifier'>
     </form>
+    <div class="content">
+    </div>
 </div>
 
 <?php

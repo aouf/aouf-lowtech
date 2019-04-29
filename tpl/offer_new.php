@@ -85,6 +85,7 @@ où le récupérez ? etc.)
             <section class="flex">
                 <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" value="<?php echo date('Y-m-d') ;?>"></section>
                 <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value=""></section>
+    <div class="content">
             </section>
     </section>
     <section class="flex column center">
@@ -103,6 +104,7 @@ où le récupérez ? etc.)
     <input type='submit' value='Publier'>
     </form>
 
+    </div>
 </div>
 <?php
 require_once 'footer.php';

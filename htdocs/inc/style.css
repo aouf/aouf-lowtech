@@ -8,8 +8,15 @@ body {
     font-size: 18px;
     color: #ffffff;
 }
+
 .content {
     width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+.home .content {
+    width: 100%;
+    max-width: 800px;
 }
 
 form {
