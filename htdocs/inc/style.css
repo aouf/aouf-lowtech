@@ -59,7 +59,7 @@ a {
     color: #358565;
 }
 .saumon {
-    color: #FD7C66;
+    color: #ff7c66;
 }
 .gris-clair {
     color: #8c979b;
@@ -81,8 +81,8 @@ a {
     border: 1px solid #358565;
 }
 .bg-saumon {
-    background-color: #FD7C66;
-    border: 1px solid #FD7C66;
+    background-color: #ff7c66;
+    border: 1px solid #ff7c66;
 }
 .bg-gris-clair {
     background-color: #8c979b;
