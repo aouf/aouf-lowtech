@@ -2,12 +2,13 @@
 
 // Path
 define('AOUF_BASE','./');
-if (!file_exists( AOUF_BASE . '../conf/connect.php'))
-{
+
+// Configuration
+if (!file_exists( AOUF_BASE . '../conf/connect.php')||(!file_exists( AOUF_BASE . '../conf/global.php'))) {
     exit('<p style="text-align: center; margin-top: 15%; ">La configuration de connexion semble incorrecte.</p>');
 }
 require_once AOUF_BASE . '../conf/connect.php';
-//require_once AOUF_BASE . '../conf/global.php';
+require_once AOUF_BASE . '../conf/global.php';
 
 // Session
 session_name('AOUF_SESS');
