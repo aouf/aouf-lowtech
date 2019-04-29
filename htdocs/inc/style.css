@@ -305,8 +305,7 @@ div.home h1,div.home label {
     margin: 1%;
 }
 .container {
-    z-index: 2;
-    position: absolute;
+    height: 400px;
 }
 #container-accueil a.flex.center.column * {
     height: 48%;
