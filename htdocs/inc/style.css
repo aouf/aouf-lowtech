@@ -33,13 +33,21 @@ input:not([type=radio]) {
 
 
 /* Textes */
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
     margin: 0;
     padding: 20px;
 }
+h3 {
+    text-decoration: none !important;
+    color: #ffffff;
+}
 a {
     color:#358565;
+    text-decoration: none;
+}
+.under {
+    text-decoration: underline;
 }
 .small-text {
     font-size: 15px;

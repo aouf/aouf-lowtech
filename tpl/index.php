@@ -21,7 +21,7 @@ require_once 'head.php';
                     <input type='password' name='password'>
                     <button class='bg-vert' type='submit' value='Connexion'>Connexion</button>
                 </form>
-                <center><a class="small-text" href='/register'>S'inscrire</a></center>
+                <center><a class="small-text under" href='/register'>S'inscrire</a></center>
             </div>
         </div>
     </div>
