@@ -304,7 +304,7 @@ div.home h1,div.home label {
     height: 33%;
     margin: 1%;
 }
-.container {
+#container-accueil {
     height: calc(100% - 125px);
 }
 
