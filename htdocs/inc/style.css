@@ -301,5 +301,6 @@ div.home h1,div.home label {
     margin-top: calc(100% - 600px);
 }
 .icone {
-    height: 100px;
+    max-height: 100px;
+    height: 100%;
 }
