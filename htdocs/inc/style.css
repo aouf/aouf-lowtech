@@ -17,7 +17,7 @@ form {
     margin: 20px 0 20px 0;
 }
 form *:not(span) {
-    margin: 10px;
+    margin: 10px 0 10px 0;
 }
 input:not([type=radio]) {
     width: 90%;

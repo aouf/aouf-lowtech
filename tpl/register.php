@@ -15,7 +15,7 @@ require_once 'head.php';
                     <form class="flex column center" action="/deloge/register" method="post">
                         <button class='bg-saumon blanc' type="submit"value='Connexion'>Je suis délogé(e)</button>
                     </form>
-                    <center><a class="small-text" href='/'>Retour</a></center>
+                    <center><a class="small-text under" href='/'>Retour</a></center>
                 </div>
             </div>
         </div>

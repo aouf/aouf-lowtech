@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
         <div class="titre bg-vert noir">
             <h2>Compte Bénévole</h2>
         </div>
-        <center><a class="small-text" href='/register'>Retour</a></center>
+        <center><a class="small-text under" href='/register'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
             <label for="login">Identifiant <span class="saumon">*</span></label>
             <input type='text' name='login'>
