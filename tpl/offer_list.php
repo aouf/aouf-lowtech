@@ -6,6 +6,8 @@ if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='deloge'
     die("permission denied");
 }
 
+$user_id = $_SESSION['user_id'];
+
 $uri = $_SERVER['REQUEST_URI'];
 preg_match('#^/offer/list/(\w+)$#', $uri, $matches);
 $offer_category = trim($matches[1]);
@@ -23,7 +25,7 @@ $offer_category = trim($matches[1]);
             $titre = $data['title'];
             $description = $data['description'];
             
-            echo "Annonce $offer_id : $titre - $description : <a href='/message/write/$offer_id'>Réserver cette offre</a><br>";
+            echo "Annonce $offer_id : $titre - $description : <a href='/message/write/$offer_id/$user_id'>Réserver cette offre</a><br>";
 
         }
     ?>
