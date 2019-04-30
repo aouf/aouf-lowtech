@@ -75,7 +75,7 @@ print $data2['date_create'].":<br>".$data2['message']."<br><br>";
 <form method='post'>
 <textarea name='message'></textarea>
 <br><br>
-<input type='hidden' name='to' value='<?php print $offer_userid; ?>'>
+<input type='hidden' name='to' value='<?php print $with_id; ?>'>
 <input type='submit' value='Publier'>
 </form>
 
