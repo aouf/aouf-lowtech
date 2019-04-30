@@ -19,11 +19,16 @@ if (!($offer_id>0)) {
 }
 
 if (isset($_POST['title'])) {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
     $status = $_POST['status'];
+    $title = $_POST['title'];
     $arrondissement = $_POST['arrondissement'];
-    $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement' WHERE id=$offer_id";
+    $address = $_POST['address'];
+    $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
+    $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
+    $description = $_POST['description'];
+    //$picture = (($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL');
+
+    $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
     $statement = $pdo->prepare($req);
     $statement->execute();
 
