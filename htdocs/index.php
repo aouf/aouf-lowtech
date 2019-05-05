@@ -17,7 +17,7 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/auth#', $uri))&&(!preg_match('#^/lostpassword#', $uri))&&(!preg_match('#^/validation#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lostpassword#', $uri))&&(!preg_match('#^/validation#', $uri))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
@@ -25,8 +25,6 @@ if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!
 
 if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/index.php');
-} elseif (preg_match('#^/auth#', $uri)) {
-    include( AOUF_BASE . '../tpl/auth.php');
 } elseif (preg_match('#^/accueil#', $uri)) {
     include( AOUF_BASE . '../tpl/accueil.php');
 } elseif (preg_match('#^/lostpassword#', $uri)) {

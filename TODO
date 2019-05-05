@@ -1,6 +1,5 @@
 Par ordre de priorité :
 
-- améliorer les erreurs en cas d'authentification incorrecte
 - notifications emails (WIP)
 - ajout d'un bouton "Signaler un abus" sur une offre / un compte
 - gestion de feedback avec envoi email vers toctoc@
