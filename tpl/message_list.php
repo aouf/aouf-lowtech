@@ -1,8 +1,9 @@
 <?php
 
-$user_id = $_SESSION['user_id'];
 require_once 'head.php';
 require_once 'header.php';
+
+$user_id = $_SESSION['user_id'];
 ?>
 
 <h2>Liste des messages</h2>
@@ -22,4 +23,4 @@ echo "Offre $offer_id / message avec $with_id : <a href='/message/write/$offer_i
 
 }
 
-require_once 'header.php';
+require_once 'footer.php';
