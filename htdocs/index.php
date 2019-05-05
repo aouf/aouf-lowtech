@@ -25,6 +25,8 @@ if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!
 
 if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/index.php');
+} elseif (preg_match('#^/\?logout$#', $uri)) {
+    include( AOUF_BASE . '../tpl/index.php');
 } elseif (preg_match('#^/accueil#', $uri)) {
     include( AOUF_BASE . '../tpl/accueil.php');
 } elseif (preg_match('#^/lostpassword#', $uri)) {
