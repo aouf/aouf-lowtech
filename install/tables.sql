@@ -19,6 +19,7 @@ CREATE TABLE users (
     password VARCHAR(100) DEFAULT NULL,
     admin_comments TEXT,
     create_token VARCHAR(100),
+    notification VARCHAR(100),
     PRIMARY KEY (`id`)
 );
 
