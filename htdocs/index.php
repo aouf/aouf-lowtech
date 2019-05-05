@@ -57,6 +57,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/deloge_register.php');
 } elseif (preg_match('#^/admin/moderation#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
+} elseif (preg_match('#^/feedback#', $uri)) {
+    echo 'En cours de construction...';
 } else {
     echo '404: NOT FOUND';
 }
