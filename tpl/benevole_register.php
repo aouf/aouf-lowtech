@@ -55,7 +55,7 @@ L'equipe Aouf
             <input type='text' name='prenom'>
             <label for="email">Email <span class="saumon">*</span></label>
             <input type='text' name='email'>
-            <label for="phone">Numéro de téléphone</label>
+            <label for="phone">Numéro de téléphone portable</label>
             <input type='text' name='phone'>
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
             <select name='arrondissement'>

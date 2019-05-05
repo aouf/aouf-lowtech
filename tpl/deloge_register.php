@@ -38,7 +38,7 @@ if (isset($_POST['username'])) {
             <input type='text' name='nom'>
             <label for="prenom">Prénom <span class="saumon">*</span></label>
             <input type='text' name='prenom'>
-            <label for="phone">Numéro de téléphone <span class="saumon">*</span></label>
+            <label for="phone">Numéro de téléphone portable <span class="saumon">*</span></label>
             <input type='text' name='phone'>
             <label for="email">Email</label>
             <input type='text' name='email'>
