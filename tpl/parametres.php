@@ -26,6 +26,8 @@ if (isset($_POST['login'])) {
     }
     $statement = $pdo->prepare($req);
     $statement->execute();
+    
+    $_SESSION['user_arrondissement'] = $arrondissement;
 
     // on met a jour le lastactivity de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');

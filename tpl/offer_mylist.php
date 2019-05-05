@@ -21,11 +21,12 @@ $user_id = $_SESSION['user_id'];
             $offer_id = $data['id'];
             $titre = $data['title'];
             $description = $data['description'];
+            $arrondissement = $data['arrondissement'];
             $status = $data['status'];
             $status_text = "";
             if ($status == 'disabled') $status_text = "(désactivée)";
             
-            echo "Offre $offer_id $status_text : $titre - $description : <a href='/offer/edit/$offer_id'>Éditer cette offre</a><br>";
+            echo "Offre $offer_id $status_text : $titre - desc: $description - arr: $arrondissement : <a href='/offer/edit/$offer_id'>Éditer cette offre</a><br>";
 
         }
 

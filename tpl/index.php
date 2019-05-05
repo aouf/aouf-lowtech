@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
     
-    $req = "SELECT id,category,password,status FROM users where login='$login' LIMIT 1";
+    $req = "SELECT id,category,password,status,arrondissement FROM users where login='$login' LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
     
@@ -29,6 +29,7 @@ if (isset($_POST['login'])) {
     $category = $data['category'];
     $status = $data['status'];
     $user_id = $data['id'];
+    $arrondissement = $data['arrondissement'];
     
     //if ($status != 'enabled') die("compte non actif");
     if ((password_verify($password,$hash_password)) && ($status == 'enabled')) {
@@ -36,6 +37,7 @@ if (isset($_POST['login'])) {
         $_SESSION['user_login'] = $login;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_category'] = $category;
+        $_SESSION['user_arrondissement'] = $arrondissement;
         header("Location: accueil");
         exit; 
     } else {
