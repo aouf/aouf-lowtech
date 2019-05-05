@@ -27,7 +27,7 @@
                 <?php } ?>
                 <li><a class="<?php echo $class ; ?>" href="/message/list">Messagerie</a></li>
                 <li><a class="<?php echo $class ; ?>" href="/parametres">Mes paramètres</a></li>
-                <li><a class="<?php echo $class ; ?>" href="/auth">Déconnexion</a></li>
+                <li><a class="<?php echo $class ; ?>" href="/?logout">Déconnexion</a></li>
             </ul>
         </nav>
     </header>

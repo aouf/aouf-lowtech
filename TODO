@@ -1,6 +1,6 @@
 Par ordre de priorité :
 
-- ajout d'un bouton "Signaler un abus" sur une offre / un compte
+- ajout d'un bouton "Signaler un abus" sur une offre / un message (WIP)
 - gestion de feedback avec envoi email vers toctoc@
 - stocker la date de la dernière activité d'une annonce / compte (date_lastactivity) (WIP)
 - gérer un lostpassword (WIP)

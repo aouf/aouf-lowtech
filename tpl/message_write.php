@@ -85,6 +85,10 @@ print $data2['date_create'].":<br>".$data2['message']."<br><br>";
 ?>
 
 <form method='post'>
+<input type='submit' value='Signaler un contenu inapproprié'>
+</form>
+
+<form method='post'>
 <textarea name='message'></textarea>
 <br><br>
 <input type='hidden' name='to' value='<?php print $with_id; ?>'>
