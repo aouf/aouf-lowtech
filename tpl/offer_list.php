@@ -21,51 +21,54 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
     <?php
     if ($arrondissement != '') {
         print "<h3>Offres dans votre arrondissement ($arrondissement)</h3>";
-        $req = "SELECT offers.id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
+        $req = "SELECT offers.id,offers.user_id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
         $statement = $pdo->query($req);
 
         while ($data = $statement->fetch()) {
 
             $offer_id = $data['id'];
+            $offer_userid = $data['user_id'];
             $titre = $data['title'];
             $description = $data['description'];
             $arrondissement = $data['arrondissement'];
             $name = $data['name'];
             $firstname = $data['firstname'];
             
-            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$user_id'>Réserver cette offre</a><br>";
+            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$offer_userid'>Réserver cette offre</a><br>";
         }
         print "<h3>Offres dans les autres arrondissements</h3>";
-        $req = "SELECT offers.id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement";
+        $req = "SELECT offers.id,offers.user_id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement";
         $statement = $pdo->query($req);
 
         while ($data = $statement->fetch()) {
 
             $offer_id = $data['id'];
+            $offer_userid = $data['user_id'];
             $titre = $data['title'];
             $description = $data['description'];
             $arrondissement = $data['arrondissement'];
             $name = $data['name'];
             $firstname = $data['firstname'];
             
-            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$user_id'>Réserver cette offre</a><br>";
+            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$offer_userid'>Réserver cette offre</a><br>";
 
         }
     } else {
 
-        $req = "SELECT offers.id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled'";
+        $req = "SELECT offers.id,offers.user_id,offers.title,offers.description,offers.arrondissement,users.name,users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled'";
         $statement = $pdo->query($req);
 
         while ($data = $statement->fetch()) {
 
             $offer_id = $data['id'];
+            $offer_userid = $data['user_id'];
             $titre = $data['title'];
             $description = $data['description'];
             $arrondissement = $data['arrondissement'];
             $name = $data['name'];
             $firstname = $data['firstname'];
             
-            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$user_id'>Réserver cette offre</a><br>";
+            echo "Annonce $offer_id : $titre - desc: $description - from: $firstname $name - arr: $arrondissement : <a href='/message/write/$offer_id/$offer_userid'>Réserver cette offre</a><br>";
         }
     }
     ?>
