@@ -14,10 +14,14 @@ if (isset($_POST['login'])) {
     $gender = $_POST['gender'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = $_POST['category'];
+    $token = sha1(random_bytes(128));
     
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    // éviter brute force bourrin (TODO: à améliorer)
+    sleep(1);
+
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$adresse,$password]);
+    $statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,$token,'email']);
 
     // send email for validation
     $headers_mail = "MIME-Version: 1.0\n";
@@ -27,11 +31,11 @@ if (isset($_POST['login'])) {
 
 Validez votre compte en cliquant sur ce lien :
 
-https://low.aouf.fr/validation/TODO
+https://low.aouf.fr/validation/$token
 
 (valable pendant 24h)
 
---
+-- 
 L'equipe Aouf
 ";
     mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);

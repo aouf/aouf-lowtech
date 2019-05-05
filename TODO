@@ -1,6 +1,5 @@
 Par ordre de priorité :
 
-- page de validation d'un compte bénévole suite envoi d'un email de confirmation (WIP)
 - améliorer les erreurs en cas d'authentification incorrecte
 - notifications emails (WIP)
 - ajout d'un bouton "Signaler un abus" sur une offre / un compte

@@ -11,15 +11,16 @@ if (isset($token)) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
     // TODO: à sécuriser contre les XSS
-    $req = "SELECT status FROM users WHERE create_token='$token' LIMIT 1";
+    $req = "SELECT id,status FROM users WHERE create_token='$token' LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
 
     $status = $data['status'];
+    $moderation_id = $data['id'];
     
     if ($status == 'unvalidated') {
 
-        $req = "UPDATE users set status='enabled' WHERE id = $moderation_id";
+        $req = "UPDATE users set status='enabled',create_token=NULL WHERE id = $moderation_id";
         $statement = $pdo->prepare($req);
         $statement->execute();
 
