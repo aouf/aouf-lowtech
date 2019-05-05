@@ -3,7 +3,7 @@ require_once 'head.php';
 // require_once 'header.php';
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-if (isset($_POST['username'])) {
+if (isset($_POST['login'])) {
     $login = $_POST['login'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -45,8 +45,8 @@ L'equipe Aouf
         </div>
         <center><a class="small-text under" href='/register'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
-            <label for="username">Identifiant <span class="saumon">*</span></label>
-            <input type='username' name='username' id='username'>
+            <label for="login">Identifiant <span class="saumon">*</span></label>
+            <input type='username' name='login' id='login'>
             <label for="password">Mot de passe <span class="saumon">*</span></label>
             <input type='password' name='password'>
             <label for="nom">Nom <span class="saumon">*</span></label>
