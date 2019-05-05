@@ -27,25 +27,37 @@ if (isset($_POST['message'])) {
     $statement->execute([$offer_id, $user_id, $to_id, $message]);
 
     // send email for notification
-    $req = "SELECT email FROM users WHERE id=$to_id LIMIT 1";
+    $req = "SELECT email,phonenumber,notification FROM users WHERE id=$to_id LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
     $email_addr = $data['email'];
-    $headers_mail = "MIME-Version: 1.0\n";
-    $headers_mail .= 'From: '.$conf['mail']['from']."\n";
-    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-    $body_mail = "Bonjour,
+    $phone_number = $data['phonenumber'];
+    $notification = $data['notification'];
+    if (($notification == 'email')&&($email_addr != '')) {
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: '.$conf['mail']['from']."\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
 Vous avez reçu un nouveau message via AOUF :
-https://low.aouf.fr/message/list
 
 $message
+
+Pour répondre :
+https://low.aouf.fr/message/list
 
 -- 
 L'equipe Aouf
 ";
-    mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
-
+        mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
+    }
+    if (($notification == 'sms')&&($phone_number != '')) {
+        $body_sms = 'Nouveau+message+via+AOUF+:+https://low.aouf.fr/message/list';
+        $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_exec($ch);
+        curl_close($ch);
+    }
 }
 
 ?>

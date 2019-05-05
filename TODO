@@ -1,6 +1,5 @@
 Par ordre de priorité :
 
-- notifications emails (WIP)
 - ajout d'un bouton "Signaler un abus" sur une offre / un compte
 - gestion de feedback avec envoi email vers toctoc@
 - stocker la date de la dernière activité d'une annonce / compte (date_lastactivity) (WIP)
@@ -9,6 +8,5 @@ Par ordre de priorité :
 - édition d'une offre : possibilité d'ajouter / supprimer la photo
 - gérer la confirmation RGPD : proposer l'envoi de news par email / SMS 
 - front mobilefirst compatible aussi dans un navigateur web
-- notifications SMS
 - forcer à avoir une complexité de mot de passe
 - gestion d'une option "toute la journée"
