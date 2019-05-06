@@ -75,6 +75,7 @@ L'equipe Aouf
         $offer_userid = $data['user_id'];
         $offer_arrondissement = $data['arrondissement'];
         $offer_address = $data['address'];
+        $offer_picture = $data['picture'];
         list($offer_datestart,$offer_timestart) = preg_split("/ /", $data['date_start']);
         list($offer_dateend,$offer_timeend) = preg_split("/ /", $data['date_end']);
         ?>
@@ -123,7 +124,7 @@ L'equipe Aouf
                 </section>
         </section>
         <textarea name='description'><?php echo $offer_description; ?></textarea>
-        <?php if ($offer_picture == 'NULL') { ?><label for="">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
+        <?php if ($offer_picture == 'NULL') { ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
         <button class='bg-vert noir' type="submit" name="button" value"Modifier">Modifier</button>
         </form>
 
