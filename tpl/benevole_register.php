@@ -99,7 +99,6 @@ L'equipe Aouf
                 </div>
             </section>
             <input type='hidden' name='category' value='benevole'>
-            <input type='password' name='password'>
             <button class='bg-vert noir' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>
 </div>
