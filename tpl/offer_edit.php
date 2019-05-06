@@ -123,7 +123,7 @@ L'equipe Aouf
                 </section>
         </section>
         <textarea name='description'><?php echo $offer_description; ?></textarea>
-        <?php if ($offer_picture != '') { ?><label for="">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
+        <?php if ($offer_picture == 'NULL') { ?><label for="">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
         <button class='bg-vert noir' type="submit" name="button" value"Modifier">Modifier</button>
         </form>
 

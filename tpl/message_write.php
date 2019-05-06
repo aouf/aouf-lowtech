@@ -76,7 +76,6 @@ $offer_arrondissement = $data['arrondissement'];
 $offer_address = $data['address'];
 $offer_date_start = $data['date_start'];
 $offer_date_end = $data['date_end'];
-$picture = base64_encode($data['picture']);
 
 print "<h3>Annonce : $offer_title</h3>";
 
@@ -85,7 +84,11 @@ print "<p>$offer_description</p>";
 print "<p>Arrondissement : $offer_arrondissement</p>";
 print "<p>Adresse : $offer_address</p>";
 print "<p>Disponible entre $offer_date_start et $offer_date_end</p>";
-print "<img src='data:image/jpg;base64,$picture'>";
+
+if ($data['picture'] != 'NULL') {
+    $picture = base64_encode($data['picture']);
+    print "<img src='data:image/jpg;base64,$picture'><br><br>";
+}
 
 $req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
 $statement = $pdo->query($req);
