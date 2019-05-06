@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_SESSION['user_id'])&&(!(isset($_GET['logout'])))) {
-    print_r($_GET);
     header('Location: accueil');
     exit; 
 }
