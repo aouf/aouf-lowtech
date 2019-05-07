@@ -21,7 +21,7 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
         <?php
         if ($arrondissement != '') {
 
-            // print "<h3>Offres dans votre arrondissement ($arrondissement)</h3>";
+            echo "<h3>Offres dans votre arrondissement ($arrondissement)</h3>";
             $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
             $statement = $pdo->query($req);
             
@@ -30,18 +30,18 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
                 $offer_userid = $data['user_id'];
                 $titre = $data['title'];
                 $description = $data['description'];
-                $arrondissement = $data['arrondissement'];
+                $offer_arrondissement = $data['arrondissement'];
                 $name = $data['name'];
                 $firstname = $data['firstname'];
                 $debut = date('d/m/y', strtotime($data['date_start']));
                 $fin = date('d/m/y', strtotime($data['date_end']));
-                $arrondissement == '1' ? $arrondissement .= 'er' : $arrondissement .= 'ème' ;
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
 
                 echo "<a class='offre' href='/message/write/$offer_id/$offer_userid'>";
                     echo "<div class='flex'>";
                         echo "<div class='oblique-gauche bg-blanc'>";
                             echo "<h3 class='noir'>".ucfirst($titre)."</h3>";
-                            echo "<p class='date-lieu saumon'>$debut - $fin - $arrondissement</p>";
+                            echo "<p class='date-lieu saumon'>$debut - $fin - $offer_arrondissement</p>";
                             echo "<p class='description noir'>$description</p>";
                         echo "</div>";
                         echo "<div class='oblique-droite bg-blanc'>";
@@ -53,8 +53,9 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
                     echo "</div>";
                 echo "</a>";
             }
-            // print "<h3>Offres dans les autres arrondissements</h3>";
+            echo "<h3>Offres dans les autres arrondissements</h3>";
             $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement";
+
             $statement = $pdo->query($req);
             
             while ($data = $statement->fetch()) {
@@ -63,18 +64,18 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
                 $offer_userid = $data['user_id'];
                 $titre = $data['title'];
                 $description = $data['description'];
-                $arrondissement = $data['arrondissement'];
+                $offer_arrondissement = $data['arrondissement'];
                 $name = $data['name'];
                 $firstname = $data['firstname'];
                 $debut = date('d/m/y', strtotime( $data['date_start']));
                 $fin = date('d/m/y', strtotime($data['date_end']));
-                $arrondissement == '1' ? $arrondissement .= 'er' : $arrondissement .= 'ème' ;
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
 
                 echo "<a class='offre' href='/message/write/$offer_id/$offer_userid'>";
                     echo "<div class='flex'>";
                         echo "<div class='oblique-gauche bg-blanc'>";
                             echo "<h3 class='noir'>".ucfirst($titre)."</h3>";
-                            echo "<p class='date-lieu saumon'>$debut - $fin - $arrondissement</p>";
+                            echo "<p class='date-lieu saumon'>$debut - $fin - $offer_arrondissement</p>";
                             echo "<p class='description noir'>$description</p>";
                         echo "</div>";
                         echo "<div class='oblique-droite bg-blanc'>";
@@ -97,18 +98,18 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
                 $offer_userid = $data['user_id'];
                 $titre = $data['title'];
                 $description = $data['description'];
-                $arrondissement = $data['arrondissement'];
+                $offer_arrondissement = $data['arrondissement'];
                 $name = $data['name'];
                 $firstname = $data['firstname'];
                 $debut = date('d/m/y', strtotime($data['date_start']));
                 $fin = date('d/m/y', strtotime( $data['date_end']));
-                $arrondissement == '1' ? $arrondissement .= 'er' : $arrondissement .= 'ème' ;
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
                 
                 echo "<a class='offre' href='/message/write/$offer_id/$offer_userid'>";
                     echo "<div class='flex'>";
                         echo "<div class='oblique-gauche bg-blanc'>";
                             echo "<h3 class='noir'>".ucfirst($titre)."</h3>";
-                            echo "<p class='date-lieu saumon'>$debut - $fin - $arrondissement</p>";
+                            echo "<p class='date-lieu saumon'>$debut - $fin - $offer_arrondissement</p>";
                             echo "<p class='description noir'>$description</p>";
                         echo "</div>";
                         echo "<div class='oblique-droite bg-blanc'>";
