@@ -435,7 +435,7 @@ div.home h1,div.home label {
 .message-div {
     display: inline-block;
     padding: 10px;
-    margin: 15px 15px 0 15px;
+    margin: 10px 10px 0 10px;
     -webkit-border-radius: 10px;
             border-radius: 10px;
     font-size: 1.2rem;
@@ -443,66 +443,24 @@ div.home h1,div.home label {
     position: relative;
 }
 .message-div-droite {
-    border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 2px;
 }
 .message-div-gauche {
-    border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 2px;
 }
 
 .message-div:last-of-type {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.fleche {
-    border-left: 21px solid transparent;
-    bottom: -25px;
-    position: absolute;
-    right: 15px;
-}
-.fleche-droite {
-    right: -5px;
-}
-.fleche-droite::before {
-    border-left: 23px solid transparent;
-    border-top: 23px solid #5be79b;
-    bottom: 2px;
-    content: "";
-    position: absolute;
-    right: 4px;
-}
-.fleche-droite::after {
-    border-left: 21px solid transparent;
-    border-top: 21px solid #ffffff;
-    bottom: 4px;
-    content: "";
-    position: absolute;
-    right: 5px;
-}
-.fleche-gauche {
-    left: -5px;
-}
-.fleche-gauche::before {
-    border-right: 23px solid transparent;
-    border-top: 23px solid #ff7c66;
-    bottom: 2px;
-    content: "";
-    position: absolute;
-    left: -17px;
-}
-.fleche-gauche::after {
-    border-right: 21px solid transparent;
-    border-top: 21px solid #ffffff;
-    bottom: 4px;
-    content: "";
-    position: absolute;
-    left: -16px;;
-}
 .message {
     font-size: 13px;
+    margin: 0;
 }
 
 .message-date {
     font-size: 11px;
+    margin: 0;
 }
 .message-input {
     border-radius: 10px;
