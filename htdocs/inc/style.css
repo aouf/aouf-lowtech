@@ -82,7 +82,12 @@ form textarea:last-of-type:not(:only-of-type) {
 .no-margin {
     margin: 0 !important
 }
-
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
 
 /* Textes */
 h1, h2 {
@@ -147,6 +152,24 @@ a {
 }
 .bg-gris-clair {
     background-color: #8c979b;
+    border: 1px solid #8c979b;
+}
+.border-blanc {
+    border: 1px solid #ffffff;
+}
+.border-noir {
+    border: 1px solid #122b33;
+}
+.border-vert {
+    border: 1px solid #5be79b;
+}
+.border-vert-fonce {
+    border: 1px solid #358565;
+}
+.border-saumon {
+    border: 1px solid #ff7c66;
+}
+.border-gris-clair {
     border: 1px solid #8c979b;
 }
 
@@ -403,4 +426,86 @@ div.home h1,div.home label {
 .date-lieu {
     font-size: 11px;
     margin: 0 5px 0 5px;
+}
+
+/* Messages */
+.conversation {
+    padding-bottom: 20px;
+}
+.message-div {
+    display: inline-block;
+    padding: 10px;
+    margin: 15px 15px 0 15px;
+    -webkit-border-radius: 10px;
+            border-radius: 10px;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    position: relative;
+}
+.message-div-droite {
+    border-bottom-right-radius: 0px;
+}
+.message-div-gauche {
+    border-bottom-left-radius: 0px;
+}
+
+.message-div:last-of-type {
+    margin-bottom: 15px;
+}
+
+.fleche {
+    border-left: 21px solid transparent;
+    bottom: -25px;
+    position: absolute;
+    right: 15px;
+}
+.fleche-droite {
+    right: -5px;
+}
+.fleche-droite::before {
+    border-left: 23px solid transparent;
+    border-top: 23px solid #5be79b;
+    bottom: 2px;
+    content: "";
+    position: absolute;
+    right: 4px;
+}
+.fleche-droite::after {
+    border-left: 21px solid transparent;
+    border-top: 21px solid #ffffff;
+    bottom: 4px;
+    content: "";
+    position: absolute;
+    right: 5px;
+}
+.fleche-gauche {
+    left: -5px;
+}
+.fleche-gauche::before {
+    border-right: 23px solid transparent;
+    border-top: 23px solid #ff7c66;
+    bottom: 2px;
+    content: "";
+    position: absolute;
+    left: -17px;
+}
+.fleche-gauche::after {
+    border-right: 21px solid transparent;
+    border-top: 21px solid #ffffff;
+    bottom: 4px;
+    content: "";
+    position: absolute;
+    left: -16px;;
+}
+.message {
+    font-size: 13px;
+}
+
+.message-date {
+    font-size: 11px;
+}
+.message-input {
+    border-radius: 10px;
+    padding:5px;
+    margin: 5px;
 }
