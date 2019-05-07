@@ -430,12 +430,12 @@ div.home h1,div.home label {
 
 /* Messages */
 .conversation {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 .message-div {
     display: inline-block;
     padding: 10px;
-    margin: 10px 10px 0 10px;
+    margin-top: 10px;
     -webkit-border-radius: 10px;
             border-radius: 10px;
     font-size: 1.2rem;
@@ -449,9 +449,6 @@ div.home h1,div.home label {
     border-bottom-left-radius: 2px;
 }
 
-.message-div:last-of-type {
-    margin-bottom: 10px;
-}
 
 .message {
     font-size: 13px;
