@@ -31,11 +31,11 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
                 $titre = $data['title'];
                 $description = $data['description'];
                 $offer_arrondissement = $data['arrondissement'];
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
                 $name = $data['name'];
                 $firstname = $data['firstname'];
                 $debut = date('d/m/y', strtotime($data['date_start']));
                 $fin = date('d/m/y', strtotime($data['date_end']));
-                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
 
                 echo "<a class='offre' href='/message/write/$offer_id/$offer_userid'>";
                     echo "<div class='flex'>";
