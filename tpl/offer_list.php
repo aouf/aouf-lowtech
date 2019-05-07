@@ -21,7 +21,7 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
         <?php
         if ($arrondissement != '') {
 
-            echo "<h3>Offres dans votre arrondissement ($arrondissement)</h3>";
+            echo "<h3>Offres dans mon arrondissement</h3>";
             $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
             $statement = $pdo->query($req);
             
