@@ -1,4 +1,26 @@
+/* Fonts */
+
+@font-face {
+ font-family: "Monserrat Light";
+ src: url("../fonts/Montserrat-Light.otf");
+}
+@font-face {
+ font-family: "Monserrat Medium";
+ src: url("../fonts/Montserrat-Medium.otf");
+}
+@font-face {
+ font-family: "Monserrat Semi Bold";
+ src: url("../fonts/Montserrat-SemiBold.otf");
+}
+@font-face {
+ font-family: "Monserrat Bold";
+ src: url("../fonts/Montserrat-Bold.otf");
+}
+
+
+
 /* Général */
+
 body {
     width: 100vw;
     height: 100vh;
@@ -7,6 +29,7 @@ body {
     box-sizing: border-box;
     font-size: 18px;
     color: #ffffff;
+    font-family: 'Monserrat Medium';
 }
 
 .content {
@@ -70,6 +93,7 @@ h1, h2 {
 h3 {
     margin:5px;
     color: #ffffff;
+    font-family: 'Monserrat Semi Bold';
 }
 a {
     color:#358565;
