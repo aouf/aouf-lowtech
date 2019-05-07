@@ -345,3 +345,38 @@ div.home h1,div.home label {
 .icone {
     max-height: 100px;
 }
+
+
+/* Offres */
+.list-offres {
+    padding: 10px;
+}
+
+.offre:not(:last-of-type){
+    margin-bottom: 10px;
+    display: block;
+}
+
+.oblique-gauche {
+    width:70%;
+}
+.oblique-droite {
+    width:30%;
+}
+.img-offre {
+    max-width: 100%;
+    background-size:cover; 
+    height:100%;
+    background-repeat: no-repeat;'
+}
+.list-offres h3 {
+    font-size: 15px;
+}
+.description {
+    font-size: 12px;
+    margin: 5px;
+}
+.date-lieu {
+    font-size: 11px;
+    margin: 0 5px 0 5px;
+}
