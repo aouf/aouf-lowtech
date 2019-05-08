@@ -1,4 +1,26 @@
+/* Fonts */
+
+@font-face {
+ font-family: "Monserrat Light";
+ src: url("../fonts/Montserrat-Light.otf");
+}
+@font-face {
+ font-family: "Monserrat Medium";
+ src: url("../fonts/Montserrat-Medium.otf");
+}
+@font-face {
+ font-family: "Monserrat Semi Bold";
+ src: url("../fonts/Montserrat-SemiBold.otf");
+}
+@font-face {
+ font-family: "Monserrat Bold";
+ src: url("../fonts/Montserrat-Bold.otf");
+}
+
+
+
 /* Général */
+
 body {
     width: 100vw;
     height: 100vh;
@@ -7,6 +29,7 @@ body {
     box-sizing: border-box;
     font-size: 18px;
     color: #ffffff;
+    font-family: 'Monserrat Medium';
 }
 
 .content {
@@ -59,7 +82,12 @@ form textarea:last-of-type:not(:only-of-type) {
 .no-margin {
     margin: 0 !important
 }
-
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
 
 /* Textes */
 h1, h2 {
@@ -70,6 +98,7 @@ h1, h2 {
 h3 {
     margin:5px;
     color: #ffffff;
+    font-family: 'Monserrat Semi Bold';
 }
 a {
     color:#358565;
@@ -123,6 +152,24 @@ a {
 }
 .bg-gris-clair {
     background-color: #8c979b;
+    border: 1px solid #8c979b;
+}
+.border-blanc {
+    border: 1px solid #ffffff;
+}
+.border-noir {
+    border: 1px solid #122b33;
+}
+.border-vert {
+    border: 1px solid #5be79b;
+}
+.border-vert-fonce {
+    border: 1px solid #358565;
+}
+.border-saumon {
+    border: 1px solid #ff7c66;
+}
+.border-gris-clair {
     border: 1px solid #8c979b;
 }
 
@@ -344,4 +391,77 @@ div.home h1,div.home label {
 }
 .icone {
     max-height: 100px;
+}
+
+
+/* Offres */
+.list-offres {
+    padding: 10px;
+}
+
+.offre:not(:last-of-type){
+    margin-bottom: 10px;
+    display: block;
+}
+
+.oblique-gauche {
+    width:70%;
+}
+.oblique-droite {
+    width:30%;
+}
+.img-offre {
+    max-width: 100%;
+    background-size:cover; 
+    height:100%;
+    background-repeat: no-repeat;'
+}
+.list-offres h3 {
+    font-size: 15px;
+}
+.description {
+    font-size: 12px;
+    margin: 5px;
+}
+.date-lieu {
+    font-size: 11px;
+    margin: 0 5px 0 5px;
+}
+
+/* Messages */
+.conversation {
+    padding: 10px;
+}
+.message-div {
+    max-width: 80%;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    -webkit-border-radius: 10px;
+            border-radius: 10px;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    position: relative;
+}
+.message-div-droite {
+    border-bottom-right-radius: 2px;
+}
+.message-div-gauche {
+    border-bottom-left-radius: 2px;
+}
+
+
+.message {
+    font-size: 13px;
+    margin: 0;
+}
+
+.message-date {
+    font-size: 11px;
+    margin: 0;
+}
+.message-input {
+    border-radius: 10px;
+    padding:5px;
+    margin: 5px;
 }
