@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
     }
     $statement = $pdo->prepare($req);
     $statement->execute();
-    
+
     $_SESSION['user_arrondissement'] = $arrondissement;
 
     // on met a jour le lastactivity de l'utilisateur
@@ -75,12 +75,12 @@ $user_notification = $data['notification'];
 
 <h3>Mon profil</h3>
 
-<label for="name">Nom <span class="saumon">*</span></label><input type='text' name='name' value='<?php print $user_name; ?>'>
-<label for="firstname">Prénom <span class="saumon">*</span></label><input type='text' name='firstname' value='<?php print $user_firstname; ?>'>
-<label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>'>
+<label for="name">Nom <span class="saumon">*</span></label><input type='text' name='name' value='<?php print $user_name; ?>' required>
+<label for="firstname">Prénom <span class="saumon">*</span></label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
+<label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' required>
 <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>'>
 <label for="arrondissement">Arrondissement (Marseille) <span class="saumon">*</span></label>
-<select name='arrondissement'>
+<select name='arrondissement' required>
     <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
     <option value='2' <?php if ($user_arrondissement == 2) print "selected='selected'"; ?>>Marseille 2eme</option>
     <option value='3' <?php if ($user_arrondissement == 3) print "selected='selected'"; ?>>Marseille 3eme</option>
@@ -99,6 +99,7 @@ $user_notification = $data['notification'];
     <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
 </select>
 <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $user_address; ?>' placeholder="Je donne l'adresse où je peux offrir des services">
+<label for="gender">Genre (facultatif)</label>
 <section class="gender">
     <div>
         <input type="radio" id='homme' name="gender" value="homme">
@@ -117,14 +118,22 @@ $user_notification = $data['notification'];
 <h3>Identifiant / Mot de passe</h3>
 
 <label for="login">Identifiant <span class="saumon">*</span></label><input type='text' name='login' value='<?php print $user_login; ?>'>
-<label for="password">Nouveau mot de passe </label><input type='password' name='password'>
+<label for="password">Nouveau mot de passe </label><input type='password' name='password' id="password">
+<input type="checkbox" value="Voir" id="viewPassword" onclick="togglePasswordView()">
+<label for="viewPassword">Voir</label>
 
 <h3>Mes notifications</h3>
 <input type='checkbox'>email
 <input type='checkbox'>SMS<br><br>
 
-<button class='bg-vert noir' type="submit" name="button" value"Modifier">Modifier</button>
+<button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
 </form>
-
+<!-- Placement de script temporaire : insérer à la fin de body -->
+<script>
+    function togglePasswordView() {
+        var passwordInput = document.getElementById("password");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+</script>
 <?php
 require_once 'footer.php';

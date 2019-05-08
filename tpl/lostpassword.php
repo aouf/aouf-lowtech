@@ -13,7 +13,7 @@ if (isset($_POST['email'])) {
     $data = $statement->fetch();
 
     $status = $data['status'];
-    
+
     if ($status == 'enabled') {
 
         // send email for reset password
@@ -44,9 +44,9 @@ L'equipe Aouf
         <center><a class="small-text" href='/'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
             <label for="email">Email <span class="saumon"></span></label>
-            <input type='text' name='email'>
+            <input type='text' name='email' required>
                         <button class='bg-vert noir' type="submit" value="Réinitialiser mon mot de passe">Réinitialiser mon mot de passe</button>
         </form>
 </div>
-<?php 
+<?php
     require_once 'footer.php';

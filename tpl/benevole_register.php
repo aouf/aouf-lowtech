@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = $_POST['category'];
     $token = sha1(random_bytes(128));
-    
+
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
 
@@ -35,7 +35,7 @@ https://low.aouf.fr/validation/$token
 
 (valable pendant 24h)
 
--- 
+--
 L'equipe Aouf
 ";
     mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
@@ -50,15 +50,19 @@ L'equipe Aouf
         <center><a class="small-text under" href='/register'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
             <label for="login">Identifiant <span class="saumon">*</span></label>
-            <input type='username' name='login' id='login'>
+            <input type='username' name='login' id='login' required>
+
             <label for="password">Mot de passe <span class="saumon">*</span></label>
-            <input type='password' name='password'>
+            <input type='password' name='password' id="password" required>
+            <input type="checkbox" value="Voir" id="viewPassword" onclick="togglePasswordView()">
+            <label for="viewPassword">Voir</label>
+
             <label for="nom">Nom <span class="saumon">*</span></label>
-            <input type='text' name='nom'>
+            <input type='text' name='nom' required>
             <label for="prenom">Prénom <span class="saumon">*</span></label>
-            <input type='text' name='prenom'>
+            <input type='text' name='prenom' required>
             <label for="email">Email <span class="saumon">*</span></label>
-            <input type='text' name='email'>
+            <input type='text' name='email' required>
             <label for="phone">Numéro de téléphone portable</label>
             <input type='text' name='phone'>
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
@@ -85,6 +89,7 @@ L'equipe Aouf
             <label for="address">Adresse où je peux offrir des services</label>
             <input type='text' name='address'>
             <section class="gender">
+                <label for="gender">Genre (facultatif)</label>
                 <div>
                     <input type="radio" id='homme' name="gender" value="homme">
                     <label for="homme">Homme</label>
@@ -102,5 +107,12 @@ L'equipe Aouf
             <button class='bg-vert noir' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>
 </div>
-<?php 
+<!-- Placement de script temporaire : insérer à la fin de body -->
+<script>
+    function togglePasswordView() {
+        var passwordInput = document.getElementById("password");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+</script>
+<?php
     require_once 'footer.php';

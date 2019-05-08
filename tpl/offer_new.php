@@ -84,7 +84,7 @@ où ? nombre de places ? etc.)
     $description = "Décrivez ce que vous donnez (taille ? poids ?
 où le récupérez ? etc.)
 ";
-} 
+}
 ?>
 <div class="container bg-blanc noir full-size">
     <div class="content">
@@ -92,9 +92,9 @@ où le récupérez ? etc.)
         <h2>Je propose une offre de <?php echo $category; ?></h2>
             <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
             <label for="title">Titre <span class="saumon">*</span></label>
-            <input type='text' name='title' placeholder='<?php echo $placeholdertitre; ?>'>
+            <input type='text' name='title' placeholder='<?php echo $placeholdertitre; ?>' required>
             <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
-            <select name='arrondissement'>
+            <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon offre</option>
                 <option value='1'>Marseille 1er</option>
                 <option value='2'>Marseille 2eme</option>
@@ -119,24 +119,24 @@ où le récupérez ? etc.)
             <section class="flex column center">
                 <span>Début de l'offre <span class="saumon">*</span></span>
                     <section class="flex">
-                        <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" value="<?php echo date('Y-m-d'); ?>"></section>
-                        <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value="<?php echo date('H:i'); ?>"></section>
+                        <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>"></section>
+                        <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" min="<?php echo date('H:i'); ?>" value="<?php echo date('H:i'); ?>"></section>
                     </section>
             </section>
             <section class="flex column center">
                 <span>Fin de l'offre <span class="saumon">*</span></span>
                     <section class="flex">
-                        <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" value="<?php echo date('Y-m-d', time() + 7200); ?>"></section>
-                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 7200); ?>"></section>
+                        <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" min="<?php echo date('Y-m-d', time() + 7200); ?>" value="<?php echo date('Y-m-d', time() + 7200); ?>"></section>
+                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" min="<?php echo date('H:i', time() + 7200); ?>" value="<?php echo date('H:i', time() + 7200); ?>"></section>
                     </section>
             </section>
             <p><?php echo $description ?> <span class="saumon">*</span></p>
-            <textarea name='description1' placeholder="<?php echo $placeholder1; ?>"></textarea>
+            <textarea name='description1' placeholder="<?php echo $placeholder1; ?>" required></textarea>
             <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
             <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
             <label for="">Photo illustrant l'offre</label><input type='file' name='picture'>
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
-            <button class='bg-vert noir' type="submit" name="button" value"Publier">Publier</button>
+            <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>
 
     </div>

@@ -87,9 +87,9 @@ L'equipe Aouf
             <input type='radio' name='status' value='enabled' <?php if ($offer_status == 'enabled') print "checked"; ?>> Offre active
             &nbsp;<input type='radio' name='status' value='disabled' <?php if ($offer_status == 'disabled') print "checked"; ?>> Offre inactive<br>
         </section>
-        <label for="title">Titre <span class="saumon">*</span></label><input type='text' name='title' value='<?php print $offer_title; ?>'>
+        <label for="title">Titre <span class="saumon">*</span></label><input type='text' name='title' value='<?php print $offer_title; ?>' required>
         <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
-        <select name='arrondissement'>
+        <select name='arrondissement' required>
             <option value='1' <?php if ($offer_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
             <option value='2' <?php if ($offer_arrondissement == 2) print "selected='selected'"; ?>>Marseille 2eme</option>
             <option value='3' <?php if ($offer_arrondissement == 3) print "selected='selected'"; ?>>Marseille 3eme</option>
@@ -123,9 +123,9 @@ L'equipe Aouf
                     <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo preg_replace('/(\d\d:\d\d):\d\d/','$1',$offer_timeend); ?>"></section>
                 </section>
         </section>
-        <textarea name='description'><?php echo $offer_description; ?></textarea>
+        <textarea name='description' required><?php echo $offer_description; ?></textarea>
         <?php if ($offer_picture == 'NULL') { ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
-        <button class='bg-vert noir' type="submit" name="button" value"Modifier">Modifier</button>
+        <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
         </form>
 
     </div>

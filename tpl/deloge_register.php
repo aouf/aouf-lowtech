@@ -14,7 +14,7 @@ if (isset($_POST['username'])) {
     $gender = $_POST['gender'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = $_POST['category'];
-    
+
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
     $statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password]);
@@ -31,15 +31,18 @@ if (isset($_POST['username'])) {
         <center><a class="small-text under" href='/register'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
             <label for="username">Identifiant <span class="saumon">*</span></label>
-            <input type='username' name='username' id='username'>
+            <input type='username' name='username' id='username' required>
             <label for="password">Mot de passe <span class="saumon">*</span></label>
-            <input type='password' name='password'>
+            <input type='password' name='password' id="password" required>
+            <input type="checkbox" value="Voir" id="viewPassword" onclick="togglePasswordView()">
+            <label for="viewPassword">Voir</label>
+
             <label for="nom">Nom <span class="saumon">*</span></label>
-            <input type='text' name='nom'>
+            <input type='text' name='nom' required>
             <label for="prenom">Prénom <span class="saumon">*</span></label>
-            <input type='text' name='prenom'>
+            <input type='text' name='prenom' required>
             <label for="phone">Numéro de téléphone portable <span class="saumon">*</span></label>
-            <input type='text' name='phone'>
+            <input type='text' name='phone' required>
             <label for="email">Email</label>
             <input type='text' name='email'>
             <label for="">Arrondissement (Marseille)</label>
@@ -65,6 +68,7 @@ if (isset($_POST['username'])) {
             <label for="address">Adresse</label>
             <input type='text' name='address'>
             <section class="gender">
+                <label for="gender">Genre (facultatif)</label>
                 <div>
                     <input type="radio" id='homme' name="gender" value="homme">
                     <label for="homme">Homme</label>
@@ -82,5 +86,12 @@ if (isset($_POST['username'])) {
             <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>
     </div>
-<?php 
+    <!-- Placement de script temporaire : insérer à la fin de body -->
+    <script>
+        function togglePasswordView() {
+            var passwordInput = document.getElementById("password");
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        }
+    </script>
+<?php
     require_once 'footer.php';
