@@ -65,8 +65,8 @@ L'equipe Aouf
             <input type='text' name='email' required>
             <label for="phone">Numéro de téléphone portable</label>
             <input type='text' name='phone'>
-            <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
-            <select name='arrondissement'>
+            <label for="">Arrondissement (Marseille) où je peux offrir des services <span class="saumon">*</span></label>
+            <select name='arrondissement' required>
                 <option value='0' selected='selected'>--</option>
                 <option value='1'>Marseille 1er</option>
                 <option value='2'>Marseille 2eme</option>

@@ -45,8 +45,8 @@ if (isset($_POST['username'])) {
             <input type='text' name='phone' required>
             <label for="email">Email</label>
             <input type='text' name='email'>
-            <label for="">Arrondissement (Marseille)</label>
-            <select name='arrondissement'>
+            <label for="">Arrondissement (Marseille) <span class="saumon">*</span></label>
+            <select name='arrondissement' required>
                 <option value='0' selected='selected'>--</option>
                 <option value='1'>Marseille 1er</option>
                 <option value='2'>Marseille 2eme</option>
