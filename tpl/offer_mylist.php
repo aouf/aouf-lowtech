@@ -7,10 +7,11 @@ if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevol
 }
 
 $user_id = $_SESSION['user_id'];
+$max_length = 60;
 
 ?>
 <div class="container bg-blanc noir full-size">
-    <h2>Liste de mes offres</h2>
+    <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
     <div class="bg-saumon full-size list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
@@ -20,8 +21,15 @@ $user_id = $_SESSION['user_id'];
         while ($data = $statement->fetch()) {
 
             $offer_id = $data['id'];
-            $titre = $data['title'];
+            $titre = ucfirst($data['title']);
+
             $description = $data['description'];
+            if (strlen($description) > $max_length)
+            {
+                $offset = ($max_length - 3) - strlen($description);
+                $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
+            }
+
             $offer_arrondissement = $data['arrondissement'];
             $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
             $status = $data['status'];
@@ -29,22 +37,27 @@ $user_id = $_SESSION['user_id'];
             if ($status == 'disabled') $status_text = "(désactivée)";
             $debut = date('d/m/y', strtotime($data['date_start']));
             $fin = date('d/m/y', strtotime($data['date_end']));
+            
+            if ($data['picture'] != 'NULL') {
+                $picture = base64_encode($data['picture']);
+            } else {
+                $picture = "";
+            }
 
-            echo "<a class='offre' href='/offer/edit/$offer_id'>";
-                    echo "<div class='flex'>";
-                        echo "<div class='oblique-gauche bg-blanc'>";
-                            echo "<h3 class='noir'>".ucfirst($titre)." $status_text</h3>";
-                            echo "<p class='date-lieu saumon'>$debut - $fin - $offer_arrondissement</p>";
-                            echo "<p class='description noir'>$description</p>";
-                        echo "</div>";
-                        echo "<div class='oblique-droite bg-blanc'>";
-                            if ($data['picture'] != 'NULL') {
-                                $picture = base64_encode($data['picture']);
-                                echo "<div class='img-offre' style='background-image: url(data:image/jpg;base64,$picture)''></div>";
-                            }
-                        echo "</div>";
+            echo "<a class='offre flex bg-blanc' href='/offer/edit/$offer_id'>";
+                echo" <div class='bloc-offre bloc-offre-text'>";
+                    echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
+                        echo "<p class='noskew'>";
+                            echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$debut - $debut <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                        echo "</p>";
                     echo "</div>";
-                echo "</a>";
+                echo "</div>";
+                echo "<div class='bloc-offre bloc-offre-image'>";
+                    echo "<div id='parallelogram' class='parallelogram-img'>";
+                        echo "<div class='image noskew' style='background-image: url(data:image/jpg;base64,$picture)'></div>";
+                    echo "</div>";
+                echo "</div>";
+            echo"</a>";
 
         }
 
