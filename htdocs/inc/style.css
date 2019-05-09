@@ -393,39 +393,81 @@ div.home h1,div.home label {
     max-height: 100px;
 }
 
-
 /* Offres */
 .list-offres {
-    padding: 10px;
-}
-
-.offre:not(:last-of-type){
-    margin-bottom: 10px;
-    display: block;
-}
-
-.oblique-gauche {
-    width:70%;
-}
-.oblique-droite {
-    width:30%;
-}
-.img-offre {
-    max-width: 100%;
-    background-size:cover; 
-    height:100%;
-    background-repeat: no-repeat;'
+  padding: 10px;
 }
 .list-offres h3 {
     font-size: 15px;
 }
-.description {
-    font-size: 12px;
-    margin: 5px;
+.offre {
+  margin: 10px 0 0 0;
+  padding: 3px;
+}
+
+.bloc-offre {
+    overflow: hidden;
+}
+.bloc-offre-text{
+    width:65%;
+}
+.bloc-offre-image{
+    width:35%;
+}
+.noskew {
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+}
+#parallelogram {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+}
+ .parallelogram-text {
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+}
+.titre-offre {
+    font-size: 14px;
+    font-weight: bold;
+}
+ .parallelogram-text p {
+     margin: 10px 5px 10px 15px;
+     line-height: 0.8em;
+}
+ .parallelogram-text p span {
+    display: inline-block;
+    margin: 5px 0 0 0;
+}
+.ico-mini {
+    height: 12px;
+    width: auto;
 }
 .date-lieu {
     font-size: 11px;
-    margin: 0 5px 0 5px;
+}
+.description {
+    font-size: 12px;
+}
+.parallelogram-img {
+    margin:0 0 0 20px;
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+} 
+.image {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* Messages */
