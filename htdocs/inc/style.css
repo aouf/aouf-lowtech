@@ -513,6 +513,26 @@ div.home h1, div.home label {
 }
 
 /* Messages */
+
+.list-messages {
+  padding: 10px;
+}
+
+.list-messages h3 {
+  font-size: 15px;
+  margin: 5px 0 5px 0;
+}
+.message-link:not(:first-of-type) {
+  margin: 10px 0 0 0;
+}
+.message-link {
+  padding: 5px;
+}
+
+.message-excerpt {
+  max-width: 70%;
+  font-size: 12px;
+}
 .conversation {
   padding: 10px;
 }

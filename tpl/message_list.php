@@ -4,11 +4,13 @@ require_once 'head.php';
 require_once 'header.php';
 
 $user_id = $_SESSION['user_id'];
+
+$couleur = $_SESSION['user_category'] == "benevole" || $_SESSION['user_category'] == "admin"? 'vert' : 'saumon';
 ?>
 
 <div class="container bg-blanc noir full-size">
 <h2>Mes messages</h2>
-<div class="bg-saumon full-size list-offres">
+<div class="bg-blanc full-size list-messages">
 
 <?php
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
@@ -19,23 +21,40 @@ $msg[0][0] = FALSE;
 
 while ($data = $statement->fetch()) {
 
-$message = "blabla";
 $offer_id = $data['offer_id'];
 $with_id = $data['from_id'];
+
+$req2 = "SELECT * FROM offers WHERE id=$offer_id LIMIT 1;";
+$statement2 = $pdo->query($req2);
+$data2 = $statement2->fetch();
+$titre = ucfirst($data2['title']);
+
+$req3 = "SELECT * FROM messages WHERE offer_id=$offer_id ORDER BY id DESC;";
+$statement3 = $pdo->query($req3);
+$data3 = $statement3->fetch();
+$message = $data3['message'];
+
 if ($with_id == $user_id) $with_id = $data['to_id'];
+
+$req4 = "SELECT * FROM users WHERE id=$with_id LIMIT 1;";
+$statement4 = $pdo->query($req4);
+$data4 = $statement4->fetch();
+$prenom = ucfirst($data4['firstname']);
+$nom = strtoupper(substr($data4['name'], 0, 1)).'.';
+$nomComplet = $prenom.' '.$nom;
 
 if (!isset($msg[$offer_id][$with_id])) {
     $msg[$offer_id][$with_id] = TRUE;
-            echo "<a class='offre' href='/message/write/$offer_id/$with_id'>";
-                    echo "<div class='flex'>";
+                echo "<div class='message-link border-$couleurflex border-$couleur'>";
+                    echo "<a class='' href='/message/write/$offer_id/$with_id'>";
                         echo "<div class='full-size bg-blanc'>";
-                            echo "<h3 class='noir'>$with_id (offre $offer_id)</h3>";
-                            echo "<p class='description noir'>$message</p>";
+                            echo "<h3 class='noir'>$nomComplet ($titre)</h3>";
+                            echo "<p class='message-excerpt noir'>$message</p>";
                         echo "</div>";
-                    echo "</div>";
-                echo "</a>";
-        }
+                    echo "</a>";
+                echo "</div>";
     }
+}
 
     ?>
     </div>
