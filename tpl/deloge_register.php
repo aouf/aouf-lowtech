@@ -65,6 +65,27 @@ if (isset($_POST['username'])) {
                 <option value='15'>Marseille 15eme</option>
                 <option value='16'>Marseille 16eme</option>
             </select>
+            <label for="">Hôtel</label>
+            <select name='hotel'>
+                <option value='0' selected='selected'>--</option>
+                <option value='no'>Non logé dans un hôtel</option>
+                <option value=''>Hôtel Roosevelt</option>
+                <option value=''>IBIS St Charles</option>
+                <option value=''>Appart Hôtel Porte d’Aix</option>
+                <option value=''>Toyoko Inn</option>
+                <option value=''>BB Hôtel Joliette</option>
+                <option value=''>ADAGIO Joliette</option>
+                <option value=''>IBIS Colbert</option>
+                <option value=''>IBIS Joliette</option>
+                <option value=''>IBIS Timone</option>
+                <option value=''>IBIS Budget Timone</option>
+                <option value=''>ODALIS Canebière</option>
+                <option value=''>RYAD</option>
+                <option value=''>Résidence Papère</option>
+                <option value=''>NOVOTEL Joliette</option>
+                <option value=''>BB Hôtel Timone</option>
+                <option value=''>Autre hôtel</option>
+            </select>
             <label for="address">Adresse</label>
             <input type='text' name='address'>
             <section class="gender">
