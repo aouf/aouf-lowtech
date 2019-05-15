@@ -114,5 +114,6 @@ L'equipe Aouf
         passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     }
 </script>
-<?php
-    require_once 'footer.php';
+
+<script type="text/javascript" src="/js/ytmenu.js"></script>
+</body>

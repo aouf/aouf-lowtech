@@ -20,5 +20,4 @@ require_once 'head.php';
             </div>
         </div>
     </div>
-<?php 
-    require_once 'footer.php';
+</body>

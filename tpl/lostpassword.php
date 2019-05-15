@@ -48,5 +48,6 @@ L'equipe Aouf
                         <button class='bg-vert noir' type="submit" value="Réinitialiser mon mot de passe">Réinitialiser mon mot de passe</button>
         </form>
 </div>
-<?php
-    require_once 'footer.php';
+
+<script type="text/javascript" src="/js/ytmenu.js"></script>
+</body>
