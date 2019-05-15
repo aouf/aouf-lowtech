@@ -59,6 +59,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
 } elseif (preg_match('#^/feedback#', $uri)) {
     echo 'En cours de construction...';
+} elseif (preg_match('#^/cgu#', $uri)) {
+    echo 'En cours de construction...';
 } else {
     echo '404: NOT FOUND';
 }

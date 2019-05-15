@@ -103,6 +103,9 @@ if (isset($_POST['username'])) {
                     <label for="nonbinaire">Non binaire</label>
                 </div>
             </section>
+            <input type="checkbox" value="" id="" required> J'accepte les CGU <span class="saumon">*</span>
+            <input type="checkbox" value="" id="" required> J'accepte XXX <span class="saumon">*</span>
+            <input type="checkbox" value="" id="" required> J'accepte YYY <span class="saumon">*</span>
             <input type='hidden' name='category' value='deloge'>
             <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>

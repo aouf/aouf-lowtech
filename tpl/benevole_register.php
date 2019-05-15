@@ -103,6 +103,9 @@ L'equipe Aouf
                     <label for="nonbinaire">Non binaire</label>
                 </div>
             </section>
+            <input type="checkbox" value="" id="" required> J'ai lu et j'accepte les <a href="/cgu">CGU</a> <span class="saumon">*</span>
+            <input type="checkbox" value="" id="" required> J'accepte XXX <span class="saumon">*</span>
+            <input type="checkbox" value="" id="" required> J'accepte YYY <span class="saumon">*</span>
             <input type='hidden' name='category' value='benevole'>
             <button class='bg-vert noir' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>
