@@ -26,11 +26,16 @@ if (isset($_POST['title'])) {
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
     $description = $_POST['description'];
-    //$picture = (($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL');
-
-    $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
-    $statement = $pdo->prepare($req);
-    $statement->execute();
+    if ($_FILES['picture']['tmp_name']) {
+        $picture = file_get_contents($_FILES['picture']['tmp_name']);
+        $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=? WHERE id=$offer_id";
+        $statement = $pdo->prepare($req);
+        $statement->execute([$picture]);
+    } else {
+        $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
+        $statement = $pdo->prepare($req);
+        $statement->execute();
+    }
 
     // on met a jour le lastactivity de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');
@@ -124,7 +129,7 @@ L'equipe Aouf
                 </section>
         </section>
         <textarea name='description' required><?php echo $offer_description; ?></textarea>
-        <?php if ($offer_picture == 'NULL') { ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
+        <?php print_r($data); if ($offer_picture == 'NULL') { ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
         </form>
 
