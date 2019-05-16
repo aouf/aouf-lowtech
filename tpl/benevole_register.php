@@ -48,14 +48,15 @@ L'equipe Aouf
             <h2>Compte Bénévole</h2>
         </div>
         <center><a class="small-text under" href='/register'>Retour</a></center>
-        <form class='full-size flex center column' method='post'>
+        <form id="registerForm" class='full-size flex center column' method='post'>
             <label for="login">Identifiant <span class="saumon">*</span></label>
             <input type='username' name='login' id='login' required>
 
-            <label for="password">Mot de passe <span class="saumon">*</span></label>
-            <input type='password' name='password' id="password" required>
-            <input type="checkbox" value="Voir" id="viewPassword" onclick="togglePasswordView()">
-            <label for="viewPassword">Voir</label>
+            <section style='text-align:center;' class="center">
+                <label for="password">Mot de passe <span class="saumon">*</span></label>
+                <input class="password" type='password' name='password' id="password" required>
+                <button class="unmask" type="button" id="viewPassword" title="Mask/Unmask password to check content" onclick="togglePasswordView()">Unmask</button>
+            </section>
 
             <label for="nom">Nom <span class="saumon">*</span></label>
             <input type='text' name='nom' required>

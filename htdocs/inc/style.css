@@ -249,7 +249,7 @@ a {
 }
 
 /* Éléments*/
-button {
+button:not(#viewPassword) {
   border-radius: 30px;
   height: 60px;
   font-weight: bold;
@@ -297,8 +297,44 @@ div.home h1, div.home label {
 }
 
 /* Page de liens pour inscription*/
+form#registerForm section { 
+    position: relative; 
+}
+
 .formulaires {
   margin-top: 40px;
+}
+.password + .unmask {
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  width: 35px;
+  height: 30px;
+  text-indent: -9999px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+}
+.password + .unmask:before {
+  content: "";
+  position:absolute;
+  top:4px; left:4px;
+  z-index:1;
+  width: 30px;
+  height: 30px;
+  background-image: url('../images/eye.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.password[type="text"] + .unmask:after {
+  content: "";
+  position:absolute;
+  top:6px; left:6px
+  z-index:2;
+  width: 13px;
+  height: 13px;
+  background: #aaa;
+  border-radius: 50%;
 }
 
 /* Menu */
