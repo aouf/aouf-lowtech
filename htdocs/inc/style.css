@@ -423,10 +423,6 @@ header {
   margin: 1%;
 }
 
-#container-accueil {
-  height: calc(100vh - 165px);
-}
-
 #container-accueil a.flex.center.column * {
   height: 48%;
 }
