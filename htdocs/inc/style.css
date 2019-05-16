@@ -342,7 +342,7 @@ form#registerForm section {
 
 /* Header */
 header {
-  height: 110px;
+  height: 60px;
   align-items: center;
   -webkit-align-items: center;
   -khtml-align-items: center;
@@ -360,8 +360,8 @@ header {
 
 .logo-menu {
   background-image: url('../images/logo-menu.png');
-  height: 70px;
-  width: 109px;
+  height: 40px;
+  width: 62px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -382,7 +382,7 @@ header {
     height: 25px;
     width: 34px;
     background-size: contain;
-    margin-right: 20px;
+    margin-right: 35px;
 }
 .header2 {
     height: 90px;
