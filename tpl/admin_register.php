@@ -31,40 +31,43 @@ if (isset($_POST['login'])) {
     echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
 }
 ?>
+<div class="bg-noir">
+    
+    <h2>Compte Délogé</h2>
+    <form method='post'>
+        Identifiant : <input type='text' name='login'>*<br>
+        Nom : <input type='text' name='nom'>*<br>
+        Prénom : <input type='text' name='prenom'>*<br>
+        Numéro de téléphone : <input type='text' name='phone'>*<br>
+        Email : <input type='text' name='email'><br>
+        Adresse : <input type='text' name='adresse'><br>
+        <input type='radio' name='gender' value='homme'>Homme
+        <input type='radio' name='gender' value='femme'>Femme
+        <input type='radio' name='gender' value='nonbinaire'>Non binaire
+        <input type='radio' name='gender' value='famille'>Famille
+        <input type='hidden' name='type' value='deloge'><br>
+        Mot de passe : <input type='password' name='password'>*<br>
+        <input type='submit' value="S'enregistrer">
+    </form>
+    
+    <h2>Compte Bénévole</h2>
+    <form method='post'>
+        Identifiant : <input type='text' name='login'>*<br>
+        Nom : <input type='text' name='nom'>*<br>
+        Prénom : <input type='text' name='prenom'>*<br>
+        Email : <input type='text' name='email'>*<br>
+        Numéro de téléphone : <input type='text' name='phone'><br>
+        Adresse : <input type='text' name='adresse'><br>
+        <input type='radio' name='gender' value='homme'>Homme
+        <input type='radio' name='gender' value='femme'>Femme
+        <input type='radio' name='gender' value='nonbinaire'>Non binaire
+        <input type='radio' name='gender' value='famille'>Famille
+        <input type='hidden' name='type' value='benevole'><br>
+        Mot de passe : <input type='password' name='password'>*<br>
+        <input type='submit' value="S'enregistrer">
+    </form>
+</div>
 
-<h2>Compte Délogé</h2>
-<form method='post'>
-Identifiant : <input type='text' name='login'>*<br>
-Nom : <input type='text' name='nom'>*<br>
-Prénom : <input type='text' name='prenom'>*<br>
-Numéro de téléphone : <input type='text' name='phone'>*<br>
-Email : <input type='text' name='email'><br>
-Adresse : <input type='text' name='adresse'><br>
-<input type='radio' name='gender' value='homme'>Homme
-<input type='radio' name='gender' value='femme'>Femme
-<input type='radio' name='gender' value='nonbinaire'>Non binaire
-<input type='radio' name='gender' value='famille'>Famille
-<input type='hidden' name='type' value='deloge'><br>
-Mot de passe : <input type='password' name='password'>*<br>
-<input type='submit' value="S'enregistrer">
-</form>
-
-<h2>Compte Bénévole</h2>
-<form method='post'>
-Identifiant : <input type='text' name='login'>*<br>
-Nom : <input type='text' name='nom'>*<br>
-Prénom : <input type='text' name='prenom'>*<br>
-Email : <input type='text' name='email'>*<br>
-Numéro de téléphone : <input type='text' name='phone'><br>
-Adresse : <input type='text' name='adresse'><br>
-<input type='radio' name='gender' value='homme'>Homme
-<input type='radio' name='gender' value='femme'>Femme
-<input type='radio' name='gender' value='nonbinaire'>Non binaire
-<input type='radio' name='gender' value='famille'>Famille
-<input type='hidden' name='type' value='benevole'><br>
-Mot de passe : <input type='password' name='password'>*<br>
-<input type='submit' value="S'enregistrer">
-</form>
 
 <?php
 require_once 'footer.php';

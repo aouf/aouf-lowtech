@@ -280,11 +280,12 @@ div.home {
 
 div.home h1, div.home label {
   font-weight: bold;
+  font-size: 14px;
 }
 
 .logo-accueil-deco {
   width: 100%;
-  height: 150px;
+  height: 80px;
   background-image: url('../images/logo.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -407,7 +408,7 @@ header {
 
 .fleche-droite {
   width: 15px;
-  height: 25px;
+  height: 27px;
   margin-right: 10px;
 }
 
