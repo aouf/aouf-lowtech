@@ -10,9 +10,9 @@ $user_id = $_SESSION['user_id'];
 $max_length = 60;
 
 ?>
-<div class="container bg-blanc noir full-size">
+<div class="container bg-blanc noir">
     <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
-    <div class="bg-saumon full-size list-offres">
+    <div class="bg-saumon list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
         $req = "SELECT * FROM offers WHERE user_id = $user_id";

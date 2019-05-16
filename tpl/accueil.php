@@ -1,43 +1,87 @@
 <?php
     require_once 'head.php';
     require_once 'header.php';
-?>
-<a href="/offer/mylist">
-    <div class="header2 bg-blanc flex center">
-        <h2 class="saumon">
-            <?php 
-                if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') 
-                {
-                    echo 'Mes offres';
-                }
-                else
-                {
-                    echo 'Offres disponibles';
-                }
-            ?>
-        </h2>
-        <img class="fleche-droite" src="../images/fleche-droite.png" alt="">
-    </div>
-</a>
+        if ($_SESSION['user_category']=='admin') 
+        {
+            echo '<a href="/admin/moderation">
+                <div class="header2 bg-saumon flex center">
+                    <h2 class="blanc margin-left">Modération</h2>
+                    <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
+                </div>
+            </a>';
+        }
+        if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') 
+        {
+            echo '<a href="/offer/mylist">
+                <div class="header2 bg-blanc flex center">
+                    <h2 class="saumon margin-left">Mes offres</h2>
+                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+                </div>
+            </a>';
+        }
+        else
+        {
+            echo '<div class="header2 bg-blanc flex center">
+                    <h2 class="saumon">Offres disponibles</h2>
+                </div>';
+        }
+    ?>
+        
 
 <?php
-    if ($_SESSION['user_category']=='admin') {
+    // if ($_SESSION['user_category']=='admin') {
 ?>
-<div class="container bg-<?php echo $couleur ; ?> full-size">
-    <div class="content">
-<section class="flex center wrap">
-    <a class="flex center" href='/admin/register'><div>Créer un accès</div></a>
-    <a class="flex center" href='/admin/moderation'><div>Modération accès Délogé</div></a>
-</section>
+    <!-- <a class="flex center" href='/admin/register'><div>Créer un accès</div></a> -->
     
-<?php }
+<?php 
+// }
 
-
-if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
+if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
     ?>
-    <div id="container-accueil" class="container bg-saumon full-size">
+    <div id="container-accueil" class="container bg-saumon">
         <div class="content">
-    <h2 class="blanc">Consulter les offres</h2>
+    <h2 class="blanc">Déposer une offre</h2>
+    <section class="tableau-de-bord flex center wrap">
+        <a class="flex center column" href='/offer/new/restauration'>
+            <img class="icone" src="./images/restauration-ajout.png" alt="">
+            <h3>Restauration</h3>
+        </a>
+        <a class="flex center column" href='/offer/new/blanchisserie'>
+            <img class="icone" src="./images/blanchisserie-ajout.png" alt="">
+            <h3>Blanchisserie</h3>
+        </a>
+        <a class="flex center column" href='/offer/new/mobilite'>
+            <img class="icone" src="./images/mobilite-ajout.png" alt="">
+            <h3>Mobilté</h3>
+        </a>
+        <a class="flex center column" href='/offer/new/loisir'>
+            <img class="icone" src="./images/loisirs-ajout.png" alt="">
+            <h3>Loisir</h3>
+        </a>
+        <a class="flex center column" href='/offer/new/don'>
+            <img class="icone" src="./images/dons-ajout.png" alt="">
+            <h3>Dons</h3>
+        </a>
+        <a class="flex center column" href='/offer/new/autre'>
+            <img class="icone" src="./images/autre-ajout.png" alt="">
+            <h3>Autre</h3>
+        </a>
+    </section>
+    
+    <br>
+<?php } ?>
+<?php
+if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) 
+{
+    echo '<div id="container-accueil" class="container bg-saumon full-size">
+    <div class="content">';
+    if ($_SESSION['user_category']=='admin') 
+    {
+        echo '<div class="header2 bg-blanc flex center">
+                <h2 class="saumon">Offres disponibles</h2>
+            </div>';
+    }
+    ?>
     <section class="tableau-de-bord flex center wrap">
         <a class="flex center column" href='/offer/list/restauration'>
             <img class="icone" src="./images/restauration.png" alt="">
@@ -66,41 +110,8 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
     </section>
 
     <?php
-    }
-    if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
-        ?>
-        <div id="container-accueil" class="container bg-saumon full-size">
-            <div class="content">
-        <h2 class="blanc">Déposer une offre</h2>
-        <section class="tableau-de-bord flex center wrap">
-            <a class="flex center column" href='/offer/new/restauration'>
-                <img class="icone" src="./images/restauration-ajout.png" alt="">
-                <h3>Restauration</h3>
-            </a>
-            <a class="flex center column" href='/offer/new/blanchisserie'>
-                <img class="icone" src="./images/blanchisserie-ajout.png" alt="">
-                <h3>Blanchisserie</h3>
-            </a>
-            <a class="flex center column" href='/offer/new/mobilite'>
-                <img class="icone" src="./images/mobilite-ajout.png" alt="">
-                <h3>Mobilté</h3>
-            </a>
-            <a class="flex center column" href='/offer/new/loisir'>
-                <img class="icone" src="./images/loisirs-ajout.png" alt="">
-                <h3>Loisir</h3>
-            </a>
-            <a class="flex center column" href='/offer/new/don'>
-                <img class="icone" src="./images/dons-ajout.png" alt="">
-                <h3>Dons</h3>
-            </a>
-            <a class="flex center column" href='/offer/new/autre'>
-                <img class="icone" src="./images/autre-ajout.png" alt="">
-                <h3>Autre</h3>
-            </a>
-        </section>
-        
-        <br>
-<?php } ?>
+}?>
+
     </div>
 </div>
 <?php require_once 'footer.php'; ?>

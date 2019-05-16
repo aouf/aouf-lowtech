@@ -71,7 +71,7 @@ $offer_arrondissement = $data['arrondissement'];
 $offer_address = $data['address'];
 $offer_date_start = $data['date_start'];
 $offer_date_end = $data['date_end'];
-
+echo "<div class='bg-noir'>";
 print "<h3>Annonce : $offer_title</h3>";
 
 print "<p>$offer_description</p>";
@@ -84,9 +84,10 @@ if ($data['picture'] != 'NULL') {
     $picture = base64_encode($data['picture']);
     print "<img src='data:image/jpg;base64,$picture'><br><br>";
 }
-// echo '<form method='post'>
-// <input type='submit' value='Signaler un contenu inapproprié'>
-// </form>';
+echo "<form method='post'>
+<input type='submit' value='Signaler un contenu inapproprié'>
+</form>";
+echo "</div>";
 
 $req = "SELECT * FROM users WHERE id=$with_id limit 1";
 $statement = $pdo->query($req);

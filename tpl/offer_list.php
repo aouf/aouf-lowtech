@@ -17,9 +17,9 @@ $arrondissement == '1' ? $arrondissement_beautify = $arrondissement.'er' : $arro
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $max_length = 60;
 ?>
-<div class="container bg-blanc noir full-size">
+<div class="container bg-blanc noir">
     <h2 class="saumon"><?php echo ucfirst($offer_category); ?></h2>
-    <div class="bg-saumon full-size list-offres">
+    <div class="bg-saumon list-offres">
         <?php
         if ($arrondissement != '') {
 

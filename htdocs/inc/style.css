@@ -45,7 +45,6 @@ body {
 form {
   width: 100%;
   margin: 20px 0 20px 0;
-  padding: 10px;
 }
 
 form *:not(span) {
@@ -402,6 +401,8 @@ header {
 
 .header2 h2 {
   width: 100%;
+}
+.header2 h2 .margin-left {
   margin-left: 15px;
 }
 
@@ -423,7 +424,7 @@ header {
 }
 
 #container-accueil {
-  height: calc(100% - 125px);
+  height: calc(100vh - 165px);
 }
 
 #container-accueil a.flex.center.column * {
@@ -585,4 +586,13 @@ header {
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+}
+
+/* Footer */
+.footer {
+  height: 50px;
+}
+.feedback-link {
+  font-size: 14px;
+  text-decoration: underline;
 }

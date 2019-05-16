@@ -8,9 +8,9 @@ $user_id = $_SESSION['user_id'];
 $couleur = $_SESSION['user_category'] == "benevole" || $_SESSION['user_category'] == "admin"? 'vert' : 'saumon';
 ?>
 
-<div class="container bg-blanc noir full-size">
+<div class="container bg-blanc noir">
 <h2>Mes messages</h2>
-<div class="bg-blanc full-size list-messages">
+<div class="bg-blanc list-messages">
 
 <?php
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
