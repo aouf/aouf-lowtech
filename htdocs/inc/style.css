@@ -29,6 +29,11 @@ body {
   font-size: 18px;
   color: #ffffff;
   font-family: 'Monserrat Medium';
+  display: flex;
+  flex-direction: column;
+}
+body #container-accueil {
+    height: 100%;
 }
 
 .content {
