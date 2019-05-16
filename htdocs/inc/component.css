@@ -94,7 +94,6 @@
 	-webkit-transition: opacity 0s linear 205ms;
 	-moz-transition: opacity 0s linear 205ms;
 	transition: opacity 0s linear 205ms;
-    height: 300px;
     background-color: #122b33;
     border:1px solid #8c979b;
 }
