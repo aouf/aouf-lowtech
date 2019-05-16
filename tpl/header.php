@@ -7,27 +7,37 @@
         $couleur = 'saumon';
     }
 ?>
-<body class="bg-noir">
-    <header>
-        <nav class="dr-menu">
-            <div class="dr-trigger">
-                <a class="dr-label <?php echo $couleur ; ?>"><?php echo $_SESSION['user_login']; ?></a>
-                <span class="dr-icon dr-icon-menu <?php echo $couleur ; ?>"></span>
-            </div>
-            <ul class="flex column center">
-                <li><a class="<?php echo $couleur ; ?>" href='/accueil'>Accueil</a><br></li>
-                <?php 
-                    if ($_SESSION['user_category']=='admin') { ?>
-                        <li><a class="<?php echo $couleur ; ?>" href='/admin/register'>Créer un accès</a></li>
-                        <li><a class="<?php echo $couleur ; ?>" href='/admin/moderation'>Modérer un accès</a></li>
-                
-                <?php }
-                    if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) { ?>
-                        <li><a class="<?php echo $couleur ; ?>" href="/offer/mylist">Mes offres</a></li>
-                <?php } ?>
-                <li><a class="<?php echo $couleur ; ?>" href="/message/list">Messagerie</a></li>
-                <li><a class="<?php echo $couleur ; ?>" href="/parametres">Mes paramètres</a></li>
-                <li><a class="<?php echo $couleur ; ?>" href="/?logout">Déconnexion</a></li>
-            </ul>
-        </nav>
+<body>
+    <header class="bg-noir flex">
+        <section>
+            <a href="/accueil">
+                <div class="logo-menu"></div>
+            </a>
+        </section>
+        <div class="compte-et-message flex">
+            <section>
+                <a href="/message/list">
+                    <div class="message-menu"></div>
+                </a>
+            </section>
+            <section>
+                <a href="/parametres">
+                    <div class="compte-menu"></div>
+                </a>
+            </section>
+        </div>
     </header>
+    <div class="header2 bg-blanc flex center">
+        <h2 class="saumon">
+            <?php 
+                if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') {
+                    echo 'Mes offres';
+                }
+                elseif ($_SESSION['user_category']=='deloge') 
+                {
+                    $couleur = 'saumon';
+                }
+             ?>
+        </h2>
+        <img class="fleche-droite" src="../images/fleche-droite.png" alt="">
+    </div>

@@ -105,6 +105,8 @@ h1, h2 {
   text-align: center;
   margin: 0;
   padding: 20px;
+  text-transform:uppercase;
+  font-size: 20px;
 }
 
 h3 {
@@ -336,6 +338,77 @@ form#registerForm section {
   background: #aaa;
   border-radius: 50%;
 }
+
+/* Header */
+header {
+  height: 110px;
+  align-items: center;
+  -webkit-align-items: center;
+  -khtml-align-items: center;
+  -o-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  justify-content: space-between;
+  -o-justify-content: space-between;
+  -khtml-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -moz-justify-content: space-between;
+  padding: 20px;
+}
+
+.logo-menu {
+  background-image: url('../images/logo-menu.png');
+  height: 70px;
+  width: 109px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.compte-menu {
+    background-image: url('../images/compte-menu.png');
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.message-menu {
+    background-image: url('../images/message-menu.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 25px;
+    width: 34px;
+    background-size: contain;
+    margin-right: 20px;
+}
+.header2 {
+    height: 90px;
+    align-items: center;
+    -webkit-align-items: center;
+    -khtml-align-items: center;
+    -o-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    justify-content: flex-end;
+    -o-justify-content:  flex-end;
+    -khtml-justify-content:  flex-end;
+    -webkit-justify-content:  flex-end;
+    -ms-justify-content:  flex-end;
+    -moz-justify-content:  flex-end;
+}
+
+.header2 h2 {
+  width: 75%;
+}
+
+.fleche-droite {
+  width: 15px;
+  height: 25px;
+  margin-right: 10px;
+}
+
 
 /* Menu */
 *,

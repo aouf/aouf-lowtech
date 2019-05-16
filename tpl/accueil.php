@@ -2,16 +2,6 @@
     require_once 'head.php';
     require_once 'header.php';
 
-    if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) 
-    {
-        $couleur = 'vert';
-    }
-    else
-    {
-        $couleur = 'saumon';
-    }
-?>
-<?php
 if ($_SESSION['user_category']=='admin') {
     ?>
     <div class="container bg-<?php echo $couleur ; ?> full-size">
@@ -27,7 +17,7 @@ if ($_SESSION['user_category']=='admin') {
 
 if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) {
     ?>
-    <div id="container-accueil" class="container bg-<?php echo $couleur ; ?> full-size">
+    <div id="container-accueil" class="container bg-saumon full-size">
         <div class="content">
     <h2 class="blanc">Consulter les offres</h2>
     <section class="tableau-de-bord flex center wrap">
@@ -62,7 +52,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
 
 if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
     ?>
-    <div id="container-accueil" class="container bg-<?php echo $couleur ; ?> full-size">
+    <div id="container-accueil" class="container bg-saumon full-size">
         <div class="content">
     <h2 class="blanc">Déposer une offre</h2>
     <section class="tableau-de-bord flex center wrap">
