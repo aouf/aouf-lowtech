@@ -61,32 +61,32 @@ L'equipe Aouf
 }
 
 
-// $req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
-// $statement = $pdo->query($req);
-// $data = $statement->fetch();
-// $offer_title = $data['title'];
-// $offer_description = $data['description'];
-// $offer_userid = $data['user_id'];
-// $offer_arrondissement = $data['arrondissement'];
-// $offer_address = $data['address'];
-// $offer_date_start = $data['date_start'];
-// $offer_date_end = $data['date_end'];
-// 
-// print "<h3>Annonce : $offer_title</h3>";
-// 
-// print "<p>$offer_description</p>";
-// 
-// print "<p>Arrondissement : $offer_arrondissement</p>";
-// print "<p>Adresse : $offer_address</p>";
-// print "<p>Disponible entre $offer_date_start et $offer_date_end</p>";
-// 
-// if ($data['picture'] != 'NULL') {
-//     $picture = base64_encode($data['picture']);
-//     print "<img src='data:image/jpg;base64,$picture'><br><br>";
-// }
-// <form method='post'>
+$req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
+$statement = $pdo->query($req);
+$data = $statement->fetch();
+$offer_title = $data['title'];
+$offer_description = $data['description'];
+$offer_userid = $data['user_id'];
+$offer_arrondissement = $data['arrondissement'];
+$offer_address = $data['address'];
+$offer_date_start = $data['date_start'];
+$offer_date_end = $data['date_end'];
+
+print "<h3>Annonce : $offer_title</h3>";
+
+print "<p>$offer_description</p>";
+
+print "<p>Arrondissement : $offer_arrondissement</p>";
+print "<p>Adresse : $offer_address</p>";
+print "<p>Disponible entre $offer_date_start et $offer_date_end</p>";
+
+if ($data['picture'] != 'NULL') {
+    $picture = base64_encode($data['picture']);
+    print "<img src='data:image/jpg;base64,$picture'><br><br>";
+}
+// echo '<form method='post'>
 // <input type='submit' value='Signaler un contenu inapproprié'>
-// </form>
+// </form>';
 
 $req = "SELECT * FROM users WHERE id=$with_id limit 1";
 $statement = $pdo->query($req);
