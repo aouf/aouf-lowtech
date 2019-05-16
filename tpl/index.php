@@ -60,6 +60,7 @@ require_once 'head.php';
                     <label class="vert" for='password'>MOT DE PASSE</label>
                     <input type='password' name='password' required>
                     <button class='bg-vert' type='submit' value='Connexion'>Connexion</button>
+                    <button class='bg-vert' type='submit' value='Connexion'>CONNEXION</button>
                 </form>
                 <center><a class="small-text under saumon" href='/register'>S'inscrire</a></center>
                 <center><a class="small-text under saumon" href='/lostpassword'>Mot de passe oublié</a></center>
