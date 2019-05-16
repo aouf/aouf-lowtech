@@ -27,17 +27,3 @@
             </section>
         </div>
     </header>
-    <div class="header2 bg-blanc flex center">
-        <h2 class="saumon">
-            <?php 
-                if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') {
-                    echo 'Mes offres';
-                }
-                elseif ($_SESSION['user_category']=='deloge') 
-                {
-                    $couleur = 'saumon';
-                }
-             ?>
-        </h2>
-        <img class="fleche-droite" src="../images/fleche-droite.png" alt="">
-    </div>
