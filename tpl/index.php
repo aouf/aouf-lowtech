@@ -55,14 +55,14 @@ require_once 'head.php';
             </a>
             <div id='connexion-div' class='flex column center'>
                 <form id='connexion-form' class='flex center column' method='post'>
-                    <label for='login'>Identifiant</label>
+                    <label class="vert" for='login'>IDENTIFIANT</label>
                     <input type='text' name='login' autofocus placeholder='' required>
-                    <label for='password'>Mot de passe</label>
+                    <label class="vert" for='password'>MOT DE PASSE</label>
                     <input type='password' name='password' required>
                     <button class='bg-vert' type='submit' value='Connexion'>Connexion</button>
                 </form>
-                <center><a class="small-text under" href='/register'>S'inscrire</a></center>
-                <center><a class="small-text under" href='/lostpassword'>Mot de passe oublié</a></center>
+                <center><a class="small-text under saumon" href='/register'>S'inscrire</a></center>
+                <center><a class="small-text under saumon" href='/lostpassword'>Mot de passe oublié</a></center>
             </div>
         </div>
     </div>

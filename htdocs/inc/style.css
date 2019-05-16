@@ -276,7 +276,7 @@ div.home {
 }
 
 div.home h1, div.home label {
-  color: #ffffff;
+  font-weight: bold;
 }
 
 .logo-accueil-deco {
