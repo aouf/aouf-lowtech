@@ -258,6 +258,15 @@ button {
 }
 
 /* Page de connexion*/
+
+.erreur {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  text-align: center;
+}
+
 div.home {
   width: 100%;
   height: 100%;

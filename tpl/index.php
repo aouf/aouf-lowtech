@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
         header("Location: accueil");
         exit;
     } else {
-        echo "Erreur de mot de passe ou compte inexistant/inactif&nbsp;!<br>";
+        echo "<div class='erreur noir bg-saumon center'>Erreur de mot de passe ou compte inexistant/inactif&nbsp;!</div>";
     }
 }
 
