@@ -1,6 +1,8 @@
 Par ordre de priorité :
 
+- Ajouter les détails de l'offre sur la page du message (message_write.php)
 - ajout d'un bouton "Signaler un abus" sur une offre / un message (WIP)
+- Finaliser la vue en tant qu'"admin"
 - gestion de feedback avec envoi email vers toctoc@ (WIP)
 - stocker la date de la dernière activité d'une annonce / compte (date_lastactivity) (WIP)
 - gérer un lostpassword (WIP)
