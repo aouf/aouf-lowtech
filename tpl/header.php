@@ -11,8 +11,8 @@
     <header>
         <nav class="dr-menu">
             <div class="dr-trigger">
-                <span class="dr-icon dr-icon-menu <?php echo $couleur ; ?>"></span>
                 <a class="dr-label <?php echo $couleur ; ?>"><?php echo $_SESSION['user_login']; ?></a>
+                <span class="dr-icon dr-icon-menu <?php echo $couleur ; ?>"></span>
             </div>
             <ul class="flex column center">
                 <li><a class="<?php echo $couleur ; ?>" href='/accueil'>Accueil</a><br></li>

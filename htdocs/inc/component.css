@@ -31,7 +31,7 @@
 
 .dr-menu > div .dr-icon {
 	top: 0;
-	left: 0;
+	right: 0;
 	position: absolute;
 	font-size: 150%;
 	line-height: 1.6;
@@ -39,14 +39,6 @@
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
 	transition: all 0.2s ease;
-}
-
-.dr-menu.dr-menu-open > div .dr-icon {
-	left: 100%;
-	-webkit-transform: translateX(-100%);
-	-moz-transform: translateX(-100%);
-	-ms-transform: translateX(-100%);
-	transform: translateX(-100%);
 }
 
 .dr-menu > div .dr-icon:after {
@@ -63,7 +55,8 @@
 }
 
 .dr-menu > div .dr-label {
-	padding-left: 3em;
+    text-align: right;
+	padding-right: 3em;
 	position: relative;
 	display: block;
 	font-size: 0.9em;
