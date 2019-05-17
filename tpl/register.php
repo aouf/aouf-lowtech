@@ -13,9 +13,9 @@ require_once 'head.php';
                         <button class='bg-vert' type='submit' value='Connexion'>Je veux aider</button>
                     </form>
                     <form class="flex column center" action="/deloge/register" method="post">
-                        <button class='bg-saumon blanc' type="submit"value='Connexion'>Je suis délogé(e)</button>
+                        <button class='bg-saumon noir' type="submit"value='Connexion'>Je suis délogé(e)</button>
                     </form>
-                    <center><a class="small-text under" href='/'>Retour</a></center>
+                    <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
                 </div>
             </div>
         </div>

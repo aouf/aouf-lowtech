@@ -49,7 +49,6 @@ body #container-accueil {
 
 form {
   width: 100%;
-  margin: 20px 0 20px 0;
 }
 
 form *:not(span) {
@@ -117,10 +116,10 @@ h3 {
   margin: 5px;
   color: #ffffff;
   font-family: 'Monserrat Semi Bold';
+  font-size: 15px;
 }
 
 a {
-  color: #358565;
   text-decoration: none;
 }
 
@@ -262,6 +261,7 @@ button:not(#viewPassword) {
   font-size: 14px;
   padding: 5px 20px 5px 20px;
   margin: 30px 0 20px 0;
+  text-transform: uppercase;
 }
 
 /* Page de connexion*/
@@ -309,7 +309,12 @@ div.home h1, div.home label {
     margin: 10px;
 }
 
-/* Page de liens pour inscription*/
+/* Pages pour inscription*/
+
+.register-small-links {
+    margin: 40px;
+}
+
 form#registerForm section { 
     position: relative; 
 }
