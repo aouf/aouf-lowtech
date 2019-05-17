@@ -257,10 +257,11 @@ a {
 /* Éléments*/
 button:not(#viewPassword) {
   border-radius: 30px;
-  height: 60px;
+  height: 35px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 14px;
   padding: 5px 20px 5px 20px;
+  margin: 30px 0 20px 0;
 }
 
 /* Page de connexion*/
@@ -302,6 +303,10 @@ div.home h1, div.home label {
 
 #connexion-form {
   margin: 20px;
+}
+
+.index-small-links {
+    margin: 10px;
 }
 
 /* Page de liens pour inscription*/
