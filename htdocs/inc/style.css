@@ -142,7 +142,7 @@ a {
 }
 
 .vert {
-  color: #5be79b;
+  color: #5be79c;
 }
 
 .vert-fonce {
@@ -168,8 +168,8 @@ a {
 }
 
 .bg-vert {
-  background-color: #5be79b;
-  border: 1px solid #5be79b;
+  background-color: #5be79c;
+  border: 1px solid #5be79c;
 }
 
 .bg-vert-fonce {
@@ -196,7 +196,7 @@ a {
 }
 
 .border-vert {
-  border: 1px solid #5be79b;
+  border: 1px solid #5be79c;
 }
 
 .border-vert-fonce {
