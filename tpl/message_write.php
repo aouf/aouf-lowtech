@@ -31,13 +31,14 @@ if (isset($_POST['message'])) {
     $statement->execute([$offer_id, $user_id, $to_id, $message]);
 
     // send email for notification
-    $req = "SELECT email,phonenumber,notification FROM users WHERE id=$to_id LIMIT 1";
+    $req = "SELECT email,phonenumber,notification,category FROM users WHERE id=$to_id LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
     $email_addr = $data['email'];
     $phone_number = $data['phonenumber'];
     $notification = $data['notification'];
-    if (($notification == 'email')&&($email_addr != '')) {
+    $category = $data['category'];
+    if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
         $headers_mail = "MIME-Version: 1.0\n";
         $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
@@ -55,7 +56,8 @@ L'equipe Aouf
 ";
         mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
     }
-    if (($notification == 'sms')&&($phone_number != '')) {
+    // Notification SMS uniquement pour les deloges
+    if (($category=='deloge')&&(($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
         $body_sms = 'Nouveau+message+via+AOUF+:+https://low.aouf.fr/message/list';
         $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
