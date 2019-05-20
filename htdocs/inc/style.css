@@ -665,6 +665,10 @@ header {
 .background-noir-offre {
   padding: 10px;
 }
+.background-blanc-offre {
+    max-width: 500px;
+    margin: auto;
+}
 .background-blanc-offre p {
   margin: 10px;
 }
@@ -677,7 +681,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .message-input + .submit-message {
