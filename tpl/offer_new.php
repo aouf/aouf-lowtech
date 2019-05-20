@@ -33,7 +33,7 @@ if (isset($_POST['title'])) {
 
     // notification par email
     $headers_mail = "MIME-Version: 1.0\n";
-    $headers_mail .= 'From: '.$conf['mail']['from']."\n";
+    $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
     $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
     $body_mail = "Bonjour,
 
