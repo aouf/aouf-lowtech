@@ -71,20 +71,27 @@ $user_address = $data['address'];
 $user_notification = $data['notification'];
 
 ?>
-<div class="bg-noir">
+<div>
     
-    <h2>Mon compte</h2>
-    
-    <form class="flex center column" method='post'>
+    <a href="/">
+        <div class="header2 bg-saumon flex center">
+            <img class="fleche-gauche" src="/images/fleche-gauche-blanche.png" alt="">
+            <h2 class="blanc margin-right">Mon compte</h2>
+        </div>
+    </a>
+    <a href="/?logout">
+        <div class="header2 bg-noir flex center">
+            <h2 class="blanc margin-right">Déconnexion</h2>
+        </div>
+    </a>
+
+    <form class="flex column noir" method='post'>
         
         <h3>Mon profil</h3>
         
-        <a href="/?logout">
-            <button type="button" name="button">Déconnexion</button>
-        </a>
         
-        <label for="name">Nom <span class="saumon">*</span></label><input type='text' name='name' value='<?php print $user_name; ?>' required>
-        <label for="firstname">Prénom <span class="saumon">*</span></label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
+        <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required>
+        <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
         <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' required>
         <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>'>
         <label for="arrondissement">Arrondissement (Marseille) <span class="saumon">*</span></label>
