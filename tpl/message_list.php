@@ -27,24 +27,23 @@ while ($data = $statement->fetch()) {
 
 $offer_id = $data['offer_id'];
 $with_id = $data['from_id'];
-
-$req2 = "SELECT * FROM offers WHERE id=$offer_id LIMIT 1;";
-$statement2 = $pdo->query($req2);
-$data2 = $statement2->fetch();
-$titre = ucfirst($data2['title']);
-
-$req3 = "SELECT * FROM messages WHERE offer_id=$offer_id ORDER BY id DESC;";
-$statement3 = $pdo->query($req3);
-$data3 = $statement3->fetch();
-$message = $data3['message'];
-
 if ($with_id == $user_id) $with_id = $data['to_id'];
 
-$req4 = "SELECT * FROM users WHERE id=$with_id LIMIT 1;";
-$statement4 = $pdo->query($req4);
-$data4 = $statement4->fetch();
-$prenom = ucfirst($data4['firstname']);
-$nom = strtoupper(substr($data4['name'], 0, 1)).'.';
+$req_offer = "SELECT * FROM offers WHERE id=$offer_id LIMIT 1";
+$statement_tmp = $pdo->query($req_offer);
+$data_offer = $statement_tmp->fetch();
+$titre = ucfirst($data_offer['title']);
+
+$req_thread = "SELECT * FROM messages WHERE offer_id=$offer_id AND ((from_id=$user_id AND to_id=$with_id) OR (from_id=$with_id AND to_id=$user_id )) ORDER BY id DESC";
+$statement_tmp = $pdo->query($req_thread);
+$data_thread = $statement_tmp->fetch();
+$message = $data_thread['message'];
+
+$req_with_user = "SELECT * FROM users WHERE id=$with_id LIMIT 1";
+$statement_tmp = $pdo->query($req_with_user);
+$data_with_user = $statement_tmp->fetch();
+$prenom = ucfirst($data_with_user['firstname']);
+$nom = strtoupper(substr($data_with_user['name'], 0, 1)).'.';
 $nomComplet = $prenom.' '.$nom;
 
 if (!isset($msg[$offer_id][$with_id])) {
