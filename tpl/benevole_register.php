@@ -15,13 +15,14 @@ if (isset($_POST['login'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = $_POST['category'];
     $token = sha1(random_bytes(128));
+    $acceptinfos = isset($_POST['acceptinfos']) ? 'yes' : 'no';
 
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,$token,'email'])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,$token,'email',$acceptinfos])) {
 
         // send email for validation
         $headers_mail = "MIME-Version: 1.0\n";
@@ -114,12 +115,12 @@ L'equipe Aouf
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="myInfos"><input type="checkbox" name="myInfos" value="">
+                <label class="checkboxLabel" for="rgpd"><input type="checkbox" name="rgpd" value="">
                 J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="aoufInfo"><input type="checkbox" name="aoufInfo" value="">
+                <label class="checkboxLabel" for="acceptinfos"><input type="checkbox" name="acceptinfos" value="">
                 J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
 

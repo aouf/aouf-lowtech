@@ -1,6 +1,6 @@
 <?php
 require_once 'head.php';
-// require_once 'header.php';
+
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 if (isset($_POST['username'])) {
@@ -8,16 +8,17 @@ if (isset($_POST['username'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $phone = $_POST['phone'];
-    $email = $_POST['email'];
+    $email = ($_POST['email'] != "") ? $_POST['email'] : 'NULL';
     $address = $_POST['address'];
     $arrondissement = $_POST['arrondissement'];
     $gender = $_POST['gender'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = $_POST['category'];
+    $acceptinfos = isset($_POST['acceptinfos']) ? 'yes' : 'no';
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,notification,accept_mailing) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,'sms',$acceptinfos])) {
 
         // send email to 5 nov : TODO
         echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
@@ -43,7 +44,7 @@ if (isset($_POST['username'])) {
     <div class='container no-margin full-size noir flex center'>
         <form id="registerForm" class='full-size flex column' method='post'>
             <label for="login">Identifiant (uniquement des lettres ou chiffres)</label>
-            <input type='username' name='login' id='login' placeholder="prenomnom" required>
+            <input type='username' name='username' id='username' placeholder="prenomnom" required>
 
             <section>
                 <label for="password">Mot de passe</label>
@@ -100,7 +101,7 @@ if (isset($_POST['username'])) {
                 <option value=''>BB Hôtel Timone</option>
                 <option value=''>Autre hôtel</option>
             </select>
-            <label for="address">Adresse</label>
+            <label for="address">Adresse <span class="saumon">(optionnel)</span></label>
             <input type='text' name='address' placeholder="">
             <label for="gender">Genre <span class="saumon">(optionnel)</span></label>
             <section class="gender">
@@ -118,12 +119,12 @@ if (isset($_POST['username'])) {
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="myInfos"><input type="checkbox" name="myInfos" value="">
+                <label class="checkboxLabel" for="rgpd"><input type="checkbox" name="rgpd" value="">
                 J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="aoufInfo"><input type="checkbox" name="aoufInfo" value="">
+                <label class="checkboxLabel" for="acceptinfos"><input type="checkbox" name="acceptinfos" value="">
                 J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
 
