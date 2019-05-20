@@ -66,24 +66,20 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
     $placeholder3 = "Le repas est de type sans porc / végétarien / végétalien / hallal / casher / sans gluten…";
 } elseif (preg_match('#^/offer/new/blanchisserie#', $uri)) {
     $category = 'blanchisserie';
-    $description = "Décrivez ce que vous proposez (lessive fournie ?
-séchage sur place ? etc.)
-";
+    $placeholdertitre = "Lessive à mon domicile le lundi";
+    $description = "Préciser le lieu, si la lessive est fournie, si le séchage a lieu sur place, la quantité possible et les plages horaires auxquelles vous êtes disponible";
 } elseif (preg_match('#^/offer/new/mobilite#', $uri)) {
     $category = 'mobilite';
-    $description = "Décrivez ce que vous proposez (temps disponible ?
-place dans votre véhicule ? etc.)
-";
+    $description = "Décrivez ce que vous proposez (temps disponible ? place dans votre véhicule ? etc.). Vous vous engagez à être assuré et en possession d'un permis de conduire valide.";
+    $placeholder1 = "Je propose un trajet en (modèle du véhicule) (place et taille) (vos disponibilités)";
+    $placeholder2 = "Je peux aider à charger/ décharger le véhicule ou j’ai besoin d’aide";
 } elseif (preg_match('#^/offer/new/loisir#', $uri)) {
     $category = 'loisir';
-    $description = "Décrivez ce que vous proposez (activité ? pour qui ?
-où ? nombre de places ? etc.)
+    $description = "Décrivez ce que vous proposez (activité ? pour qui ? où ? nombre de places ? etc.)
 ";
 } elseif (preg_match('#^/offer/new/don#', $uri)) {
     $category = 'don';
-    $description = "Décrivez ce que vous donnez (taille ? poids ?
-où le récupérez ? etc.)
-";
+    $description = "Précisez de l’objet et la taille s’il s’agit de vêtements";
 }
 ?>
 <div class="container bg-blanc noir full-size">
