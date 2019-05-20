@@ -21,7 +21,7 @@ $max_length = 60;
     <h2 class="saumon"><?php echo ucfirst($offer_category); ?></h2>
     <div class="bg-saumon list-offres">
         <?php
-        if ($arrondissement != '') {
+        if (($arrondissement != '')&&($arrondissement != '0')) {
 
             echo "<h3>Offres dans votre arrondissement ($arrondissement_beautify)</h3>";
             $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
