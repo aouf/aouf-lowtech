@@ -57,7 +57,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$debut." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$debut." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$debut." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
