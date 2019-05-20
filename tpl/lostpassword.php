@@ -16,7 +16,7 @@ if (isset($_POST['email'])) {
 
     if ($status == 'enabled') {
 
-        // send email for reset password
+        // send email OR SMS for reset password : TODO
         $headers_mail = "MIME-Version: 1.0\n";
         $headers_mail .= 'From: '.$conf['mail']['from']."\n";
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
@@ -43,10 +43,11 @@ L'equipe Aouf
         </div>
         <center><a class="small-text" href='/'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
-            <label for="email">Email <span class="saumon"></span></label>
-            <input type='text' name='email' required>
+            <label for="login">Identifiant <span class="saumon"></span></label>
+            <input type='text' name='login' required>
                         <button class='bg-vert noir' type="submit" value="Réinitialiser mon mot de passe">Réinitialiser mon mot de passe</button>
         </form>
+        <center class="index-small-links"><a class="small-text under saumon" href='/lostlogin'>Identifiant oublié</a></center>
 </div>
 
 <script type="text/javascript" src="/js/ytmenu.js"></script>
