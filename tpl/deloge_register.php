@@ -41,8 +41,8 @@ if (isset($_POST['username'])) {
             <h2>inscription délogé(é)</h2>
         </div>
     </header>
-    <div class='container no-margin full-size noir flex center'>
-        <form id="registerForm" class='full-size flex column' method='post'>
+    <div class='container no-margin full-size noir center'>
+        <form id="registerForm" class='full-size column' method='post'>
             <label for="login">Identifiant (uniquement des lettres ou chiffres)</label>
             <input type='username' name='username' id='username' placeholder="prenomnom" required>
 
