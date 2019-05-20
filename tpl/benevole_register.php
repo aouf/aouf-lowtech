@@ -107,11 +107,20 @@ L'equipe Aouf
                     <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
                     <label for="nonbinaire">Non binaire</label>
             </section>
-            <input type="checkbox" name="cgu" value="">J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a>
-            <input type="checkbox" name="myInfos" value="">J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong>
+
+            
+            <section class="flex" style="align-items:flex-start;">
+                <input type="checkbox" name="cgu" value=""><label>J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
+            </section>
             <br>
-            <input type="checkbox" name="aoufInfo" value="">J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span>
+            <section class="flex" style="align-items:flex-start;">
+                <input type="checkbox" name="myInfos" value=""><label>J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+            </section>
             <br>
+            <section class="flex" style="align-items:flex-start;">
+                <input type="checkbox" name="aoufInfo" value=""><label>J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+            </section>
+
             <input type='hidden' name='category' value='benevole'>
             <center>
                 <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
