@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
     if ($status == 'enabled') {
 
         $newpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $req = "UPDATE users set password="$newpassword",create_token=NULL WHERE id = $newpassword_id"; 
+        $req = "UPDATE users set password='$newpassword',create_token=NULL WHERE id = $newpassword_id"; 
         $statement = $pdo->prepare($req);
         $statement->execute();
 
