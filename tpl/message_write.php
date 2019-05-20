@@ -102,10 +102,12 @@ while ($data2 = $statement->fetch()) {
 ?>
 </section>
 <section class="message-form bg-saumon">
-    <form class="flex center" method='post'>
-        <textarea class='message-input bg-blanc' name='message'></textarea>
+    <form id="sendMessageForm" class="flex center" method='post'>
         <input type='hidden' name='to' value='<?php echo $with_id; ?>'>
-        <button class="bg-vert" type='submit' value='Ok'>ok</button>
+        <section class="relative">
+            <textarea class='message-input bg-blanc' name='message'></textarea>
+            <button class="submit-message" type='submit' value='Ok'>ok</button>
+        </section>
     </form>
 </section>
 
