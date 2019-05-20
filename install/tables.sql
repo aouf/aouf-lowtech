@@ -7,7 +7,7 @@ CREATE TABLE users (
     login VARCHAR(100) NOT NULL UNIQUE,
     category VARCHAR(100) NOT NULL,
     status VARCHAR(100) NOT NULL,
-    email VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
     phonenumber VARCHAR(100),
     name VARCHAR(100) NOT NULL,
     firstname VARCHAR(100),
@@ -15,11 +15,13 @@ CREATE TABLE users (
     address TEXT,
     arrondissement TEXT,
     geolocalisation INT,
+    cgu_ack TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     rgpd_ack TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     password VARCHAR(100) DEFAULT NULL,
     admin_comments TEXT,
     create_token VARCHAR(100),
     notification VARCHAR(100),
+    accept_mailing VARCHAR(100),
     PRIMARY KEY (`id`)
 );
 
