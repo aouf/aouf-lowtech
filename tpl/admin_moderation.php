@@ -22,7 +22,7 @@ if ($moderation_id>0) {
 
 ?>
 
-<h2>Liste des comptes à modérer</h2>
+
 
 <?php
 $req = "SELECT * from users WHERE status='unvalidated'";
@@ -36,9 +36,14 @@ $moderation_nom = $data['name'];
 $moderation_prenom = $data['firstname'];
 $moderation_email = $data['email'];
 $moderation_phonenumber = $data['phonenumber'];
-
+?>
+<div class="bg-noir">
+    <h2>Liste des comptes à modérer</h2>
+<?php
 echo "- Compte $moderation_prenom $moderation_nom ($moderation_login) : $moderation_phonenumber / $moderation_email <a href='/admin/moderation/$moderation_id'>Activer</a><br>";
-
+?>
+</div>
+<?php
 }
 
 require_once 'footer.php';
