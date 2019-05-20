@@ -110,17 +110,17 @@ L'equipe Aouf
             </section>
 
             <section>
-                <label class="checkboxLabel" for="cgu"><input type="checkbox" name="cgu" value="">
+                <label class="checkboxLabel" for="cgu"><input type="checkbox" name="cgu" value="accept" required>
                 J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="rgpd"><input type="checkbox" name="rgpd" value="">
+                <label class="checkboxLabel" for="rgpd"><input type="checkbox" name="rgpd" value="accept" required>
                 J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </section>
             <br>
             <section>
-                <label class="checkboxLabel" for="acceptinfos"><input type="checkbox" name="acceptinfos" value="">
+                <label class="checkboxLabel" for="acceptinfos"><input type="checkbox" name="acceptinfos" value="accept">
                 J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
 
