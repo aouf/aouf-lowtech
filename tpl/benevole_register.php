@@ -107,23 +107,9 @@ L'equipe Aouf
                     <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
                     <label for="nonbinaire">Non binaire</label>
             </section>
-            <input type="checkbox" name="" value="">test
-            <input type="checkbox" name="" value="">test2
-            <input type="checkbox" name="" value="">test3
-            <section class="flex">
-                <input type="checkbox" value="" id="" name="cgu" required>
-                <label for="cgu">J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
-            </section>
-            <br>
-            <section class="flex">
-                <input type="checkbox" value="" id="myInfos" name="myInfos" required>
-                <label for="myInfos">J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
-            </section>
-            <br>
-            <section class="flex">
-                <input type="checkbox" value="" id="aoufInfo" name="aoufInfo" required>
-                <label for="aoufInfo"> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
-            </section>
+            <input type="checkbox" name="cgu" value="">J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a>
+            <input type="checkbox" name="myInfos" value="">J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong>
+            <input type="checkbox" name="aoufInfo" value="">J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span>
             <input type='hidden' name='category' value='benevole'>
             <center>
                 <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
