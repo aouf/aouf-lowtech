@@ -64,6 +64,10 @@ L'equipe Aouf
     }
 }
 
+$req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
+$statement = $pdo->query($req);
+$data = $statement->fetch();
+$offer_title = $data['title'];
 
 $req = "SELECT * FROM users WHERE id=$with_id limit 1";
 $statement = $pdo->query($req);
@@ -79,6 +83,11 @@ $statement = $pdo->query($req);
 
 <h2 class="bg-saumon"><?php echo $nomComplet ?></h2>
 <section class="conversation bg-blanc">
+
+    <div class="header2 bg-blanc flex center">
+        <h2 class="saumon margin-right"><?php echo $offer_title ; ?></h2>
+    </div>
+
 <?php 
 while ($data2 = $statement->fetch()) {
     if ($data2['from_id'] == $user_id) {
