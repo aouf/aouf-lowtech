@@ -107,6 +107,9 @@ L'equipe Aouf
                     <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
                     <label for="nonbinaire">Non binaire</label>
             </section>
+            <input type="checkbox" name="" value="">test
+            <input type="checkbox" name="" value="">test2
+            <input type="checkbox" name="" value="">test3
             <section class="flex">
                 <input type="checkbox" value="" id="" name="cgu" required>
                 <label for="cgu">J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
