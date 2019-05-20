@@ -46,7 +46,7 @@ L'equipe Aouf
         }
 
         if (($category=='deloge')&&($phone_number != '')) {
-            $body_sms = 'Changer+votre+mot+de+passe+AOUF+:+https://low.aouf.fr/reset/$token';
+            $body_sms = "Changer+votre+mot+de+passe+AOUF+:+https://low.aouf.fr/reset/$token";
             $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_exec($ch);
