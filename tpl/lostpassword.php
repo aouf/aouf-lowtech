@@ -33,7 +33,7 @@ L'equipe Aouf
 ";
     mail($email_addr,'Changement de mot de passe de votre compte Aouf',$body_mail,$headers_mail);
     }
-    echo "Si vous avez un compte valide, vous allez recevoir un email pour modifier votre mot de passe&nbsp;!<br>";
+    echo "<div class='erreur noir bg-saumon center'>Si vous avez un compte valide, vous allez recevoir un message pour modifier votre mot de passe&nbsp;!</div>";
 }
 ?>
 <body>
