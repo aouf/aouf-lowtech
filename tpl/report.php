@@ -27,7 +27,7 @@ if (isset($_POST['description'])) {
 
         $body_mail = "--" . $separator . "\r\n";
         $body_mail .= "Content-Type: text/plain; charset=\"utf-8\"\r\n";
-        $body_mail .= "Content-Transfer-Encoding: 8bit\r\n";
+        $body_mail .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
         $body_mail .= "Bonjour,
 
 Signalement posté par l'utilisateur $user_id :
@@ -37,12 +37,12 @@ $description
 Voir pièce jointe
     
 --  
-L'equipe Aouf\r\n";
+L'equipe Aouf\r\n\r\n";
         $body_mail .= "--" . $separator . "\r\n";
-        $body_mail .= "Content-Type: application/octet-stream; name='screenshot.png' \r\n";
+        $body_mail .= "Content-Type: application/octet-stream; name=screenshot.png\r\n";
         $body_mail .= "Content-Transfer-Encoding: base64\r\n";
-        $body_mail .= "Content-Disposition: attachment\r\n";
-        $body_mail .= $picture . "\r\n";
+        $body_mail .= "Content-Disposition: attachment\r\n\r\n";
+        $body_mail .= $picture . "\r\n\r\n";
         $body_mail .= "--" . $separator . "--";
 
     } else {
