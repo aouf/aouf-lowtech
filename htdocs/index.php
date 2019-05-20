@@ -17,11 +17,10 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lostpassword#', $uri))&&(!preg_match('#^/validation#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lost#', $uri))&&(!preg_match('#^/validation#', $uri))&&(!preg_match('#^/cgu#', $uri))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
-
 
 if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/index.php');
@@ -61,6 +60,8 @@ if (preg_match('#^/$#', $uri)) {
     echo 'En cours de construction...';
 } elseif (preg_match('#^/cgu#', $uri)) {
     echo 'En cours de construction...';
+} elseif (preg_match('#^/lostlogin#', $uri)) {
+    echo "Merci d'envoyer un email à toctoc AROBASE aouf POINT fr pour expliquer votre situation.";
 } else {
     echo '404: NOT FOUND';
 }
