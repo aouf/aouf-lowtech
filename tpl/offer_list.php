@@ -45,6 +45,9 @@ $max_length = 60;
                 $firstname = $data['firstname'];
                 $debut = date('d/m/y', strtotime($data['date_start']));
                 $fin = date('d/m/y', strtotime($data['date_end']));
+                $intervalle = "$debut - $fin";
+                if ($debut == $fin) $intervalle = $debut;
+                if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
 
                 if ($data['picture'] != 'NULL') {
                     $picture = base64_encode($data['picture']);
@@ -57,7 +60,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
@@ -92,6 +95,9 @@ $max_length = 60;
                 $debut = date('d/m/y', strtotime( $data['date_start']));
                 $fin = date('d/m/y', strtotime($data['date_end']));
                 $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
+                $intervalle = "$debut - $fin";
+                if ($debut == $fin) $intervalle = $debut;
+                if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
 
                 if ($data['picture'] != 'NULL') {
                     $picture = base64_encode($data['picture']);
@@ -105,7 +111,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
@@ -140,6 +146,9 @@ $max_length = 60;
                 $debut = date('d/m/y', strtotime($data['date_start']));
                 $fin = date('d/m/y', strtotime( $data['date_end']));
                 $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
+                $intervalle = "$debut - $fin";
+                if ($debut == $fin) $intervalle = $debut;
+                if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
 
                 echo "<a class='offre' href='/offer/show/$offer_id/$offer_userid'>";
                 if ($data['picture'] != 'NULL') {
@@ -154,7 +163,7 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo $debut." - ".$fin." <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
                                 </p>
                             </div>
                         </div>
