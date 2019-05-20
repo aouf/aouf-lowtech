@@ -58,8 +58,8 @@ L'equipe Aouf
     </header>
     <div class='container no-margin full-size noir center'>
         <form id="registerForm" class='full-size column' method='post'>
-            <label for="login">Identifiant</label>
-            <input type='username' name='login' id='login' placeholder="davidpernot" required>
+            <label for="login">Identifiant (uniquement des lettres ou chiffres)</label>
+            <input type='username' name='login' id='login' placeholder="prenomnom" required>
 
             <section>
                 <label for="password">Mot de passe</label>
@@ -68,11 +68,11 @@ L'equipe Aouf
             </section>
 
             <label for="nom">Nom</label>
-            <input type='text' name='nom' placeholder="Pernot" required>
+            <input type='text' name='nom' placeholder="Votre nom" required>
             <label for="prenom">Prénom</label>
-            <input type='text' name='prenom' placeholder="David" required>
+            <input type='text' name='prenom' placeholder="Votre prénom" required>
             <label for="email">e-mail</label>
-            <input type='text' name='email' placeholder="david.pernot86@gmail.com" required>
+            <input type='text' name='email' placeholder="votre-email@example.com" required>
             <label for="phone">Téléphone portable <span class="saumon">(optionnel)</span></label>
             <input type='text' name='phone' placeholder="0675342199">
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
@@ -97,7 +97,7 @@ L'equipe Aouf
             </select>
 
             <label for="address" >Adresse où je peux offrir des services <span class="saumon">(optionnel)</span></label>
-            <input type='text' name='address' placeholder="13 rue Adolphe Thiers">
+            <input type='text' name='address' placeholder="">
             <label for="gender">Genre <span class="saumon">(optionnel)</span></label>
             <section class="gender">
                     <input type="radio" id='homme' name="gender" value="homme">
