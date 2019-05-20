@@ -296,7 +296,7 @@ div.home h1, div.home label {
 
 #connexion-form {
   margin: 20px;
-  width: 250px;
+  width: 300px;
 }
 
 form#connexion-form *:not(span):not(button) {
@@ -315,7 +315,7 @@ form#connexion-form *:not(span):not(button) {
 
 form#registerForm { 
     margin: 20px 0 20px 0;
-    width: 250px;
+    width: 300px;
 }
 
 form#registerForm section { 
