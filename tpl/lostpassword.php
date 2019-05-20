@@ -1,6 +1,6 @@
 <?php
 require_once 'head.php';
-// require_once 'header.php';
+
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 if (isset($_POST['email'])) {
@@ -42,8 +42,8 @@ L'equipe Aouf
             <h2>Mot de passe oublié</h2>
         </div>
         <form class='full-size flex center column' method='post'>
-            <label for="login">Identifiant <span class="saumon"></span></label>
-            <input type='text' name='login' required>
+            <label for="login">Identifiant&nbsp;:</label>
+            <input type='text' name='login' placeholder="Votre identifiant" required>
                         <button class='bg-vert noir' type="submit" value="Réinitialiser mon mot de passe">Réinitialiser mon mot de passe</button>
         </form>
         <center class="index-small-links"><a class="small-text under saumon" href='/lostlogin'>Identifiant oublié</a></center>
