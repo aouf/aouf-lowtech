@@ -21,13 +21,13 @@ if (isset($_POST['login'])) {
 
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,$token,'email']);
+    if ($statement->execute([$login,$category,'unvalidated',$email_addr,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,$token,'email'])) {
 
-    // send email for validation
-    $headers_mail = "MIME-Version: 1.0\n";
-    $headers_mail .= 'From: '.$conf['mail']['from']."\n";
-    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-    $body_mail = "Bonjour,
+        // send email for validation
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: '.$conf['mail']['from']."\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
 Validez votre compte en cliquant sur ce lien :
 
@@ -38,8 +38,11 @@ https://low.aouf.fr/validation/$token
 --
 L'equipe Aouf
 ";
-    mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
-    echo "Compte <strong>$login</strong> en cours de création, vous allez recevoir un email pour validation&nbsp;!<br>";
+        mail($email_addr,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+        echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours de création, vous allez recevoir un email pour validation&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+    } else {
+        echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+    }
 }
 ?>
 <body>
@@ -105,8 +108,8 @@ L'equipe Aouf
                     <label for="nonbinaire">Non binaire</label>
             </section>
             <label for="cgu"><input type="checkbox" value="" id="" name="cgu" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
-            <label for=""><input type="checkbox" value="" id="" required> J'accepte XXX</label>
-            <label><input type="checkbox" value="" id="" required> J'accepte YYY</label>
+            <label><input type="checkbox" value="" id="" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+            <label for=""><input type="checkbox" value="" id=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             <input type='hidden' name='category' value='benevole'>
             <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>

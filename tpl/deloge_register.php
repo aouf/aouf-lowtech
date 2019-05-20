@@ -17,10 +17,16 @@ if (isset($_POST['username'])) {
 
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password]);
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password])) {
 
-    // send email to 5 nov : TODO
-    echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
+        // send email to 5 nov : TODO
+        echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
+        echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+
+    } else {
+        echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+    } 
+
 }
 ?>
 <body>
@@ -106,8 +112,8 @@ if (isset($_POST['username'])) {
                     <label for="nonbinaire">Non binaire</label>
             </section>
             <label for="cgu"><input type="checkbox" value="" id="" name="cgu" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
-            <label for=""><input type="checkbox" value="" id="" required> J'accepte XXX</label>
-            <label><input type="checkbox" value="" id="" required> J'accepte YYY</label>
+            <label><input type="checkbox" value="" id="" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+            <label for=""><input type="checkbox" value="" id=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             <input type='hidden' name='category' value='deloge'>
             <button class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
         </form>

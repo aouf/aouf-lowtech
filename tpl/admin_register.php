@@ -44,7 +44,6 @@ if (isset($_POST['login'])) {
         <input type='radio' name='gender' value='homme'>Homme
         <input type='radio' name='gender' value='femme'>Femme
         <input type='radio' name='gender' value='nonbinaire'>Non binaire
-        <input type='radio' name='gender' value='famille'>Famille
         <input type='hidden' name='type' value='deloge'><br>
         Mot de passe : <input type='password' name='password'>*<br>
         <input type='submit' value="S'enregistrer">
@@ -61,7 +60,6 @@ if (isset($_POST['login'])) {
         <input type='radio' name='gender' value='homme'>Homme
         <input type='radio' name='gender' value='femme'>Femme
         <input type='radio' name='gender' value='nonbinaire'>Non binaire
-        <input type='radio' name='gender' value='famille'>Famille
         <input type='hidden' name='type' value='benevole'><br>
         Mot de passe : <input type='password' name='password'>*<br>
         <input type='submit' value="S'enregistrer">
