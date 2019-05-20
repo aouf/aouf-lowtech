@@ -56,8 +56,8 @@ L'equipe Aouf
             <h2>inscription bénévole</h2>
         </div>
     </header>
-    <div class='container no-margin full-size noir flex center'>
-        <form id="registerForm" class='full-size flex column' method='post'>
+    <div class='container no-margin full-size noir center'>
+        <form id="registerForm" class='full-size column' method='post'>
             <label for="login">Identifiant</label>
             <input type='username' name='login' id='login' placeholder="davidpernot" required>
 
