@@ -113,13 +113,13 @@ L'equipe Aouf
             </section>
             <br>
             <section class="flex">
-                <input type="checkbox" value="" id="" required>
-                <label>J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+                <input type="checkbox" value="" id="myInfos" name="myInfos" required>
+                <label for="myInfos">J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </section>
             <br>
             <section class="flex">
-                <input type="checkbox" value="" id="">
-                <label for=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+                <input type="checkbox" value="" id="aoufInfo" name="aoufInfo" required>
+                <label for="aoufInfo"> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
             <input type='hidden' name='category' value='benevole'>
             <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
