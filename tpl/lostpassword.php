@@ -3,12 +3,12 @@ require_once 'head.php';
 
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-if (isset($_POST['email'])) {
+if (isset($_POST['login'])) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
-    $email_addr = $_POST['email'];
+    $login = $_POST['login'];
     // TODO: à sécuriser contre les XSS
-    $req = "SELECT id,status,email,phonenumber,category FROM users WHERE email='".$email_addr."' LIMIT 1";
+    $req = "SELECT id,status,email,phonenumber,category FROM users WHERE login='".$login."' LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
 
