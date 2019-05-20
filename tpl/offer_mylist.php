@@ -37,6 +37,9 @@ $max_length = 60;
             if ($status == 'disabled') $status_text = "(désactivée)";
             $debut = date('d/m/y', strtotime($data['date_start']));
             $fin = date('d/m/y', strtotime($data['date_end']));
+            $intervalle = "$debut - $fin";
+            if ($debut == $fin) $intervalle = $debut;
+            if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
             
             if ($data['picture'] != 'NULL') {
                 $picture = base64_encode($data['picture']);
@@ -48,7 +51,7 @@ $max_length = 60;
                 echo" <div class='bloc-offre bloc-offre-text'>";
                     echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
                         echo "<p class='noskew'>";
-                            echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$debut - $debut <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                            echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
                         echo "</p>";
                     echo "</div>";
                 echo "</div>";
