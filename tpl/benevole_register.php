@@ -75,7 +75,7 @@ L'equipe Aouf
             <label for="email">e-mail</label>
             <input type='text' name='email' placeholder="votre-email@example.com" required>
             <label for="phone">Téléphone portable <span class="saumon">(optionnel)</span></label>
-            <input type='text' name='phone' placeholder="0675342199">
+            <input type='text' name='phone' placeholder="0612345678">
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
             <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Arrondissement</option>

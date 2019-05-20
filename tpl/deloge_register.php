@@ -57,7 +57,7 @@ if (isset($_POST['username'])) {
             <label for="prenom">Prénom</label>
             <input type='text' name='prenom' placeholder="Votre prénom" required>
             <label for="phone">Téléphone portable</label>
-            <input type='text' name='phone' placeholder="0675342199" required>
+            <input type='text' name='phone' placeholder="0612345678" required>
             <label for="email">e-mail <span class="saumon">(optionnel)</span></label>
             <input type='text' name='email' placeholder="votre-email@example.com">
             <label for="">Arrondissement (Marseille)</label>
