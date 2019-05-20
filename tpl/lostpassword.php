@@ -41,13 +41,13 @@ L'equipe Aouf
         <div class="titre bg-vert noir">
             <h2>Mot de passe oublié</h2>
         </div>
-        <center><a class="small-text" href='/'>Retour</a></center>
         <form class='full-size flex center column' method='post'>
             <label for="login">Identifiant <span class="saumon"></span></label>
             <input type='text' name='login' required>
                         <button class='bg-vert noir' type="submit" value="Réinitialiser mon mot de passe">Réinitialiser mon mot de passe</button>
         </form>
         <center class="index-small-links"><a class="small-text under saumon" href='/lostlogin'>Identifiant oublié</a></center>
+        <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
 </div>
 
 <script type="text/javascript" src="/js/ytmenu.js"></script>
