@@ -60,7 +60,7 @@ L'equipe Aouf
 ";
     mail($conf['mail']['admin'],'[aouf] Modification offre',$body_mail,$headers_mail);
 
-    echo "Offre <strong>$title</strong> modifiée&nbsp;!<br>";
+    echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> modifiée&nbsp;!</div>";
 }
 
 ?>
