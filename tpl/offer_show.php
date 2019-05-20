@@ -113,10 +113,11 @@ $statement = $pdo->query($req);
     </div>
 </div>
 
-<section class="conversation bg-saumon">
-    <div class="header2 bg-saumon flex center">
-        <h2 class="blanc">Message</h2>
-    </div>
+<div class="header2 bg-saumon flex center">
+    <h2 class="blanc">Message</h2>
+</div>
+<section class="conversation bg-blanc">
+        
 <?php 
 while ($data2 = $statement->fetch()) {
     if ($data2['from_id'] == $user_id) {
