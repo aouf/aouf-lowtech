@@ -1,6 +1,6 @@
 <?php
 require_once 'head.php';
-// require_once 'header.php';
+
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 $uri = $_SERVER['REQUEST_URI'];

@@ -17,7 +17,7 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lost#', $uri))&&(!preg_match('#^/validation#', $uri))&&(!preg_match('#^/cgu#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lost#', $uri))&&(!preg_match('#^/validation#', $uri))&&(!preg_match('#^/cgu#', $uri))&&(!preg_match('#^/reset#', $uri))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
@@ -62,6 +62,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/feedback.php');
 } elseif (preg_match('#^/report#', $uri)) {
     include( AOUF_BASE . '../tpl/report.php');
+} elseif (preg_match('#^/reset#', $uri)) {
+    include( AOUF_BASE . '../tpl/reset.php');
 } elseif (preg_match('#^/cgu#', $uri)) {
     echo 'En cours de construction...';
 } elseif (preg_match('#^/lostlogin#', $uri)) {

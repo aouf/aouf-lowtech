@@ -8,30 +8,51 @@ if (isset($_POST['email'])) {
     sleep(1);
     $email_addr = $_POST['email'];
     // TODO: à sécuriser contre les XSS
-    $req = "SELECT status FROM users WHERE email='".$email_addr."' LIMIT 1";
+    $req = "SELECT id,status,email,phonenumber,category FROM users WHERE email='".$email_addr."' LIMIT 1";
     $statement = $pdo->query($req);
     $data = $statement->fetch();
 
+    $id = $data['id'];
     $status = $data['status'];
+    $email_addr = $data['email'];
+    $phone_number = $data['phonenumber'];
+    $category = $data['category'];
+
+    $token = sha1(random_bytes(128));
 
     if ($status == 'enabled') {
 
-        // send email OR SMS for reset password : TODO
-        $headers_mail = "MIME-Version: 1.0\n";
-        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-        $body_mail = "Bonjour,
+        $req = "UPDATE users set create_token='$token' WHERE id = $id";
+        $statement = $pdo->prepare($req);
+        $statement->execute();
+
+        if ($email_addr != '') { 
+            // send email for reset password
+            $headers_mail = "MIME-Version: 1.0\n";
+            $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+            $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+            $body_mail = "Bonjour,
 
 Vous pouvez changer le mot de passe de votre compte en cliquant sur ce lien :
 
-https://low.aouf.fr/TODO
+https://low.aouf.fr/reset/$token
 
 (valable pendant 24h)
 
 --
 L'equipe Aouf
 ";
-    mail($email_addr,'Changement de mot de passe de votre compte Aouf',$body_mail,$headers_mail);
+            mail($email_addr,'Changement de mot de passe de votre compte Aouf',$body_mail,$headers_mail);
+        }
+
+        if (($category=='deloge')&&($phone_number != '')) {
+            $body_sms = 'Changer+votre+mot+de+passe+AOUF+:+https://low.aouf.fr/reset/$token';
+            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($ch);
+            curl_close($ch);
+        }
+
     }
     echo "<div class='erreur noir bg-saumon center'>Si vous avez un compte valide, vous allez recevoir un message pour modifier votre mot de passe&nbsp;!</div>";
 }
