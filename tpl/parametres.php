@@ -19,13 +19,17 @@ if (isset($_POST['login'])) {
     $arrondissement = $_POST['arrondissement'];
     $address = $_POST['address'];
     $gender = $_POST['gender'];
-    $notification = $_POST['notification'];
+    if ((isset($_POST['notif_email']))&&(isset($_POST['notif_sms']))) $notification = "email+sms";
+    if ((isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "email";
+    if ((isset($_POST['notif_sms']))&&(!isset($_POST['notif_email']))) $notification = "sms";
+    if ((!isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "no";
+    $acceptinfos = isset($_POST['acceptinfos']) ? 'yes' : 'no';
 
     if ($_POST['password'] != '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone',password='$password' WHERE id=$user_id";
+        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone',password='$password',gender='$gender',accept_mailing='$acceptinfos',notification='$notification' WHERE id=$user_id";
     } else {
-        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone' WHERE id=$user_id";
+        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone',gender='$gender',accept_mailing='$acceptinfos',notification='$notification' WHERE id=$user_id";
     }
     $statement = $pdo->prepare($req);
     $statement->execute();
@@ -54,7 +58,7 @@ L'equipe Aouf
 ";
     mail($conf['mail']['admin'],'[aouf] Modification profil',$body_mail,$headers_mail);
 
-    echo "Compte modifié&nbsp;!<br>";
+    echo "<div class='erreur noir bg-saumon center'>Compte modifié&nbsp;!</div>";
 
 }
 
@@ -69,6 +73,8 @@ $user_phonenumber = $data['phonenumber'];
 $user_arrondissement = $data['arrondissement'];
 $user_address = $data['address'];
 $user_notification = $data['notification'];
+$user_gender = $data['gender'];
+$user_accept_mailing = $data['accept_mailing'];
 
 ?>
 <div>
@@ -117,15 +123,15 @@ $user_notification = $data['notification'];
         <label for="gender">Genre (facultatif)</label>
         <section class="gender">
             <div>
-                <input type="radio" id='homme' name="gender" value="homme">
+                <input type="radio" id='homme' name="gender" value="homme" <?php if ($user_gender=='homme') print "checked"; ?>>
                 <label for="homme">Homme</label>
             </div>
             <div>
-                <input type="radio" id='femme' name="gender" value="femme">
+                <input type="radio" id='femme' name="gender" value="femme" <?php if ($user_gender=='femme') print "checked"; ?>>
                 <label for="femme">Femme</label>
             </div>
             <div>
-                <input type="radio" id='nonbinaire' name="gender" value="nonbinaire">
+                <input type="radio" id='nonbinaire' name="gender" value="nonbinaire" <?php if ($user_gender=='nonbinaire') print "checked"; ?>>
                 <label for="nonbinaire">Non binaire</label>
             </div>
         </section>
@@ -139,12 +145,12 @@ $user_notification = $data['notification'];
         
         <h3>Mes notifications</h3>
         <label for="notifications">Notifications de la messagerie par&nbsp;:</label>
-        <input type='checkbox'>email
-        <input type='checkbox'>SMS<br><br>
+        <input type='checkbox' name="notif_email" value="accept" <?php if (($user_notification=='email')||($user_notification=='email+sms')) print "checked"; ?>> email
+        <input type='checkbox' name="notif_sms" value="accept" <?php if (($user_notification=='sms')||($user_notification=='email+sms')) print "checked"; ?>> SMS<br><br>
         
-            <label for="cgu"><input type="checkbox" value="" id="" name="cgu" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
-            <label><input type="checkbox" value="" id="" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
-            <label for=""><input type="checkbox" value="" id=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+            <label for="cgu"><input type="checkbox" name="cgu" value="accept" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
+            <label><input type="checkbox" name="rgpd" value="accept" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+            <label for=""><input type="checkbox" name="acceptinfos" value="accept" <?php if ($user_accept_mailing=='yes') print "checked"; ?>> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
 
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
     </form>
