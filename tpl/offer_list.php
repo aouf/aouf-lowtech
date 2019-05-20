@@ -101,7 +101,7 @@ $max_length = 60;
 
                 ?>
                 
-                <a class='offre flex bg-blanc' href='<?php echo "/message/write/$offer_id/$offer_userid"; ?>'>
+                <a class='offre flex bg-blanc' href='<?php echo "/offer/show/$offer_id/$offer_userid"; ?>'>
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
