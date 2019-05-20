@@ -48,8 +48,22 @@ L'equipe Aouf
 ";
     mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
 
-    echo "Offre <strong>$title</strong> postée, merci&nbsp;!<br>";
+    echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> postée, merci&nbsp;!</div>";
 }
+
+$req = "SELECT * FROM users where id = $user_id LIMIT 1";
+$statement = $pdo->query($req);
+$data = $statement->fetch();
+//$user_login = $data['login'];
+//$user_name = $data['name'];
+//$user_firstname = $data['firstname'];
+//$user_email = $data['email'];
+//$user_phonenumber = $data['phonenumber'];
+$user_arrondissement = $data['arrondissement'];
+$user_address = $data['address'];
+//$user_notification = $data['notification'];
+//$user_gender = $data['gender'];
+//$user_accept_mailing = $data['accept_mailing'];
 
 $uri = $_SERVER['REQUEST_URI'];
 $placeholdertitre = "Ce que je propose en 1 ligne…";
@@ -92,25 +106,25 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
             <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
             <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon offre</option>
-                <option value='1'>Marseille 1er</option>
-                <option value='2'>Marseille 2eme</option>
-                <option value='3'>Marseille 3eme</option>
-                <option value='4'>Marseille 4eme</option>
-                <option value='5'>Marseille 5eme</option>
-                <option value='6'>Marseille 6eme</option>
-                <option value='7'>Marseille 7eme</option>
-                <option value='8'>Marseille 8eme</option>
-                <option value='9'>Marseille 9eme</option>
-                <option value='10'>Marseille 10eme</option>
-                <option value='11'>Marseille 11eme</option>
-                <option value='12'>Marseille 12eme</option>
-                <option value='13'>Marseille 13eme</option>
-                <option value='14'>Marseille 14eme</option>
-                <option value='15'>Marseille 15eme</option>
-                <option value='16'>Marseille 16eme</option>
+                <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
+                <option value='2' <?php if ($user_arrondissement == 2) print "selected='selected'"; ?>>Marseille 2eme</option>
+                <option value='3' <?php if ($user_arrondissement == 3) print "selected='selected'"; ?>>Marseille 3eme</option>
+                <option value='4' <?php if ($user_arrondissement == 4) print "selected='selected'"; ?>>Marseille 4eme</option>
+                <option value='5' <?php if ($user_arrondissement == 5) print "selected='selected'"; ?>>Marseille 5eme</option>
+                <option value='6' <?php if ($user_arrondissement == 6) print "selected='selected'"; ?>>Marseille 6eme</option>
+                <option value='7' <?php if ($user_arrondissement == 7) print "selected='selected'"; ?>>Marseille 7eme</option>
+                <option value='8' <?php if ($user_arrondissement == 8) print "selected='selected'"; ?>>Marseille 8eme</option>
+                <option value='9' <?php if ($user_arrondissement == 9) print "selected='selected'"; ?>>Marseille 9eme</option>
+                <option value='10' <?php if ($user_arrondissement == 10) print "selected='selected'"; ?>>Marseille 10eme</option>
+                <option value='11' <?php if ($user_arrondissement == 11) print "selected='selected'"; ?>>Marseille 11eme</option>
+                <option value='12' <?php if ($user_arrondissement == 12) print "selected='selected'"; ?>>Marseille 12eme</option>
+                <option value='13' <?php if ($user_arrondissement == 13) print "selected='selected'"; ?>>Marseille 13eme</option>
+                <option value='14' <?php if ($user_arrondissement == 14) print "selected='selected'"; ?>>Marseille 14eme</option>
+                <option value='15' <?php if ($user_arrondissement == 15) print "selected='selected'"; ?>>Marseille 15eme</option>
+                <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
             </select>
             <label for="address">Adresse (facultatif)</label>
-            <input type='text' name='address' placeholder="Je donne l'adresse où se trouve mon offre">
+            <input type='text' name='address' placeholder="Je donne l'adresse où se trouve mon offre" value='<?php print $user_address; ?>'>
             <!--<label for="allDay">Toute la journée <input type="checkbox" name="allDay" value="yes"></label>-->
             <section class="flex column center">
                 <span>Début de l'offre <span class="saumon">*</span></span>
