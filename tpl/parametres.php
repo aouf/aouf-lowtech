@@ -128,9 +128,14 @@ $user_notification = $data['notification'];
         <label for="viewPassword">Voir</label>
         
         <h3>Mes notifications</h3>
+        <label for="notifications">Notifications de la messagerie par&nbsp;:</label>
         <input type='checkbox'>email
         <input type='checkbox'>SMS<br><br>
         
+            <label for="cgu"><input type="checkbox" value="" id="" name="cgu" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
+            <label><input type="checkbox" value="" id="" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
+            <label for=""><input type="checkbox" value="" id=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
     </form>
 </div>
