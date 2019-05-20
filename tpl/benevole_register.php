@@ -108,13 +108,13 @@ L'equipe Aouf
                     <label for="nonbinaire">Non binaire</label>
             </section>
 
-            <div class="">
+            <div class="flex">
                 <input type="checkbox" name="cgu" value=""><label>J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
             </div>
-            <div class="">
+            <div class="flex">
                 <input type="checkbox" name="myInfos" value=""><label>J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </div>
-            <div class="">
+            <div class="flex">
                 <input type="checkbox" name="aoufInfo" value=""><label>J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </div>
 
