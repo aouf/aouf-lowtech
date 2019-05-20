@@ -1,51 +1,80 @@
 <?php
 require_once 'head.php';
-// require_once 'header.php';
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-if (isset($_POST['email'])) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')) {
+    die("permission denied");
+}
+
+$user_id = $_SESSION['user_id'];
+
+if (isset($_POST['description'])) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
-    $email_addr = $_POST['email'];
-    // TODO: à sécuriser contre les XSS
-    $req = "SELECT status FROM users WHERE email='".$email_addr."' LIMIT 1";
-    $statement = $pdo->query($req);
-    $data = $statement->fetch();
 
-    $status = $data['status'];
+    $description = $_POST['description'];
 
-    if ($status == 'enabled') {
+    // notification par email
+    $headers_mail = "MIME-Version: 1.0\r\n";
+    $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\r\n";
 
-        // send email OR SMS for reset password : TODO
-        $headers_mail = "MIME-Version: 1.0\n";
-        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+    if ($_FILES['picture']['tmp_name']) {
+        $picture = chunk_split(base64_encode(file_get_contents($_FILES['picture']['tmp_name'])));
+        $separator = md5(time());
+
+        $headers_mail .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"\r\n";
+        $headers_mail .= "Content-Transfer-Encoding: 7bit\r\n";
+        $headers_mail .= "This is a MIME encoded message.\r\n";
+
+        $body_mail = "--" . $separator . "\r\n";
+        $body_mail .= "Content-Type: text/plain; charset=\"utf-8\"\r\n";
+        $body_mail .= "Content-Transfer-Encoding: 8bit\r\n";
+        $body_mail .= "Bonjour,
+
+Signalement posté par l'utilisateur $user_id :
+    
+$description
+
+Voir pièce jointe
+    
+--  
+L'equipe Aouf\r\n";
+        $body_mail .= "--" . $separator . "\r\n";
+        $body_mail .= "Content-Type: application/octet-stream; name='screenshot.png' \r\n";
+        $body_mail .= "Content-Transfer-Encoding: base64\r\n";
+        $body_mail .= "Content-Disposition: attachment\r\n";
+        $body_mail .= $picture . "\r\n";
+        $body_mail .= "--" . $separator . "--";
+
+    } else {
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\r\n";
+
         $body_mail = "Bonjour,
 
-Vous pouvez changer le mot de passe de votre compte en cliquant sur ce lien :
+Signalement posté par l'utilisateur $user_id :
 
-https://low.aouf.fr/TODO
-
-(valable pendant 24h)
+$description
 
 --
 L'equipe Aouf
 ";
-    mail($email_addr,'Changement de mot de passe de votre compte Aouf',$body_mail,$headers_mail);
     }
-    echo "Si vous avez un compte valide, vous allez recevoir un email pour modifier votre mot de passe&nbsp;!<br>";
+
+    mail($conf['mail']['admin'],'[aouf] Signalement',$body_mail,$headers_mail);
+    echo "<div class='erreur noir bg-saumon center'>Signalement envoyé, merci&nbsp;!</div>";
+
 }
 ?>
 <body>
     <div class='container no-margin full-size noir'>
         <div class="titre bg-vert noir">
-            <h2>feedback</h2>
+            <h2>Signaler un problème</h2>
         </div>
         <center><a class="small-text" href='/'>Retour</a></center>
         <form class='full-size flex center column' method='post' enctype='multipart/form-data'>
-            <label for="feedback">Laissez votre feedback</label>
-            <input type='text' name='login' required>
-                        <button class='bg-vert noir' type="submit" value="Envoyer mon feedback">Envoyer mon feedback</button>
+            <label for="signalement">Signalez un problème (contenu ou échange inapproprié)&nbsp;:</label>
+            <textarea name='description' placeholder="Bonjour. Je vous signale que…" required></textarea>
+            <label for="">Capture d'écran du problème</label><input type='file' name='picture'>
+            <button class='bg-vert noir' type="submit" value="Envoyer mon signalement">Envoyer mon signalement</button>
         </form>
 </div>
 
