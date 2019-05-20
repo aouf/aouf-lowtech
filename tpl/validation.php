@@ -24,9 +24,9 @@ if (isset($token)) {
         $statement = $pdo->prepare($req);
         $statement->execute();
 
-        echo "Compte activé&nbsp;!<br>";
+        echo "<div class='erreur noir bg-saumon center'>Compte activé&nbsp;!</div>";
     } else {
-        echo "Erreur de validation&nbsp;!<br>";
+        echo "<div class='erreur noir bg-saumon center'>Erreur de validation&nbsp;!</div>";
     }
 
 }
