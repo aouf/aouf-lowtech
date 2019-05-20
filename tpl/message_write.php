@@ -109,6 +109,7 @@ while ($data2 = $statement->fetch()) {
     }
 }
 ?>
+<p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
 </section>
 <section class="message-form bg-saumon">
     <form id="sendMessageForm" class="flex center" method='post'>
