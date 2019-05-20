@@ -57,7 +57,9 @@ if (preg_match('#^/$#', $uri)) {
 } elseif (preg_match('#^/admin/moderation#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
 } elseif (preg_match('#^/feedback#', $uri)) {
-    echo 'En cours de construction...';
+    include( AOUF_BASE . '../tpl/feedback.php');
+} elseif (preg_match('#^/report#', $uri)) {
+    include( AOUF_BASE . '../tpl/report.php');
 } elseif (preg_match('#^/cgu#', $uri)) {
     echo 'En cours de construction...';
 } elseif (preg_match('#^/lostlogin#', $uri)) {
