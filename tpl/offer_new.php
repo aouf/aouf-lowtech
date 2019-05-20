@@ -18,7 +18,7 @@ if (isset($_POST['title'])) {
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
     $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
-    $picture = (($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL');
+    $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
 
     // insertion de l'offre en base
     $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
