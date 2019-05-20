@@ -126,10 +126,14 @@ if (isset($_POST['username'])) {
                 <label for=""> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
             <input type='hidden' name='category' value='deloge'>
-            <center><button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button><center>
+            <center>
+                <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
+            </center>
         </form>
     </div>
-    <center><a class="small-text under saumon" href="/register">Retour</a></center>
+    <center>
+        <a class="small-text under saumon" href="/register">Retour</a>
+    </center>
 </body>
 <!-- Placement de script temporaire : insérer à la fin de body -->
 <script>
