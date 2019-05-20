@@ -11,3 +11,5 @@ Créer une base MySQL et injecter install/tables.sql
 Copier conf/connect-dist.php en conf/connect.php et ajuster les paramètres
 
 Configuration Apache : pointer le DocumentRoot vers htdocs/ (AllowOverride All et mod_rewrite activé)
+
+Configuration PHP : permettre au moins 20M en upload = php_admin_value upload_max_filesize 20M
