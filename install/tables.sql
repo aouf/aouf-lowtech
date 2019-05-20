@@ -7,7 +7,7 @@ CREATE TABLE users (
     login VARCHAR(100) NOT NULL UNIQUE,
     category VARCHAR(100) NOT NULL,
     status VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
+    email VARCHAR(100),
     phonenumber VARCHAR(100),
     name VARCHAR(100) NOT NULL,
     firstname VARCHAR(100),
