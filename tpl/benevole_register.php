@@ -111,18 +111,18 @@ L'equipe Aouf
                 <input type="checkbox" value="" id="" name="cgu" required>
                 <label for="cgu">J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
             </section>
-            <!-- <br> -->
+            <br>
             <section class="flex">
                 <input type="checkbox" value="" id="myInfos" name="myInfos" required>
                 <label for="myInfos">J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             </section>
-            <!-- <br> -->
+            <br>
             <section class="flex">
                 <input type="checkbox" value="" id="aoufInfo" name="aoufInfo" required>
                 <label for="aoufInfo"> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
             <input type='hidden' name='category' value='benevole'>
-            <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
+            <center><button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button><center>
         </form>
 </div>
 <center><a class="small-text under saumon" href="/register">Retour</a></center>
