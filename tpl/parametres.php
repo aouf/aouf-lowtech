@@ -106,7 +106,7 @@ $user_notification = $data['notification'];
             <option value='15' <?php if ($user_arrondissement == 15) print "selected='selected'"; ?>>Marseille 15eme</option>
             <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
         </select>
-        <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $user_address; ?>' placeholder="Je donne l'adresse où je peux offrir des services">
+        <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $user_address; ?>' placeholder="">
         <label for="gender">Genre (facultatif)</label>
         <section class="gender">
             <div>

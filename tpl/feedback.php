@@ -39,7 +39,7 @@ L'equipe Aouf
         </div>
         <form class='full-size flex center column' method='post'>
             <label for="feedback">Laissez votre feedback&nbsp;:</label>
-            <textarea name='description' required>Bonjour ! Je trouve que…</textarea>
+            <textarea name='description' placeholder="Bonjour ! Je trouve que…" required></textarea>
             <button class='bg-vert noir' type="submit" value="Envoyer mon feedback">Envoyer mon feedback</button>
         </form>
         <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
