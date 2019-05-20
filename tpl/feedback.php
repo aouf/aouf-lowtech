@@ -42,7 +42,6 @@ L'equipe Aouf
             <textarea name='description' placeholder="Bonjour ! Je trouve que…" required></textarea>
             <button class='bg-vert noir' type="submit" value="Envoyer mon feedback">Envoyer mon feedback</button>
         </form>
-        <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
     </div>
 <script type="text/javascript" src="/js/ytmenu.js"></script>
 </body>

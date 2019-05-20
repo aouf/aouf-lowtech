@@ -129,7 +129,12 @@ L'equipe Aouf
                 </section>
         </section>
         <textarea name='description' required><?php echo $offer_description; ?></textarea>
-        <?php if ($offer_picture == 'NULL') { ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'> <?php } ?>
+        <?php if ($offer_picture == 'NULL') {
+            ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'>
+        <?php } else {
+            echo "<div class='bloc-offre bloc-offre-image'><div id='parallelogram' class='parallelogram-img'><div class='image noskew' style='background-image: url(data:image/jpg;base64,".base64_encode($offer_picture).")'></div></div></div>";
+            echo "<label for='picturesuppr'> Supprimer l'image <input type='checkbox' name='allDay' value='yes'></label>";
+        } ?>
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
         </form>
 

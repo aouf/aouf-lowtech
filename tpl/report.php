@@ -75,7 +75,6 @@ L'equipe Aouf
             <label for="">Capture d'écran du problème</label><input type='file' name='picture'>
             <button class='bg-vert noir' type="submit" value="Envoyer mon signalement">Envoyer mon signalement</button>
         </form>
-        <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
 </div>
 
 <script type="text/javascript" src="/js/ytmenu.js"></script>
