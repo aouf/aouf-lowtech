@@ -1,15 +1,9 @@
 Par ordre de priorité :
 
-- Ajouter les détails de l'offre sur la page du message (message_write.php)
-- ajout d'un bouton "Signaler un abus" sur une offre / un message (WIP)
 - Finaliser la vue en tant qu'"admin"
-- gestion de feedback avec envoi email vers toctoc@ (WIP)
 - stocker la date de la dernière activité d'une annonce / compte (date_lastactivity) (WIP)
-- gérer un lostpassword (WIP)
 - permettre aux admins de désactiver une offre / un compte
-- édition d'une offre : possibilité d'ajouter / supprimer la photo
 - controle des champs des formulaires soumis en front et backend
 - forcer à avoir une complexité de mot de passe
-- gérer la confirmation RGPD : proposer l'envoi de news par email / SMS 
 - front mobilefirst compatible aussi dans un navigateur web
 - gestion d'une option "toute la journée"
