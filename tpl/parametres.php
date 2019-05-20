@@ -70,7 +70,7 @@ $user_notification = $data['notification'];
 ?>
 <div class="bg-noir">
     
-    <h2>Mes paramètres</h2>
+    <h2>Mon compte</h2>
     
     <form class="flex center column" method='post'>
         
