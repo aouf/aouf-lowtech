@@ -44,6 +44,10 @@ body {
   max-width: 800px;
 }
 
+p {
+    font-size: 0.8em;
+}
+
 form {
   width: 100%;
 }
@@ -462,8 +466,11 @@ header {
 .header2 h2 {
   width: 100%;
 }
-.header2 h2 .margin-left {
+.header2 h2.margin-left {
   margin-left: 15px;
+}
+.header2 h2.margin-right {
+  margin-right: 15px;
 }
 
 .fleche-droite {
@@ -471,17 +478,21 @@ header {
   height: 27px;
   margin-right: 10px;
 }
+.fleche-gauche {
+  width: 15px;
+  height: 27px;
+  margin-left: 10px;
+}
 
 /* Accueil */
 .tableau-de-bord {
   justify-content: space-around;
   align-items: center;
+  margin: 10px;
 }
 
 .container .flex a {
-  /* width: 48%;
-  height: 33%;
-  margin: 1%; */
+  width: 48%;
 }
 
 
@@ -644,6 +655,25 @@ header {
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+}
+
+/* Offre */
+.background-noir-offre {
+  padding: 10px;
+}
+.background-blanc-offre p {
+  margin: 10px;
+}
+.background-blanc-offre h3 {
+  margin: 10px;
+}
+
+.image-offre {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    width: 100%;
 }
 
 /* Footer */

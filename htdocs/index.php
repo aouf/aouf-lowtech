@@ -38,6 +38,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_mylist.php');
 } elseif (preg_match('#^/offer/edit#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_edit.php');
+} elseif (preg_match('#^/offer/show#', $uri)) {
+    include( AOUF_BASE . '../tpl/offer_show.php');
 } elseif (preg_match('#^/register#', $uri)) {
     include( AOUF_BASE . '../tpl/register.php');
 } elseif (preg_match('#^/validation#', $uri)) {

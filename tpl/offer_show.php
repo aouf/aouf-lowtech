@@ -11,7 +11,7 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $user_id = $_SESSION['user_id'];
 
 $uri = $_SERVER['REQUEST_URI'];
-preg_match('#^/message/write/(\d+)/(\d+)$#', $uri, $matches);
+preg_match('#^/offer/show/(\d+)/(\d+)$#', $uri, $matches);
 $offer_id = (int)$matches[1];
 $with_id = (int)$matches[2];
 if (!($offer_id>0)) {
@@ -65,6 +65,19 @@ L'equipe Aouf
 }
 
 
+$req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
+$statement = $pdo->query($req);
+$data = $statement->fetch();
+$offer_title = $data['title'];
+$offer_description = $data['description'];
+$offer_userid = $data['user_id'];
+$offer_arrondissement = $data['arrondissement'];
+$offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er arrondissement' : $offer_arrondissement = $offer_arrondissement.'ème arrondissement' ;
+$offer_address = $data['address'];
+$offer_date_start = $data['date_start'];
+$offer_date_end = $data['date_end'];
+$categorie = $data['category'];
+
 $req = "SELECT * FROM users WHERE id=$with_id limit 1";
 $statement = $pdo->query($req);
 $data1 = $statement->fetch();
@@ -76,9 +89,34 @@ $nomComplet = $prenom.' '.$nom;
 $req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
 $statement = $pdo->query($req);
 ?>
+<a href="/offer/list/<?php echo $categorie ; ?>">
+    <div class="header2 bg-blanc flex center">
+        <img class="fleche-gauche" src="/images/fleche-gauche-saumon.png" alt="">
+        <h2 class="saumon margin-right"><?php echo $offer_title ; ?></h2>
+    </div>
+</a>
+<div class='background-noir-offre bg-noir'>
+    <div class="background-blanc-offre bg-blanc">
+        <h3 class="noir">Proposé par <?php echo $nomComplet; ?></h3>
+        <p class="saumon"><image class='ico-mini' src='/images/horloge.png' /> <?php echo $offer_date_start ; ?> - <?php echo $offer_date_end ; ?></p>
+        <p class="saumon"><image class='ico-mini' src='/images/localisation.png' /> <?php echo $offer_arrondissement; echo $offer_adress != NULL ? ' - '. $offer_adress: ""; ?></p>
+        <?php 
+            if ($data['picture'] != 'NULL') {
+                $picture = base64_encode($data['picture']);
+                ?>
+                <div class="image-offre" style='background-image: url("data:image/jpg;base64,<?php echo $picture; ?>")'></div>
+                <?php
+            }
+        ?>
+        <p class="noir"><?php echo $offer_description; ?></p>
+        <p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
+    </div>
+</div>
 
-<h2 class="bg-saumon"><?php echo $nomComplet ?></h2>
-<section class="conversation bg-blanc">
+<section class="conversation bg-saumon">
+    <div class="header2 bg-saumon flex center">
+        <h2 class="blanc">Message</h2>
+    </div>
 <?php 
 while ($data2 = $statement->fetch()) {
     if ($data2['from_id'] == $user_id) {
