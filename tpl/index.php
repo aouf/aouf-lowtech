@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
 require_once 'head.php';
 
 ?>
-<body>
+<body class="bg-noir">
     <div class='home flex column center bg-noir'>
         <div class="content">
             <a href='/'>
