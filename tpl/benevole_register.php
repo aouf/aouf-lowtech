@@ -130,7 +130,7 @@ L'equipe Aouf
             </center>
         </form>
 </div>
-<center><a class="small-text under saumon" href="/register">Retour</a></center>
+<center><a class="small-text under saumon return-bottom" href="/register">Retour</a></center>
 <!-- Placement de script temporaire : insérer à la fin de body -->
 <script>
     function togglePasswordView() {

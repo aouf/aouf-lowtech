@@ -135,7 +135,7 @@ if (isset($_POST['username'])) {
         </form>
     </div>
     <center>
-        <a class="small-text under saumon" href="/register">Retour</a>
+        <a class="small-text under saumon return-bottom" href="/register">Retour</a>
     </center>
 </body>
 <!-- Placement de script temporaire : insérer à la fin de body -->

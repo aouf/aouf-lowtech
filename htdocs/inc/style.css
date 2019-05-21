@@ -408,6 +408,10 @@ form#registerForm input[type="radio"] + label {
     width: 160px;
 }
 
+.return-bottom {
+    padding-bottom: 20px;
+}
+
 /* Header */
 header {
   align-items: center;
