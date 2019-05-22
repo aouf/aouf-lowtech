@@ -12,9 +12,10 @@ $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['login'])) {
     $login = $_POST['login'];
+    if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, login invalide&nbsp;!</div>"; goto skip; }
     $name = $_POST['name'];
     $firstname = $_POST['firstname'];
-    $email = $_POST['email'];
+    $email = ($_POST['email'] != "") ? $_POST['email'] : NULL;
     $phone = $_POST['phone'];
     $arrondissement = $_POST['arrondissement'];
     $address = $_POST['address'];
@@ -27,12 +28,14 @@ if (isset($_POST['login'])) {
 
     if ($_POST['password'] != '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone',password='$password',gender='$gender',accept_mailing='$acceptinfos',notification='$notification' WHERE id=$user_id";
+        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,password=?,gender=?,accept_mailing=?,notification=? WHERE id=?";
+        $statement = $pdo->prepare($req);
+        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$password,$gender,$acceptinfos,$notification,$user_id]);
     } else {
-        $req = "UPDATE users SET login='$login',name='$name',firstname='$firstname',arrondissement='$arrondissement',address='$address',email='$email',phonenumber='$phone',gender='$gender',accept_mailing='$acceptinfos',notification='$notification' WHERE id=$user_id";
+        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,gender=?,accept_mailing=?,notification=? WHERE id=?";
+        $statement = $pdo->prepare($req);
+        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$gender,$acceptinfos,$notification,$user_id]);
     }
-    $statement = $pdo->prepare($req);
-    $statement->execute();
 
     $_SESSION['user_arrondissement'] = $arrondissement;
 
@@ -60,6 +63,7 @@ L'equipe Aouf
 
     echo "<div class='erreur noir bg-saumon center'>Compte modifié&nbsp;!</div>";
 
+skip:
 }
 
 $req = "SELECT * FROM users where id = $user_id LIMIT 1";
@@ -98,7 +102,7 @@ $user_accept_mailing = $data['accept_mailing'];
         
         <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required>
         <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
-        <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' required>
+        <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?>>
         <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>'>
         <label for="arrondissement">Arrondissement (Marseille) <span class="saumon">*</span></label>
         <select name='arrondissement' required>

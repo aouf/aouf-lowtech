@@ -8,7 +8,7 @@ if (isset($_POST['username'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $phone = $_POST['phone'];
-    $email = ($_POST['email'] != "") ? $_POST['email'] : 'NULL';
+    $email = ($_POST['email'] != "") ? $_POST['email'] : NULL;
     $address = $_POST['address'];
     $arrondissement = $_POST['arrondissement'];
     $gender = $_POST['gender'];
