@@ -49,7 +49,7 @@ if (preg_match('#^/$#', $uri)) {
 } elseif (preg_match('#^/message/write#', $uri)) {
     include( AOUF_BASE . '../tpl/message_write.php');
 } elseif (preg_match('#^/parametres#', $uri)) {
-    include( AOUF_BASE . '../tpl/parametres.php');
+    include( AOUF_BASE . '../tpl/parameters.php');
 } elseif (preg_match('#^/admin/register#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_register.php');
 } elseif (preg_match('#^/benevole/register#', $uri)) {
