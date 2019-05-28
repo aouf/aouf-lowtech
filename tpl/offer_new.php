@@ -6,8 +6,6 @@ if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevol
     die("permission denied");
 }
 
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
 $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['title'])) {

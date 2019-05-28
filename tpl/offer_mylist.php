@@ -14,7 +14,6 @@ $max_length = 60;
     <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
     <div class="bg-saumon list-offres">
     <?php
-        $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
         $req = "SELECT * FROM offers WHERE user_id = $user_id";
         $statement = $pdo->query($req);
 

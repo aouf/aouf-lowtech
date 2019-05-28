@@ -6,7 +6,6 @@ if ($_SESSION['user_category']!='admin') {
     die("permission denied");
 }
 
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 if (isset($_POST['login'])) {
     $login = $_POST['login'];

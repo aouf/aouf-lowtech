@@ -17,7 +17,6 @@ $couleur = $_SESSION['user_category'] == "benevole" || $_SESSION['user_category'
 <div class="bg-blanc list-messages">
 
 <?php
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $req = "SELECT DISTINCT offer_id,from_id,to_id FROM messages WHERE from_id=$user_id OR to_id=$user_id";
 $statement = $pdo->query($req);
 

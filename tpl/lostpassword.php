@@ -1,8 +1,6 @@
 <?php
 require_once 'head.php';
 
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
 if (isset($_POST['login'])) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);

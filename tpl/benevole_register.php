@@ -1,7 +1,6 @@
 <?php
 require_once 'head.php';
 // require_once 'header.php';
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
 if (isset($_POST['login'])) {
     $login = strtolower(strip_tags($_POST['login']));

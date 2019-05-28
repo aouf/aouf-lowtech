@@ -6,8 +6,6 @@ if ($_SESSION['user_category']!='admin') {
     die("permission denied");
 }
 
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
 $user_id = $_SESSION['user_id'];
 
 $uri = $_SERVER['REQUEST_URI'];

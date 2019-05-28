@@ -7,8 +7,6 @@ $token = $matches[1];
 
 if (isset($_POST['login'])) {
 
-    $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
     $login = $_POST['login'];
 
     // éviter brute force bourrin (TODO: à améliorer)

@@ -12,8 +12,6 @@ session_start();
 
 if (isset($_POST['login'])) {
 
-    $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
     $login = strtolower($_POST['login']);
     $password = $_POST['password'];
 

@@ -1,8 +1,6 @@
 <?php
 require_once 'head.php';
 
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-
 $uri = $_SERVER['REQUEST_URI'];
 preg_match('#^/validation/(\w+)$#', $uri, $matches);
 $token = $matches[1];

@@ -14,7 +14,6 @@ $offer_category = trim($matches[1]);
 
 $arrondissement = $_SESSION['user_arrondissement'];
 $arrondissement == '1' ? $arrondissement_beautify = $arrondissement.'er' : $arrondissement_beautify = $arrondissement.'ème' ;
-$pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $max_length = 60;
 ?>
 <div class="container bg-blanc noir">
