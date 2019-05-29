@@ -1,7 +1,7 @@
 ---
-name: Rapporter un problème
-about: Créez un rapport pour nous aider à améliorer l'application
-title: ''
+name: Rapporter un bug
+about: Créez un rapport pour nous aider à corriger un bug
+title: "[BUG]"
 labels: ''
 assignees: ''
 
@@ -15,7 +15,7 @@ Exemple d'étapes pour reproduire le problème:
 1. Allez à '...'
 2. Cliquez sur '....'
 3. Faites défiler jusqu'à «....»
-4. Voir erreur
+4. Voir le bug
 
 **Comportement prévisible**
 Une description claire et concise de ce à quoi vous vous attendiez.
@@ -33,4 +33,4 @@ Le cas échéant, ajoutez des captures d'écran pour expliquer votre problème.
 Ajoutez tout autre contexte concernant le problème ici.
 
 ** Suggérez une correction **
-Si vous avez une proposition pour corriger le problème, n'hésitez pas à la partager !
+Si vous avez une proposition pour corriger le bug, n'hésitez pas à la partager !
