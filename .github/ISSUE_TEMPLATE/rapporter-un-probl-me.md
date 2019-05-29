@@ -31,3 +31,6 @@ Le cas échéant, ajoutez des captures d'écran pour expliquer votre problème.
 
 ** Contexte supplémentaire **
 Ajoutez tout autre contexte concernant le problème ici.
+
+** Suggérez une correction **
+Si vous avez une proposition pour corriger le problème, n'hésitez pas à la partager !
