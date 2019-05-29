@@ -52,7 +52,8 @@ require_once 'head.php';
         <div class="content">
             <a href='/'>
                 <div class='logo-accueil-deco'></div>
-            </a>
+            </a><br>
+            <center><a class="small-text button bg-saumon blanc" href='/register'>Créer un compte</a></center>
             <div id='connexion-div' class='flex column center'>
                 <form id='connexion-form' class='flex center column' method='post'>
                     <label class="vert" for='login'>IDENTIFIANT</label>
@@ -61,7 +62,7 @@ require_once 'head.php';
                     <input type='password' name='password' required>
                     <button class='bg-vert' type='submit' value='Connexion'>CONNEXION</button>
                 </form>
-                <center class="index-small-links"><a class="small-text under saumon" href='/register'>S'inscrire</a></center>
+                <center class="index-small-links"><a class="small-text under saumon" href='/register'>Créer un compte</a></center>
                 <center class="index-small-links"><a class="small-text under saumon" href='/lostpassword'>Mot de passe oublié</a></center>
             </div>
         </div>

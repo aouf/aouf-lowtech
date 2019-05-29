@@ -267,6 +267,22 @@ button:not(#viewPassword) {
 
 /* Page de connexion*/
 
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    border-radius: 30px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 20px 5px 20px;
+    margin: 30px auto 20px;
+    color: #ffffff;
+}
+
 .erreur {
   position: absolute;
   top: 0;
