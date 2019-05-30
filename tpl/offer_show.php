@@ -9,7 +9,7 @@ if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevol
 $user_id = $_SESSION['user_id'];
 
 $uri = $_SERVER['REQUEST_URI'];
-preg_match('#^/offer/show/(\d+)/(\d+)$#', $uri, $matches);
+preg_match('#^/offer/show/(\d+)/(\d+)#', $uri, $matches);
 $offer_id = (int)$matches[1];
 $with_id = (int)$matches[2];
 if (!($offer_id>0)) {
@@ -62,6 +62,11 @@ L'equipe Aouf
     }
 }
 
+if ($_SESSION['user_category'] === 'admin' && isset($_GET['action'])) {
+    $status = ($_GET['action'] === 'enabled') ? 'enabled' : 'disabled';
+    $req = "UPDATE offers SET status = '$status' WHERE id = $offer_id";
+    $pdo->query($req);
+}
 
 $req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
 $statement = $pdo->query($req);
@@ -75,6 +80,15 @@ $offer_address = $data['address'];
 $offer_date_start = $data['date_start'];
 $offer_date_end = $data['date_end'];
 $categorie = $data['category'];
+$offer_status = $data['status'];
+$offer_start = new \DateTimeImmutable($data['date_start']);
+$offer_end = new \DateTimeImmutable($data['date_end']);
+
+// Désactivation de l'accès à l'offre si elle n'est pas active (à l'exception des administrateurs)
+$now = new \DateTimeImmutable();
+if ($_SESSION['user_category'] !== 'admin' && ($offer_status !== 'enabled' || $offer_start > $now || $offer_end < $now)) {
+    die('Cette offre n\'est plus disponible');
+}
 
 $req = "SELECT * FROM users WHERE id=$with_id limit 1";
 $statement = $pdo->query($req);
@@ -107,6 +121,15 @@ $statement = $pdo->query($req);
             }
         ?>
         <p class="noir"><?php echo $offer_description; ?></p>
+        <?php
+        if ($_SESSION['user_category'] === 'admin') {
+            $action = $offer_status == 'enabled' ? 'disabled' : 'enabled';
+            $action_message = ($offer_status == 'enabled')? 'Désactiver l\'offre' : 'Activer l\'offre';
+            ?>
+            <p><a class="small-text saumon" href="<?php echo "/offer/show/$offer_id/$offer_userid?action=$action"; ?>"><image class='ico-mini' src='/images/attention.png' /> <span class="under"><?php echo $action_message; ?></span></a></p>
+            <?php
+        }
+        ?>
         <p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
     </div>
 </div>

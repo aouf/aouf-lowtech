@@ -15,6 +15,7 @@ $offer_category = trim($matches[1]);
 $arrondissement = $_SESSION['user_arrondissement'];
 $arrondissement == '1' ? $arrondissement_beautify = $arrondissement.'er' : $arrondissement_beautify = $arrondissement.'ème' ;
 $max_length = 60;
+$now = new \DateTimeImmutable();
 ?>
 <div class="container bg-blanc noir">
     <h2 class="saumon"><?php echo ucfirst($offer_category); ?></h2>
@@ -23,13 +24,39 @@ $max_length = 60;
         if (($arrondissement != '')&&($arrondissement != '0')) {
 
             echo "<h3>Offres dans votre arrondissement ($arrondissement_beautify)</h3>";
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement";
-            $statement = $pdo->query($req);
-            
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, offers.status, users.name, users.firstname 
+                    FROM offers,users 
+                    WHERE offers.user_id = users.id 
+                    AND offers.category = :category 
+                    AND offers.arrondissement = :arrondissement
+                    AND users.status = :user_status";
+
+            $parameters = [
+                'category' => $offer_category,
+                'arrondissement' => $arrondissement,
+                'user_status' => 'enabled',
+            ];
+
+            // Si l'utilisateur n'est pas administrateur, on masque les offres inactives
+            if ($_SESSION['user_category'] !== 'admin') {
+                $req .= "
+                    AND offers.status = :offer_status 
+                    AND offers.date_start <= :now
+                    AND offers.date_end >= :now
+                ";
+
+                $parameters['offer_status'] = 'enabled';
+                $parameters['now'] = $now->format('Y-m-d H:i:s');
+            }
+
+            $statement = $pdo->prepare($req);
+            $statement->execute($parameters);
+
             while ($data = $statement->fetch()) {
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
+                $offer_status = $data['status'];
 
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
@@ -59,7 +86,19 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br>
+                                    <image class='ico-mini' src='/images/horloge.png' />
+                                    <span class='date-lieu saumon'>
+                                        <?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?>
+                                    </span><br>
+                                    <span class='description noir'><?php echo $description; ?></span><br>
+                                    <?php
+                                    if ($_SESSION['user_category'] === 'admin' && $offer_status !== 'enabled') {
+                                        ?>
+                                        <span class="saumon"><image class="ico-mini" src="/images/attention.png" /> Offre désactivée</span>
+                                        <?php
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -71,15 +110,40 @@ $max_length = 60;
                 </a>
             <?php }
             echo "<hr><h3>Offres dans les autres arrondissements</h3>";
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement";
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, offers.status, users.name, users.firstname 
+                    FROM offers,users 
+                    WHERE offers.user_id = users.id 
+                    AND offers.category = :category 
+                    AND offers.arrondissement != :arrondissement
+                    AND users.status = :user_status";
 
-            $statement = $pdo->query($req);
+            $parameters = [
+                'category' => $offer_category,
+                'arrondissement' => $arrondissement,
+                'user_status' => 'enabled',
+            ];
+
+            // Si l'utilisateur n'est pas administrateur, on masque les offres inactives
+            if ($_SESSION['user_category'] !== 'admin') {
+                $req .= "
+                    AND offers.status = :offer_status 
+                    AND offers.date_start <= :now
+                    AND offers.date_end >= :now
+                ";
+
+                $parameters['offer_status'] = 'enabled';
+                $parameters['now'] = $now->format('Y-m-d H:i:s');
+            }
+
+            $statement = $pdo->prepare($req);
+            $statement->execute($parameters);
             
             while ($data = $statement->fetch()) {
                 // die(var_dump($data));
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
+                $offer_status = $data['status'];
 
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
@@ -110,7 +174,19 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br>
+                                    <image class='ico-mini' src='/images/horloge.png' />
+                                    <span class='date-lieu saumon'>
+                                        <?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?>
+                                    </span><br>
+                                    <span class='description noir'><?php echo $description; ?></span>
+                                    <?php
+                                    if ($_SESSION['user_category'] === 'admin' && $offer_status !== 'enabled') {
+                                        ?>
+                                        <span class="saumon"><image class="ico-mini" src="/images/attention.png" /> Offre désactivée</span>
+                                        <?php
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -122,15 +198,39 @@ $max_length = 60;
                 </a>
             <?php }
             } else {
-            
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled'";
-            $statement = $pdo->query($req);
+
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, offers.status, users.name, users.firstname 
+                    FROM offers,users 
+                    WHERE offers.user_id = users.id 
+                    AND offers.category = :category 
+                    AND users.status = :user_status";
+
+            $parameters = [
+                'category' => $offer_category,
+                'user_status' => 'enabled',
+            ];
+
+            // Si l'utilisateur n'est pas administrateur, on masque les offres inactives
+            if ($_SESSION['user_category'] !== 'admin') {
+                $req .= "
+                    AND offers.status = :offer_status 
+                    AND offers.date_start <= :now
+                    AND offers.date_end >= :now
+                ";
+
+                $parameters['offer_status'] = 'enabled';
+                $parameters['now'] = $now->format('Y-m-d H:i:s');
+            }
+
+            $statement = $pdo->prepare($req);
+            $statement->execute($parameters);
             
             while ($data = $statement->fetch()) {
                 
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
+                $offer_status = $data['status'];
                 
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
@@ -162,7 +262,19 @@ $max_length = 60;
                         <div class='bloc-offre bloc-offre-text'>
                             <div id='parallelogram' class='bg-blanc parallelogram-text'>
                                 <p class='noskew'>
-                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'><?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?></span><br><span class='description noir'><?php echo $description; ?></span>
+                                    <span class='noir titre-offre'><?php echo $titre; ?></span><br>
+                                    <image class='ico-mini' src='/images/horloge.png' />
+                                    <span class='date-lieu saumon'>
+                                        <?php echo "$intervalle <image class='ico-mini' src='/images/localisation.png' />  ".$offer_arrondissement; ?>
+                                    </span><br>
+                                    <span class='description noir'><?php echo $description; ?></span>
+                                    <?php
+                                    if ($_SESSION['user_category'] === 'admin' && $offer_status !== 'enabled') {
+                                        ?>
+                                        <span class="saumon"><image class="ico-mini" src="/images/attention.png" /> Offre désactivée</span>
+                                        <?php
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>
