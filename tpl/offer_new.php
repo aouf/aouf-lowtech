@@ -144,7 +144,7 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
             <textarea name='description1' placeholder="<?php echo $placeholder1; ?>" required></textarea>
             <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
             <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
-            <label for="">Photo illustrant l'offre</label><input type='file' name='picture'>
+            <label for="">Photo illustrant l'offre (facultatif)</label><input type='file' name='picture'>
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
             <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>

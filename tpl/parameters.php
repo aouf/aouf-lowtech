@@ -11,20 +11,32 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['login'])) {
-    $login = $_POST['login'];
+    $login = strip_tags($_POST['login']);
     if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, login invalide&nbsp;!</div>"; goto skip; }
-    $name = $_POST['name'];
-    $firstname = $_POST['firstname'];
-    $email = ($_POST['email'] != "") ? $_POST['email'] : NULL;
-    $phone = $_POST['phone'];
+    if (strlen($login)<3) { print "<div class='erreur noir bg-saumon center'>Erreur, login trop court&nbsp;!</div>"; goto skip; }
+    $name = strip_tags($_POST['name']);
+    if (!preg_match("/^([\p{L}-' ]+)$/u", $name)) { print "<div class='erreur noir bg-saumon center'>Erreur, nom invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($name)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, nom trop court&nbsp;!</div>"; goto skip; }
+    $firstname = strip_tags($_POST['firstname']);
+    if (!preg_match("/^([\p{L}-' ]+)$/u", $firstname)) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($firstname)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom trop court&nbsp;!</div>"; goto skip; }
+    $email = ($_POST['email'] != "") ? strip_tags($_POST['email']) : null;
+    if (($email == null)&&($_SESSION['user_category']!='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir une adresse email&nbsp;!</div>"; goto skip; }
+    if (($email != null)&&(!filter_var($email, FILTER_VALIDATE_EMAIL))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email invalide&nbsp;!</div>"; goto skip; }
+    $phone = ($_POST['phone'] != "") ? strip_tags($_POST['phone']) : null;
+    if (($phone == null)&&($_SESSION['user_category']=='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
+    if (($phone != null)&&(!preg_match("/^([\d\.+\-\(\) ]+)$/", $phone))) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone invalide&nbsp;!</div>"; goto skip; }
+    if (($phone != null)&&(strlen($phone)<7)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone trop court&nbsp;!</div>"; goto skip; }
     $arrondissement = $_POST['arrondissement'];
-    $address = $_POST['address'];
-    $gender = $_POST['gender'];
+    if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
+    $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
+    if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
+    $gender = (($_POST['gender'] != "")&&($_POST['gender'] != "homme")&&($_POST['gender'] != "femme")&&($_POST['gender'] != "nonbinaire")) ? strip_tags($_POST['gender']) : null;
     if ((isset($_POST['notif_email']))&&(isset($_POST['notif_sms']))) $notification = "email+sms";
     if ((isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "email";
     if ((isset($_POST['notif_sms']))&&(!isset($_POST['notif_email']))) $notification = "sms";
     if ((!isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "no";
-    $acceptinfos = isset($_POST['acceptinfos']) ? 'yes' : 'no';
+    if (isset($_POST['acceptinfos'])) $acceptinfos = 'yes'; else $acceptinfos = 'no';
 
     if ($_POST['password'] != '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -39,9 +51,9 @@ if (isset($_POST['login'])) {
 
     $_SESSION['user_arrondissement'] = $arrondissement;
 
-    // on met a jour le lastactivity de l'utilisateur
+    // on met a jour le lastactivity + ack de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');
-    $req = "UPDATE users set date_lastactivity = $lastactivity WHERE id = $user_id";
+    $req = "UPDATE users set date_lastactivity = $lastactivity, cgu_ack = $lastactivity, rgpd_ack = $lastactivity WHERE id = $user_id";
     $statement = $pdo->prepare($req);
     $statement->execute();
 
@@ -51,7 +63,7 @@ if (isset($_POST['login'])) {
     $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
     $body_mail = "Bonjour,
 
-Modification offre postée par l'utilisateur $user_id :
+Modification des paramètres de l'utilisateur $user_id ($login):
 
 $name
 $firstname
@@ -104,7 +116,7 @@ $user_accept_mailing = $data['accept_mailing'];
         <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
         <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?>>
         <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>'>
-        <label for="arrondissement">Arrondissement (Marseille) <span class="saumon">*</span></label>
+        <label for="arrondissement">Arrondissement (Marseille)</label>
         <select name='arrondissement' required>
             <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
             <option value='2' <?php if ($user_arrondissement == 2) print "selected='selected'"; ?>>Marseille 2eme</option>
@@ -142,7 +154,7 @@ $user_accept_mailing = $data['accept_mailing'];
         
         <h3>Identifiant / Mot de passe</h3>
         
-        <label for="login">Identifiant <span class="saumon">*</span></label><input type='text' name='login' value='<?php print $user_login; ?>'>
+        <label for="login">Identifiant</label><input type='text' name='login' value='<?php print $user_login; ?>'>
         <label for="password">Nouveau mot de passe </label><input type='password' name='password' id="password">
         <input type="checkbox" value="Voir" id="viewPassword" onclick="togglePasswordView()">
         <label for="viewPassword">Voir</label>
