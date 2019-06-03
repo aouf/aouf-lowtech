@@ -53,11 +53,11 @@ require_once 'head.php';
             <a href='/'>
                 <div class='logo-accueil-deco'></div>
             </a><br>
-            <center><a class="small-text button bg-saumon blanc" href='/register'>Créer un compte</a></center>
+            <!--<center><a class="small-text button bg-saumon blanc" href='/register'>Créer un compte</a></center>-->
             <div id='connexion-div' class='flex column center'>
                 <form id='connexion-form' class='flex center column' method='post'>
                     <label class="vert" for='login'>IDENTIFIANT</label>
-                    <input type='text' name='login' autofocus placeholder='' required>
+                    <input type='text' name='login' placeholder='' required>
                     <label class="vert" for='password'>MOT DE PASSE</label>
                     <input type='password' name='password' required>
                     <button class='bg-vert' type='submit' value='Connexion'>CONNEXION</button>
