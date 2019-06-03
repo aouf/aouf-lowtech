@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     if (($phone == null)&&($_SESSION['user_category']=='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(!preg_match("/^([\d\.+\-\(\) ]+)$/", $phone))) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone invalide&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(strlen($phone)<7)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone trop court&nbsp;!</div>"; goto skip; }
-    $req = "SELECT COUNT(*) FROM users WHERE phone='$phone' AND id != $user_id LIMIT 1";
+    $req = "SELECT COUNT(*) FROM users WHERE phonenumber='$phone' AND id != $user_id LIMIT 1";
     $statement = $pdo->query($req);
     if (($phone != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone déjà utilisé&nbsp;!</div>"; goto skip; }
     $arrondissement = $_POST['arrondissement'];
