@@ -1,9 +1,0 @@
-Par ordre de priorité :
-
-- Finaliser la vue en tant qu'"admin"
-- stocker la date de la dernière activité d'une annonce / compte (date_lastactivity) (WIP)
-- permettre aux admins de désactiver une offre / un compte
-- controle des champs des formulaires soumis en front et backend
-- forcer à avoir une complexité de mot de passe
-- front mobilefirst compatible aussi dans un navigateur web
-- gestion d'une option "toute la journée"
