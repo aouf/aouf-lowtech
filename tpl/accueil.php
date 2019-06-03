@@ -55,7 +55,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
                 </a>
                 <a class="flex center column" href='/offer/new/mobilite'>
                     <img class="icone" src="./images/mobilite-ajout.png" alt="">
-                    <h3>Mobilté</h3>
+                    <h3>Mobilité</h3>
                 </a>
                 <a class="flex center column" href='/offer/new/loisir'>
                     <img class="icone" src="./images/loisirs-ajout.png" alt="">
@@ -95,7 +95,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 </a>
                 <a class="flex center column" href='/offer/list/mobilite'>
                     <img class="icone" src="./images/mobilite.png" alt="">
-                    <h3>Mobilté</h3>
+                    <h3>Mobilité</h3>
                 </a>
                 <a class="flex center column" href='/offer/list/loisir'>
                     <img class="icone" src="./images/loisirs.png" alt="">
