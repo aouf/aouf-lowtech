@@ -40,10 +40,12 @@ if (isset($_POST['login'])) {
     if (isset($_POST['acceptinfos'])) $acceptinfos = 'yes'; else $acceptinfos = 'no';
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = "deloge";
+    $hotel = ((isset($_POST['hotel']))&&($_POST['hotel']!="0")) ? strtolower(strip_tags($_POST['hotel'])) : null;
+    if (($hotel != null)&&(!ctype_alpha($hotel))) { print "<div class='erreur noir bg-saumon center'>Erreur, nom d'hôtel invalide&nbsp;!</div>"; goto skip; }
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,notification,accept_mailing) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,'sms',$acceptinfos])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,'sms',$acceptinfos,$hotel])) {
 
         // send email to 5 nov : TODO
         echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
@@ -110,22 +112,22 @@ skip:
             <select name='hotel'>
                 <option value='0' selected='selected'>Hôtel</option>
                 <option value='no'>Non logé dans un hôtel</option>
-                <option value=''>Hôtel Roosevelt</option>
-                <option value=''>IBIS St Charles</option>
-                <option value=''>Appart Hôtel Porte d’Aix</option>
-                <option value=''>Toyoko Inn</option>
-                <option value=''>BB Hôtel Joliette</option>
-                <option value=''>ADAGIO Joliette</option>
-                <option value=''>IBIS Colbert</option>
-                <option value=''>IBIS Joliette</option>
-                <option value=''>IBIS Timone</option>
-                <option value=''>IBIS Budget Timone</option>
-                <option value=''>ODALIS Canebière</option>
-                <option value=''>RYAD</option>
-                <option value=''>Résidence Papère</option>
-                <option value=''>NOVOTEL Joliette</option>
-                <option value=''>BB Hôtel Timone</option>
-                <option value=''>Autre hôtel</option>
+                <option value='roosevelt'>Hôtel Roosevelt (Marseille 1er)</option>
+                <option value='ibissaintcharles'>IBIS St Charles (Marseille 1er)</option>
+                <option value='apparthotelportedaix'>Appart Hôtel Porte d’Aix (Marseille 1er)</option>
+                <option value='toyokoinn'>Toyoko Inn (Marseille 3ème)</option>
+                <option value='bbhoteljoliette'>BB Hôtel Joliette (Marseille 2ème)</option>
+                <option value='adagiojoliette'>ADAGIO Joliette (Marseille 2ème)</option>
+                <option value='ibiscolbert'>IBIS Colbert (Marseille 2ème)</option>
+                <option value='ibisjoliette'>IBIS Joliette (Marseille 2ème)</option>
+                <option value='ibistimone'>IBIS Timone (Marseille 5ème)</option>
+                <option value='ibisbudgettimone'>IBIS Budget Timone (Marseille 5ème)</option>
+                <option value='odalyscanebiere'>ODALYS Canebière (Marseille 1er)</option>
+                <option value='leryad'>LE RYAD (Marseille 1er)</option>
+                <option value='residencepapere'>Résidence Papère (Marseille 1er)</option>
+                <option value='novoteljoliette'>NOVOTEL Joliette (Marseille 2ème)</option>
+                <option value='bbhoteltimone'>BB Hôtel Timone (Marseille 5ème)</option>
+                <option value='autre'>Autre hôtel (à envoyer en feedback)</option>
             </select>
             <label for="address">Adresse <span class="saumon">(optionnel)</span></label>
             <input type='text' name='address' placeholder="">

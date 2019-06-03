@@ -40,22 +40,24 @@ if (isset($_POST['login'])) {
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
     if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
-    $gender = (($_POST['gender'] != "")&&($_POST['gender'] != "homme")&&($_POST['gender'] != "femme")&&($_POST['gender'] != "nonbinaire")) ? strip_tags($_POST['gender']) : null;
+    $gender = (isset($_POST['gender'])&&($_POST['gender'] != "")&&($_POST['gender'] != "homme")&&($_POST['gender'] != "femme")&&($_POST['gender'] != "nonbinaire")) ? strip_tags($_POST['gender']) : null;
     if ((isset($_POST['notif_email']))&&(isset($_POST['notif_sms']))) $notification = "email+sms";
     if ((isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "email";
     if ((isset($_POST['notif_sms']))&&(!isset($_POST['notif_email']))) $notification = "sms";
     if ((!isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "no";
     if (isset($_POST['acceptinfos'])) $acceptinfos = 'yes'; else $acceptinfos = 'no';
+    $hotel = ((isset($_POST['hotel']))&&($_POST['hotel']!="0")) ? strtolower(strip_tags($_POST['hotel'])) : null;
+    if (($hotel != null)&&(!ctype_alpha($hotel))) { print "<div class='erreur noir bg-saumon center'>Erreur, nom d'hôtel invalide&nbsp;!</div>"; goto skip; }
 
     if ($_POST['password'] != '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,password=?,gender=?,accept_mailing=?,notification=? WHERE id=?";
+        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,password=?,gender=?,accept_mailing=?,notification=?,hotel=? WHERE id=?";
         $statement = $pdo->prepare($req);
-        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$password,$gender,$acceptinfos,$notification,$user_id]);
+        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$password,$gender,$acceptinfos,$notification,$hotel,$user_id]);
     } else {
-        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,gender=?,accept_mailing=?,notification=? WHERE id=?";
+        $req = "UPDATE users SET login=?,name=?,firstname=?,arrondissement=?,address=?,email=?,phonenumber=?,gender=?,accept_mailing=?,notification=?,hotel=? WHERE id=?";
         $statement = $pdo->prepare($req);
-        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$gender,$acceptinfos,$notification,$user_id]);
+        $statement->execute([$login,$name,$firstname,$arrondissement,$address,$email,$phone,$gender,$acceptinfos,$notification,$hotel,$user_id]);
     }
 
     $_SESSION['user_arrondissement'] = $arrondissement;
@@ -100,6 +102,7 @@ $user_address = $data['address'];
 $user_notification = $data['notification'];
 $user_gender = $data['gender'];
 $user_accept_mailing = $data['accept_mailing'];
+$user_hotel = $data['hotel'];
 
 ?>
 <div>
@@ -124,7 +127,7 @@ $user_accept_mailing = $data['accept_mailing'];
         <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required>
         <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
         <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?>>
-        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>'>
+        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>' <?php if ($_SESSION['user_category']=='deloge') print "required"; ?>>
         <label for="arrondissement">Arrondissement (Marseille)</label>
         <select name='arrondissement' required>
             <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
@@ -144,8 +147,31 @@ $user_accept_mailing = $data['accept_mailing'];
             <option value='15' <?php if ($user_arrondissement == 15) print "selected='selected'"; ?>>Marseille 15eme</option>
             <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
         </select>
-        <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $user_address; ?>' placeholder="">
-        <label for="gender">Genre (facultatif)</label>
+<?php if ($_SESSION['user_category']=='deloge') { ?>
+            <label for="hotel">Hôtel <span class="saumon">(facultatif)</span></label>
+            <select name='hotel'>
+                <option value='0' <?php if ($user_hotel == null) print "selected='selected'"; ?>>Hôtel</option>
+                <option value='no' <?php if ($user_hotel == "no") print "selected='selected'"; ?>>Non logé dans un hôtel</option>
+                <option value='roosevelt' <?php if ($user_hotel == "roosevelt") print "selected='selected'"; ?>>Hôtel Roosevelt (Marseille 1er)</option>
+                <option value='ibissaintcharles' <?php if ($user_hotel == "ibissaintcharles") print "selected='selected'"; ?>>IBIS St Charles (Marseille 1er)</option>
+                <option value='apparthotelportedaix' <?php if ($user_hotel == "apparthotelportedaix") print "selected='selected'"; ?>>Appart Hôtel Porte d’Aix (Marseille 1er)</option>
+                <option value='toyokoinn' <?php if ($user_hotel == "toyokoinn") print "selected='selected'"; ?>>Toyoko Inn (Marseille 3ème)</option>
+                <option value='bbhoteljoliette' <?php if ($user_hotel == "bbhoteljoliette") print "selected='selected'"; ?>>BB Hôtel Joliette (Marseille 2ème)</option>
+                <option value='adagiojoliette' <?php if ($user_hotel == "adagiojoliette") print "selected='selected'"; ?>>ADAGIO Joliette (Marseille 2ème)</option>
+                <option value='ibiscolbert' <?php if ($user_hotel == "ibiscolbert") print "selected='selected'"; ?>>IBIS Colbert (Marseille 2ème)</option>
+                <option value='ibisjoliette' <?php if ($user_hotel == "ibisjoliette") print "selected='selected'"; ?>>IBIS Joliette (Marseille 2ème)</option>
+                <option value='ibistimone' <?php if ($user_hotel == "ibistimone") print "selected='selected'"; ?>>IBIS Timone (Marseille 5ème)</option>
+                <option value='ibisbudgettimone' <?php if ($user_hotel == "ibisbudgettimone") print "selected='selected'"; ?>>IBIS Budget Timone (Marseille 5ème)</option>
+                <option value='odalyscanebiere' <?php if ($user_hotel == "odalyscanebiere") print "selected='selected'"; ?>>ODALYS Canebière (Marseille 1er)</option>
+                <option value='leryad' <?php if ($user_hotel == "leryad") print "selected='selected'"; ?>>LE RYAD (Marseille 1er)</option>
+                <option value='residencepapere' <?php if ($user_hotel == "residencepapere") print "selected='selected'"; ?>>Résidence Papère (Marseille 1er)</option>
+                <option value='novoteljoliette' <?php if ($user_hotel == "novoteljoliette") print "selected='selected'"; ?>>NOVOTEL Joliette (Marseille 2ème)</option>
+                <option value='bbhoteltimone' <?php if ($user_hotel == "bbhoteltimone") print "selected='selected'"; ?>>BB Hôtel Timone (Marseille 5ème)</option>
+                <option value='autre' <?php if ($user_hotel == "autre") print "selected='selected'"; ?>>Autre hôtel (à envoyer en feedback)</option>
+            </select>
+<?php } ?>
+        <label for="address">Adresse <span class="saumon">(facultative)</span></label><input type='text' name='address' value='<?php print $user_address; ?>' placeholder="">
+        <label for="gender">Genre <span class="saumon">(facultatif)</span></label>
         <section class="gender">
             <div>
                 <input type="radio" id='homme' name="gender" value="homme" <?php if ($user_gender=='homme') print "checked"; ?>>
