@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
     $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-    $login = $_POST['login'];
+    $login = strtolower($_POST['login']);
     $password = $_POST['password'];
 
     // éviter brute force bourrin (TODO: à améliorer)

@@ -11,7 +11,7 @@ $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['login'])) {
-    $login = strip_tags($_POST['login']);
+    $login = strtolower(strip_tags($_POST['login']));
     if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, login invalide&nbsp;!</div>"; goto skip; }
     if (strlen($login)<3) { print "<div class='erreur noir bg-saumon center'>Erreur, login trop court&nbsp;!</div>"; goto skip; }
     $name = strip_tags($_POST['name']);
@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
     $firstname = strip_tags($_POST['firstname']);
     if (!preg_match("/^([\p{L}-' ]+)$/u", $firstname)) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom invalide&nbsp;!</div>"; goto skip; }
     if (strlen($firstname)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom trop court&nbsp;!</div>"; goto skip; }
-    $email = ($_POST['email'] != "") ? strip_tags($_POST['email']) : null;
+    $email = ($_POST['email'] != "") ? strtolower(strip_tags($_POST['email'])) : null;
     if (($email == null)&&($_SESSION['user_category']!='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir une adresse email&nbsp;!</div>"; goto skip; }
     if (($email != null)&&(!filter_var($email, FILTER_VALIDATE_EMAIL))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email invalide&nbsp;!</div>"; goto skip; }
     $phone = ($_POST['phone'] != "") ? strip_tags($_POST['phone']) : null;
