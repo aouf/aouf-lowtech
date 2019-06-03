@@ -12,8 +12,11 @@ $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['login'])) {
     $login = strtolower(strip_tags($_POST['login']));
-    if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, login invalide&nbsp;!</div>"; goto skip; }
-    if (strlen($login)<3) { print "<div class='erreur noir bg-saumon center'>Erreur, login trop court&nbsp;!</div>"; goto skip; }
+    if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($login)<3) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant trop court&nbsp;!</div>"; goto skip; }
+    $req = "SELECT login FROM users WHERE login='$login' AND id != $user_id LIMIT 1";
+    $statement = $pdo->query($req);
+    if ($statement->fetchColumn()>0) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant déjà utilisé&nbsp;!</div>"; goto skip; }
     $name = strip_tags($_POST['name']);
     if (!preg_match("/^([\p{L}-' ]+)$/u", $name)) { print "<div class='erreur noir bg-saumon center'>Erreur, nom invalide&nbsp;!</div>"; goto skip; }
     if (strlen($name)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, nom trop court&nbsp;!</div>"; goto skip; }
@@ -23,10 +26,16 @@ if (isset($_POST['login'])) {
     $email = ($_POST['email'] != "") ? strtolower(strip_tags($_POST['email'])) : null;
     if (($email == null)&&($_SESSION['user_category']!='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir une adresse email&nbsp;!</div>"; goto skip; }
     if (($email != null)&&(!filter_var($email, FILTER_VALIDATE_EMAIL))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email invalide&nbsp;!</div>"; goto skip; }
+    $req = "SELECT email FROM users WHERE email='$email' AND id != $user_id LIMIT 1";
+    $statement = $pdo->query($req);
+    if (($email != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email déjà utilisée&nbsp;!</div>"; goto skip; }
     $phone = ($_POST['phone'] != "") ? strip_tags($_POST['phone']) : null;
     if (($phone == null)&&($_SESSION['user_category']=='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(!preg_match("/^([\d\.+\-\(\) ]+)$/", $phone))) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone invalide&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(strlen($phone)<7)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone trop court&nbsp;!</div>"; goto skip; }
+    $req = "SELECT phone FROM users WHERE phone='$phone' AND id != $user_id LIMIT 1";
+    $statement = $pdo->query($req);
+    if (($phone != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone déjà utilisé&nbsp;!</div>"; goto skip; }
     $arrondissement = $_POST['arrondissement'];
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
