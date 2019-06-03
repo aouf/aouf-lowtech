@@ -105,7 +105,7 @@ skip:
             <input type='text' name='phone' placeholder="0612345678">
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
             <select name='arrondissement' required>
-                <option value='0' selected='selected' disabled='disabled'>Arrondissement</option>
+                <option value='0' selected='selected' disabled='disabled'>Votre arrondissement</option>
                 <option value='1'>Marseille 1er</option>
                 <option value='2'>Marseille 2ème</option>
                 <option value='3'>Marseille 3ème</option>

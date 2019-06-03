@@ -90,7 +90,7 @@ skip:
             <input type='text' name='email' placeholder="votre-email@example.com">
             <label for="">Arrondissement (Marseille)</label>
             <select name='arrondissement' required>
-                <option value='0' selected='selected' disabled='disabled'>Arrondissement</option>
+                <option value='0' selected='selected' disabled='disabled'>Votre arrondissement actuel</option>
                 <option value='1'>Marseille 1er</option>
                 <option value='2'>Marseille 2ème</option>
                 <option value='3'>Marseille 3ème</option>
