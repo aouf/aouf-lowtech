@@ -38,10 +38,11 @@ $moderation_nom = $data['name'];
 $moderation_prenom = $data['firstname'];
 $moderation_email = $data['email'];
 $moderation_phonenumber = $data['phonenumber'];
+$moderation_category = $data['category'];
 ?>
 <?php
 echo "<div class='message-link border-vertflex border-vert'>";
-echo "- Compte <strong>$moderation_prenom $moderation_nom</strong> ($moderation_login) : $moderation_phonenumber (numéro de téléphone) / $moderation_email (email) : <a href='/admin/moderation/$moderation_id'>Activer</a>";
+echo "- Compte $moderation_category <strong>$moderation_prenom $moderation_nom</strong> ($moderation_login) : $moderation_phonenumber (numéro de téléphone) / $moderation_email (email) : <a href='/admin/moderation/$moderation_id'>Activer</a>";
 echo "</div>";
 ?>
 <?php
