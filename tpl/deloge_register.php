@@ -3,22 +3,47 @@ require_once 'head.php';
 
 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
 
-if (isset($_POST['username'])) {
-    $login = $_POST['username'];
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $phone = $_POST['phone'];
-    $email = ($_POST['email'] != "") ? $_POST['email'] : NULL;
-    $address = $_POST['address'];
+if (isset($_POST['login'])) {
+    $login = strtolower(strip_tags($_POST['login']));
+    if (!ctype_alnum($login)) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($login)<3) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant trop court&nbsp;!</div>"; goto skip; }
+    $req = "SELECT COUNT(*) FROM users WHERE login='$login' LIMIT 1";
+    $statement = $pdo->query($req);
+    if ($statement->fetchColumn()>0) { print "<div class='erreur noir bg-saumon center'>Erreur, identifiant déjà utilisé&nbsp;!</div>"; goto skip; }
+    $name = strip_tags($_POST['name']);
+    if (!preg_match("/^([\p{L}-' ]+)$/u", $name)) { print "<div class='erreur noir bg-saumon center'>Erreur, nom invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($name)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, nom trop court&nbsp;!</div>"; goto skip; }
+    $firstname = strip_tags($_POST['firstname']);
+    if (!preg_match("/^([\p{L}-' ]+)$/u", $firstname)) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom invalide&nbsp;!</div>"; goto skip; }
+    if (strlen($firstname)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom trop court&nbsp;!</div>"; goto skip; }
+    $email = ($_POST['email'] != "") ? strtolower(strip_tags($_POST['email'])) : null;
+    if (($email != null)&&(!filter_var($email, FILTER_VALIDATE_EMAIL))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email invalide&nbsp;!</div>"; goto skip; }
+    $req = "SELECT COUNT(*) FROM users WHERE email='$email' LIMIT 1";
+    $statement = $pdo->query($req);
+    if (($email != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email déjà utilisée&nbsp;!</div>"; goto skip; }
+    $phone = ($_POST['phone'] != "") ? strip_tags($_POST['phone']) : null;
+    if ($phone == null) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
+    if (($phone != null)&&(!preg_match("/^([\d\.+\-\(\) ]+)$/", $phone))) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone invalide&nbsp;!</div>"; goto skip; }
+    if (($phone != null)&&(strlen($phone)<7)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone trop court&nbsp;!</div>"; goto skip; }
+    $req = "SELECT COUNT(*) FROM users WHERE phonenumber='$phone' LIMIT 1";
+    $statement = $pdo->query($req);
+    if (($phone != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone déjà utilisé&nbsp;!</div>"; goto skip; }
     $arrondissement = $_POST['arrondissement'];
-    $gender = $_POST['gender'];
+    if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
+    $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
+    if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
+    $gender = (($_POST['gender'] != "")&&($_POST['gender'] != "homme")&&($_POST['gender'] != "femme")&&($_POST['gender'] != "nonbinaire")) ? strip_tags($_POST['gender']) : null;
+    if ((isset($_POST['notif_email']))&&(isset($_POST['notif_sms']))) $notification = "email+sms";
+    if ((isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "email";
+    if ((isset($_POST['notif_sms']))&&(!isset($_POST['notif_email']))) $notification = "sms";
+    if ((!isset($_POST['notif_email']))&&(!isset($_POST['notif_sms']))) $notification = "no";
+    if (isset($_POST['acceptinfos'])) $acceptinfos = 'yes'; else $acceptinfos = 'no';
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $category = $_POST['category'];
-    $acceptinfos = isset($_POST['acceptinfos']) ? 'yes' : 'no';
+    $category = "deloge";
 
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,notification,accept_mailing) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$nom,$prenom,$gender,$arrondissement,$address,$password,'sms',$acceptinfos])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,'sms',$acceptinfos])) {
 
         // send email to 5 nov : TODO
         echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
@@ -28,6 +53,7 @@ if (isset($_POST['username'])) {
         echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     } 
 
+skip:
 }
 ?>
 <body>
@@ -44,7 +70,7 @@ if (isset($_POST['username'])) {
     <div class='container no-margin full-size noir center'>
         <form id="registerForm" class='full-size column' method='post'>
             <label for="login">Identifiant (uniquement des lettres ou chiffres)</label>
-            <input type='username' name='username' id='username' placeholder="prenomnom" required>
+            <input type='username' name='login' id='login' placeholder="prenomnom" required>
 
             <section>
                 <label for="password">Mot de passe</label>
@@ -53,9 +79,9 @@ if (isset($_POST['username'])) {
             </section>
 
             <label for="nom">Nom</label>
-            <input type='text' name='nom' placeholder="Votre nom" required>
+            <input type='text' name='name' placeholder="Votre nom" required>
             <label for="prenom">Prénom</label>
-            <input type='text' name='prenom' placeholder="Votre prénom" required>
+            <input type='text' name='firstname' placeholder="Votre prénom" required>
             <label for="phone">Téléphone portable</label>
             <input type='text' name='phone' placeholder="0612345678" required>
             <label for="email">e-mail <span class="saumon">(optionnel)</span></label>
@@ -128,7 +154,6 @@ if (isset($_POST['username'])) {
                 J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
             </section>
 
-            <input type='hidden' name='category' value='deloge'>
             <center>
                 <button id="registerButton" class='bg-saumon blanc' type="submit" value="S'enregistrer">S'enregistrer</button>
             </center>
