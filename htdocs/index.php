@@ -65,7 +65,7 @@ if (preg_match('#^/$#', $uri)) {
 } elseif (preg_match('#^/reset#', $uri)) {
     include( AOUF_BASE . '../tpl/reset.php');
 } elseif (preg_match('#^/cgu#', $uri)) {
-    echo 'En cours de construction...';
+    include( AOUF_BASE . '../tpl/cgu.php');
 } elseif (preg_match('#^/lostlogin#', $uri)) {
     echo "Merci d'envoyer un email à toctoc AROBASE aouf POINT fr pour expliquer votre situation.";
 } else {
