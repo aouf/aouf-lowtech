@@ -31,7 +31,7 @@ AOUF est libre de modifier les CGU . L’Utilisateur qui continuerait d’utilis
 AOUF après une modification mineure des CGU n’altérant pas les qualités, les caractéristiques de son utilisation, ni l’utilisation de ses données personnelles est réputé avoir accepté les nouvelles CGU.
 AOUF informe par email  l’Utilisateur de toute modification substantielle des CGU et l’Utilisateur sera invité à accepter les nouvelles CGU lors de sa prochaine connexion.</p>
 
-<h3 class='noir'>ARTICLE 2 Mentions légales</h3>
+<div id="mentionslegales"><h3 class='noir'>ARTICLE 2 Mentions légales</h3></div>
 <p>L’édition du site mobile AOUF est assurée par l’association AOUF dont le siège social est situé au 8 rue jean trinquet 13002 Marseille<br>
 Le serveur web de AOUF est géré par la société Evolix, 37 rue Guibal 13003 Marseille.<br>
 Le directeur de la publication et de la rédaction est l’association AOUF</p>
