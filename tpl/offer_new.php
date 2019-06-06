@@ -94,6 +94,8 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
 } elseif (preg_match('#^/offer/new/don#', $uri)) {
     $category = 'don';
     $description = "Précisez de l’objet et la taille s’il s’agit de vêtements";
+} elseif (preg_match('#^/offer/new/autre#', $uri)) {
+    $category = 'autre';
 }
 ?>
 <div class="container bg-blanc noir full-size">
