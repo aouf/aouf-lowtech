@@ -111,7 +111,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 </a>
             </section>
 
-    <a class="feedback-link blanc" href="/whatineed">Vous n'avez pas trouvé d'annonce pour votre besoin ? Dites le nous&nsbp;!</a>
+    <a class="feedback-link blanc" href="/whatineed">Pas trouvé d'annonce pour votre besoin&nbsp;? Dites le nous&nbsp;!</a>
 
 <?php
 }?>
