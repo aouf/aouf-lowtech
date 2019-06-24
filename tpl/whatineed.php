@@ -40,7 +40,7 @@ L'equipe Aouf
         <form class='full-size flex center column' method='post'>
             <label for="feedback">Ce dont j'ai besoin&nbsp;:</label>
             <textarea name='description' placeholder="Bonjour ! Je n'ai pas trouvé d'annonce correspondant à mon besoin, j'aimerai…" required></textarea>
-            <button class='bg-vert noir' type="submit" value="Envoyer mon feedback">Envoyer mon feedback</button>
+            <button class='bg-vert noir' type="submit" value="Envoyer mon besoin">Envoyer mon besoin</button>
         </form>
     </div>
 <script type="text/javascript" src="/js/ytmenu.js"></script>
