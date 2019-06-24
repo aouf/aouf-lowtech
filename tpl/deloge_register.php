@@ -47,9 +47,22 @@ if (isset($_POST['login'])) {
     $statement = $pdo->prepare($req);
     if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,'sms',$acceptinfos,$hotel])) {
 
-        // send email to 5 nov : TODO
         echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
         echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+
+        // send email notification
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
+
+Ajout du compte délogé $firstname $name ($login) à modérer.
+
+
+--
+L'equipe Aouf
+";
+        mail($conf['mail']['admin'],'[aouf] Ajout compte deloge a moderer',$body_mail,$headers_mail);
 
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
