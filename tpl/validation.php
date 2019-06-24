@@ -25,6 +25,21 @@ if (isset($token)) {
         $statement->execute();
 
         echo "<div class='erreur noir bg-saumon center'>Compte activé&nbsp;!</div>";
+
+        // send email notification
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
+
+Création/validation d'un nouveau compte bénévole.
+
+
+--
+L'equipe Aouf
+";
+        mail($conf['mail']['admin'],'[aouf] Ajout compte benevole',$body_mail,$headers_mail);
+
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur de validation&nbsp;!</div>";
     }

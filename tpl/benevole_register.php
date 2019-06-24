@@ -65,6 +65,17 @@ https://beta.aouf.fr/validation/$token
 L'equipe Aouf
 ";
         mail($email,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+        // send email notification
+        $body_mail = "Bonjour,
+
+Ajout du compte bénévole $firstname $name ($login) en cours.
+
+
+--
+L'equipe Aouf
+";
+        mail($conf['mail']['admin'],'[aouf] Ajout compte benevole (a valider)',$body_mail,$headers_mail);
+
         echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours de création, vous allez recevoir un email pour validation&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur à la création...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
