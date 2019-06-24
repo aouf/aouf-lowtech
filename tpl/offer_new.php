@@ -49,6 +49,20 @@ L'equipe Aouf
     mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
 
     echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> postée, merci&nbsp;!</div>";
+
+    // Temporaire : Notification SMS pour tous les deloges (TODO : filtrer selon accept_mailing / arrondissement)
+    $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
+    $statement = $pdo->query($req);
+    while ($data = $statement->fetch()) {
+        $phone_number = $data['phonenumber'];
+        $body_sms = 'Nouvelle+offre+via+AOUF+:+https://beta.aouf.fr/accueil';
+        $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_exec($ch);
+        curl_close($ch);
+    }
+
+
 }
 
 $req = "SELECT * FROM users where id = $user_id LIMIT 1";
