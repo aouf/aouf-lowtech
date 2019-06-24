@@ -37,7 +37,7 @@
 // }
 
 if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevole')) {
-    ?>
+?>
     
     <div class="header2 bg-saumon flex center">
             <h2 class="blanc">Déposer une offre</h2>
@@ -81,7 +81,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 <h2 class="saumon">Offres disponibles</h2>
             </div>';
     }
-    ?>
+?>
     <div id="container-accueil" class="container bg-saumon">
         <div class="content">
             <section class="tableau-de-bord flex wrap">
@@ -111,7 +111,9 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 </a>
             </section>
 
-    <?php
+    <a class="feedback-link blanc" href="/whatineed">Vous n'avez pas trouvé d'annonce pour votre besoin ? Dites le nous&nsbp;!</a>
+
+<?php
 }?>
 
     </div>
