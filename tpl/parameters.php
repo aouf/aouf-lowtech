@@ -201,7 +201,7 @@ $user_hotel = $data['hotel'];
         
             <label for="cgu"><input type="checkbox" name="cgu" value="accept" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
             <label><input type="checkbox" name="rgpd" value="accept" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
-            <label for=""><input type="checkbox" name="acceptinfos" value="accept" <?php if ($user_accept_mailing=='yes') print "checked"; ?>> J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+            <label for=""><input type="checkbox" name="acceptinfos" value="accept" <?php if ($user_accept_mailing=='yes') print "checked"; ?>> J'accepte de recevoir des informations sur les annonces au sein de l'application et des nouvelles du projet Aouf<span class="saumon">(optionnel)</span></label>
 
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
     </form>

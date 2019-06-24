@@ -159,7 +159,7 @@ skip:
             <br>
             <section>
                 <label class="checkboxLabel" for="acceptinfos"><input type="checkbox" name="acceptinfos" value="accept">
-                J'accepte de recevoir des informations d'Aouf <span class="saumon">(optionnel)</span></label>
+                J'accepte de recevoir des informations sur les annonces au sein de l'application et des nouvelles du projet Aouf <span class="saumon">(optionnel)</span></label>
             </section>
 
             <center>
