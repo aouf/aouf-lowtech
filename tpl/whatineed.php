@@ -19,7 +19,7 @@ if (isset($_POST['description'])) {
     $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
     $body_mail = "Bonjour,
 
-Feedback posté par l'utilisateur $user_id :
+Besoin posté par l'utilisateur $user_id :
 
 $description
 
@@ -27,20 +27,20 @@ $description
 L'equipe Aouf
 ";
 
-    mail($conf['mail']['admin'],'[aouf] Feedback',$body_mail,$headers_mail);
-    echo "<div class='erreur noir bg-saumon center'>Feedback envoyé, merci&nbsp;!</div>";
+    mail($conf['mail']['admin'],'[aouf] Besoin',$body_mail,$headers_mail);
+    echo "<div class='erreur noir bg-saumon center'>Besoin envoyé, merci&nbsp;!</div>";
 
 }
 ?>
 <body>
     <div class='container no-margin full-size noir'>
         <div class="titre bg-vert noir">
-            <h2>Mon avis</h2>
+            <h2>Besoin d'une annonce</h2>
         </div>
         <form class='full-size flex center column' method='post'>
-            <label for="feedback">Laissez votre avis&nbsp;:</label>
-            <textarea name='description' placeholder="Bonjour ! Je trouve que…" required></textarea>
-            <button class='bg-vert noir' type="submit" value="Envoyer mon avis">Envoyer mon feedback</button>
+            <label for="feedback">Ce dont j'ai besoin&nbsp;:</label>
+            <textarea name='description' placeholder="Bonjour ! Je n'ai pas trouvé d'annonce correspondant à mon besoin, j'aimerai…" required></textarea>
+            <button class='bg-vert noir' type="submit" value="Envoyer mon feedback">Envoyer mon feedback</button>
         </form>
     </div>
 <script type="text/javascript" src="/js/ytmenu.js"></script>

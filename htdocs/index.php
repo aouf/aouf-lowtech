@@ -60,6 +60,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
 } elseif (preg_match('#^/feedback#', $uri)) {
     include( AOUF_BASE . '../tpl/feedback.php');
+} elseif (preg_match('#^/whatineed#', $uri)) {
+    include( AOUF_BASE . '../tpl/whatineed.php');
 } elseif (preg_match('#^/report#', $uri)) {
     include( AOUF_BASE . '../tpl/report.php');
 } elseif (preg_match('#^/reset#', $uri)) {
