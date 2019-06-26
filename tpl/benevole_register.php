@@ -69,12 +69,12 @@ L'equipe Aouf
         $body_mail = "Bonjour,
 
 Ajout du compte bénévole $firstname $name ($login) en cours.
-
+Rien n'est à faire, il doit valider son compte via son email.
 
 --
 L'equipe Aouf
 ";
-        mail($conf['mail']['admin'],'[aouf] Ajout compte benevole (a valider)',$body_mail,$headers_mail);
+        mail($conf['mail']['admin'],'[aouf] Ajout compte benevole en cours',$body_mail,$headers_mail);
 
         echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours de création, vous allez recevoir un email pour validation&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     } else {
