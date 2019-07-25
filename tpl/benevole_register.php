@@ -107,13 +107,13 @@ skip:
             </section>
 
             <label for="nom">Nom</label>
-            <input type='text' name='name' placeholder="Votre nom" required>
+            <input type='text' name='name' placeholder="Votre nom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="prenom">Prénom</label>
-            <input type='text' name='firstname' placeholder="Votre prénom" required>
+            <input type='text' name='firstname' placeholder="Votre prénom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="email">e-mail</label>
             <input type='text' name='email' placeholder="votre-email@example.com" required>
             <label for="phone">Téléphone portable <span class="saumon">(optionnel)</span></label>
-            <input type='text' name='phone' placeholder="0612345678">
+            <input type='text' name='phone' placeholder="0612345678" pattern="[0-9\+\-\(\)\.\ ]+">
             <label for="">Arrondissement (Marseille) où je peux offrir des services</label>
             <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Votre arrondissement</option>

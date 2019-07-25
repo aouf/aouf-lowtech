@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
     $gender = $_POST['gender'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $type = $_POST['type'];
-    
+
     $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,address,password) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
     $statement->execute([$login,$type,'enabled',$email,$phone,$nom,$prenom,$gender,$adresse,$password]);
@@ -32,13 +32,13 @@ if (isset($_POST['login'])) {
 }
 ?>
 <div class="bg-noir">
-    
+
     <h2>Compte Délogé</h2>
     <form method='post'>
         Identifiant : <input type='text' name='login'>*<br>
-        Nom : <input type='text' name='nom'>*<br>
-        Prénom : <input type='text' name='prenom'>*<br>
-        Numéro de téléphone : <input type='text' name='phone'>*<br>
+        Nom : <input type='text' name='nom' pattern="[a-zA-Z\-\'\ ]+">*<br>
+        Prénom : <input type='text' name='prenom' pattern="[a-zA-Z\-\'\ ]+">*<br>
+        Numéro de téléphone : <input type='text' name='phone' pattern="[0-9\+\-\(\)\.\ ]+">*<br>
         Email : <input type='text' name='email'><br>
         Adresse : <input type='text' name='adresse'><br>
         <input type='radio' name='gender' value='homme'>Homme
@@ -48,12 +48,12 @@ if (isset($_POST['login'])) {
         Mot de passe : <input type='password' name='password'>*<br>
         <input type='submit' value="S'enregistrer">
     </form>
-    
+
     <h2>Compte Bénévole</h2>
     <form method='post'>
         Identifiant : <input type='text' name='login'>*<br>
-        Nom : <input type='text' name='nom'>*<br>
-        Prénom : <input type='text' name='prenom'>*<br>
+        Nom : <input type='text' name='nom' pattern="[a-zA-Z\-\'\ ]+">*<br>
+        Prénom : <input type='text' name='prenom' pattern="[a-zA-Z\-\'\ ]+">*<br>
         Email : <input type='text' name='email'>*<br>
         Numéro de téléphone : <input type='text' name='phone'><br>
         Adresse : <input type='text' name='adresse'><br>

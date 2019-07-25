@@ -66,7 +66,7 @@ L'equipe Aouf
 
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
-    } 
+    }
 
 skip:
 }
@@ -94,11 +94,11 @@ skip:
             </section>
 
             <label for="nom">Nom</label>
-            <input type='text' name='name' placeholder="Votre nom" required>
+            <input type='text' name='name' placeholder="Votre nom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="prenom">Prénom</label>
-            <input type='text' name='firstname' placeholder="Votre prénom" required>
+            <input type='text' name='firstname' placeholder="Votre prénom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="phone">Téléphone portable</label>
-            <input type='text' name='phone' placeholder="0612345678" required>
+            <input type='text' name='phone' placeholder="0612345678" required pattern="[0-9\+\-\(\)\.\ ]+">
             <label for="email">e-mail <span class="saumon">(optionnel)</span></label>
             <input type='text' name='email' placeholder="votre-email@example.com">
             <label for="">Arrondissement (Marseille)</label>
