@@ -24,7 +24,7 @@ $max_length = 60;
         if (($arrondissement != '')&&($arrondissement != '0')) {
 
             echo "<h3>Offres dans votre arrondissement ($arrondissement_beautify)</h3>";
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement AND date_start < NOW() and date_end > NOW()";
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement=$arrondissement AND offers.date_start < NOW() and offers.date_end > NOW()";
             $statement = $pdo->query($req);
             
             while ($data = $statement->fetch()) {
@@ -72,7 +72,7 @@ $max_length = 60;
                 </a>
             <?php }
             echo "<hr><h3>Offres dans les autres arrondissements</h3>";
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement";
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement AND offers.date_start < NOW() and offers.date_end > NOW()";
 
             $statement = $pdo->query($req);
             
@@ -124,7 +124,7 @@ $max_length = 60;
             <?php }
             } else {
             
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled'";
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.category = '$offer_category' AND offers.status='enabled' AND users.status='enabled AND offers.date_start < NOW() and offers.date_end > NOW()'";
             $statement = $pdo->query($req);
             
             while ($data = $statement->fetch()) {
