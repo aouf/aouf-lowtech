@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
     if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,$token,'sms',$acceptinfos,$hotel])) {
 
@@ -80,7 +80,6 @@ L'equipe Aouf
             curl_exec($ch);
             curl_close($ch);
         }
-
 
         // send email notification
         $headers_mail = "MIME-Version: 1.0\n";
