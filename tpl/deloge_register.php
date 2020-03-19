@@ -56,7 +56,7 @@ if (isset($_POST['login'])) {
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
         $body_mail = "Bonjour,
 
-Ajout du compte délogé $firstname $name ($login) à modérer.
+Ajout du compte pour de l'aide $firstname $name ($login) à modérer.
 
 
 --
@@ -79,7 +79,7 @@ skip:
             </a>
         </section>
         <div class="titre saumon">
-            <h2>inscription délogé(é)</h2>
+            <h2>inscription pour de l'aide</h2>
         </div>
     </header>
     <div class='container no-margin full-size noir center'>
