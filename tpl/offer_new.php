@@ -146,14 +146,14 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
                 <span>Début de l'offre <span class="saumon">*</span></span>
                     <section class="flex">
                         <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>"></section>
-                        <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" min="<?php echo date('H:i'); ?>" value="<?php echo date('H:i'); ?>"></section>
+                        <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value="<?php echo date('H:i'); ?>"></section>
                     </section>
             </section>
             <section class="flex column center">
                 <span>Fin de l'offre <span class="saumon">*</span></span>
                     <section class="flex">
                         <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" min="<?php echo date('Y-m-d', time() + 7200); ?>" value="<?php echo date('Y-m-d', time() + 7200); ?>"></section>
-                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" min="<?php echo date('H:i', time() + 7200); ?>" value="<?php echo date('H:i', time() + 7200); ?>"></section>
+                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 7200); ?>"></section>
                     </section>
             </section>
             <p><?php echo $description ?> <span class="saumon">*</span></p>
