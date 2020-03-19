@@ -42,13 +42,45 @@ if (isset($_POST['login'])) {
     $category = "deloge";
     $hotel = ((isset($_POST['hotel']))&&($_POST['hotel']!="0")) ? strtolower(strip_tags($_POST['hotel'])) : null;
     if (($hotel != null)&&(!ctype_alpha($hotel))) { print "<div class='erreur noir bg-saumon center'>Erreur, nom d'hôtel invalide&nbsp;!</div>"; goto skip; }
+    $token = sha1(random_bytes(128));
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    // éviter brute force bourrin (TODO: à améliorer)
+    sleep(1);
+
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,'sms',$acceptinfos,$hotel])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,$token,'sms',$acceptinfos,$hotel])) {
 
-        echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
-        echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+        //echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
+        //echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+
+        if ($email != '') {
+            // send email for validation
+            $headers_mail = "MIME-Version: 1.0\n";
+            $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+            $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+            $body_mail = "Bonjour,
+
+Validez votre compte en cliquant sur ce lien :
+
+https://beta.aouf.fr/validation/$token
+
+(valable pendant 24h)
+
+--
+L'equipe Aouf
+";
+            mail($email,'Validation de votre compte Aouf',$body_mail,$headers_mail);
+        }
+
+        if ($phone != '') {
+            $body_sms = "Valider+votre+compte+AOUF+:+https://beta.aouf.fr/validation/$token";
+            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($ch);
+            curl_close($ch);
+        }
+
 
         // send email notification
         $headers_mail = "MIME-Version: 1.0\n";
@@ -56,16 +88,17 @@ if (isset($_POST['login'])) {
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
         $body_mail = "Bonjour,
 
-Ajout du compte pour de l'aide $firstname $name ($login) à modérer.
-
+Ajout du compte $firstname $name ($login) en cours.
+Rien n'est à faire, il doit valider son compte via son email ou mobile.
 
 --
 L'equipe Aouf
 ";
-        mail($conf['mail']['admin'],'[aouf] Ajout compte deloge a moderer',$body_mail,$headers_mail);
+        mail($conf['mail']['admin'],'[aouf] Ajout compte pour aide en cours',$body_mail,$headers_mail);
 
+        echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours de création, vous allez recevoir un email ou SMS pour validation&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     } else {
-        echo "<div class='erreur noir bg-saumon center'>Erreur : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+        echo "<div class='erreur noir bg-saumon center'>Erreur à la création : identifiant ou email déjà existant, ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
 
 skip:
