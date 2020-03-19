@@ -41,7 +41,7 @@ L'equipe Aouf
         mail($conf['mail']['admin'],'[aouf] Ajout compte',$body_mail,$headers_mail);
 
     } else {
-        echo "<div class='erreur noir bg-saumon center'>Erreur de validation&nbsp;!</div>";
+        echo "<div class='erreur noir bg-saumon center'>Erreur de validation ou déjà validé&nbsp;!</div>";
     }
 
 }
