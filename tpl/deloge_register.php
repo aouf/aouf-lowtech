@@ -75,7 +75,7 @@ L'equipe Aouf
 
         if ($phone != '') {
             $body_sms = "Valider+votre+compte+AOUF+:+https://beta.aouf.fr/validation/$token";
-            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_exec($ch);
             curl_close($ch);
