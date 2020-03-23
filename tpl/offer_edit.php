@@ -53,9 +53,10 @@ if (isset($_POST['title'])) {
 
 Modification offre postée par l'utilisateur $user_id :
 
-$title
+".$_POST['title']."
 
-$description
+
+".$_POST['description']."
 
 --
 L'equipe Aouf
