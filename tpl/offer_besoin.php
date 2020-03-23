@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='deloge')) {
     die("permission denied");
 }
 
@@ -85,7 +85,7 @@ $user_address = $data['address'];
 //$user_accept_mailing = $data['accept_mailing'];
 
 $uri = $_SERVER['REQUEST_URI'];
-$placeholdertitre = "Ce que j'ai besoin en 1 ligne…";
+$placeholdertitre = "Ce dont j'ai besoin en 1 ligne…";
 $description = "Décrivez ce dont vous avez besoin";
 $placeholder1 = "J'ai besoin…";
 $placeholder2 = "";
@@ -112,7 +112,7 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
 ";
 } elseif (preg_match('#^/offer/besoin/don#', $uri)) {
     $category = 'don';
-    $description = "Précisez le type de dons que vous souhaitez";
+    $description = "Précisez le type de don que vous souhaitez";
 } elseif (preg_match('#^/offer/besoin/autre#', $uri)) {
     $category = 'autre';
 }
@@ -123,7 +123,7 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
         <h2>J'ai besoin de <?php echo $category; ?></h2>
             <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
             <label for="title">Titre <span class="saumon">*</span></label>
-            <input type='text' name='title' placeholder='<?php echo $placeholdertitre; ?>' required>
+            <input type='text' name='title' placeholder="<?php echo $placeholdertitre; ?>" required>
             <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
             <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon besoin</option>
