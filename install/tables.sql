@@ -43,6 +43,7 @@ CREATE TABLE offers (
     geolocalisation INT,
     picture LONGBLOB,
     admin_comments TEXT,
+    offer_type VARCHAR(100),
     PRIMARY KEY (`id`)
 );
 

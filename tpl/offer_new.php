@@ -23,9 +23,9 @@ if (isset($_POST['title'])) {
     $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
 
     // insertion de l'offre en base
-    $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture])) {
+    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'offer'])) {
 
         // on met a jour le lastactivity de l'utilisateur
         $lastactivity = date('Y-m-d H:i:s');

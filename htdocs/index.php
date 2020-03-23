@@ -36,6 +36,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_list.php');
 } elseif (preg_match('#^/offer/mylist#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_mylist.php');
+} elseif (preg_match('#^/offer/yourlist#', $uri)) {
+    include( AOUF_BASE . '../tpl/offer_yourlist.php');
 } elseif (preg_match('#^/offer/edit#', $uri)) {
     include( AOUF_BASE . '../tpl/offer_edit.php');
 } elseif (preg_match('#^/offer/show#', $uri)) {

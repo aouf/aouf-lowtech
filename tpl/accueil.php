@@ -18,9 +18,22 @@
                     <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
                 </div>
             </a>';
+            //echo '<a href="/offer/yourlist">
+            //    <div class="header2 bg-blanc flex center">
+            //        <h2 class="saumon margin-left">Besoins exprimés</h2>
+            //        <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+            //    </div>
+            //</a>';
         }
         else
         {
+            echo '<a href="/offer/mylist">
+                <div class="header2 bg-blanc flex center">
+                    <h2 class="saumon margin-left">Mes besoins</h2>
+                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+                </div>
+            </a>';
+
             echo '<div class="header2 bg-blanc flex center">
                     <h2 class="saumon">Offres disponibles</h2>
                 </div>';
@@ -111,7 +124,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 </a>
             </section>
 
-    <a class="feedback-link blanc" href="/whatineed">Pas trouvé d'annonce pour votre besoin&nbsp;? Dites le nous&nbsp;!</a>
+<!--    <a class="feedback-link blanc" href="/whatineed">Pas trouvé d'annonce pour votre besoin&nbsp;? Dites le nous&nbsp;!</a> -->
 
 <?php
 }?>

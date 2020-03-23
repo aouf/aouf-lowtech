@@ -3,15 +3,44 @@ require_once 'head.php';
 require_once 'header.php';
 
 if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')) {
-    die("permission denied");
+   $what = "Liste de mes offres";
+} else {
+   $what = "Liste de mes besoins";
 }
 
 $user_id = $_SESSION['user_id'];
 $max_length = 60;
 
+
+<?php
+if ($_SESSION['user_category']=='deloge') {
+        echo '<div class="header2 bg-blanc flex center">
+                <h2 class="saumon">Exprimer un besoin</h2>
+            </div>';
+    }
+?>
+    <div id="container-accueil" class="container bg-saumon">
+        <div class="content">
+                <a class="flex center column" href='/offer/list/don'>
+                    <img class="icone" src="./images/dons.png" alt="">
+                    <h3>Dons</h3>
+                </a>
+                <a class="flex center column" href='/offer/list/autre'>
+                    <img class="icone" src="./images/autre.png" alt="">
+                    <h3>Autre</h3>
+                </a>
+            </section>
+        </div>
+    </div>
+<!--    <a class="feedback-link blanc" href="/whatineed">Pas trouvé d'annonce pour votre besoin&nbsp;? Dites le nous&nbsp;!</a> -->
+
+<?php
+}?>
+
+
 ?>
 <div class="container bg-blanc noir">
-    <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
+    <h2 class="saumon"><?php echo ucfirst($what); ?></h2>
     <div class="bg-saumon list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
