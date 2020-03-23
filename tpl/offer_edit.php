@@ -30,18 +30,18 @@ if (isset($_POST['title'])) {
     $description = $pdo->quote($_POST['description']);
     if (($_FILES['picture']['tmp_name'])||(isset($_POST['picturesuppr']))) {
         $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
-        $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=? WHERE id=$offer_id";
+        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=? WHERE id=$offer_id";
         $statement = $pdo->prepare($req);
         $statement->execute([$picture]);
     } else {
-        $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
+        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
         $statement = $pdo->prepare($req);
         $statement->execute();
     }
 
     // on met a jour le lastactivity de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');
-    $req = "UPDATE users set date_lastactivity = $lastactivity WHERE id = $user_id";
+    $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
     $statement = $pdo->prepare($req);
     if ($statement->execute()) {
 
@@ -79,7 +79,7 @@ skip:
         $req = "SELECT * FROM offers where id = $offer_id LIMIT 1";
         $statement = $pdo->query($req);
         $data = $statement->fetch();
-        $offer_title = $data['title'];
+        $offer_title = htmlentities($data['title'], ENT_QUOTES, "UTF-8");
         $offer_category = $data['category'];
         $offer_description = $data['description'];
         $offer_description = $data['description'];

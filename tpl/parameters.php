@@ -64,7 +64,7 @@ if (isset($_POST['login'])) {
 
     // on met a jour le lastactivity + ack de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');
-    $req = "UPDATE users set date_lastactivity = $lastactivity, cgu_ack = $lastactivity, rgpd_ack = $lastactivity WHERE id = $user_id";
+    $req = "UPDATE users set date_lastactivity = '$lastactivity', cgu_ack = '$lastactivity', rgpd_ack = '$lastactivity' WHERE id = $user_id";
     $statement = $pdo->prepare($req);
     $statement->execute();
 
