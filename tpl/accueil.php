@@ -34,8 +34,8 @@
                 </div>
             </a>';
 
-            echo '<div class="header2 bg-blanc flex center">
-                    <h2 class="saumon">Offres disponibles</h2>
+            echo '<div class="header2 bg-saumon flex center">
+                    <h2 class="blanc">Offres disponibles</h2>
                 </div>';
         }
     ?>

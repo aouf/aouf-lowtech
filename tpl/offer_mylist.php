@@ -17,7 +17,6 @@ if ($_SESSION['user_category']=='deloge') {
         echo '<div class="header2 bg-blanc flex center">
                 <h2 class="saumon">Exprimer un besoin</h2>
             </div>';
-    }
 ?>
     <div id="container-accueil" class="container bg-saumon">
         <div class="content">
@@ -36,9 +35,6 @@ if ($_SESSION['user_category']=='deloge') {
 
 <?php
 }?>
-
-
-?>
 <div class="container bg-blanc noir">
     <h2 class="saumon"><?php echo ucfirst($what); ?></h2>
     <div class="bg-saumon list-offres">
