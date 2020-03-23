@@ -19,6 +19,7 @@ if ($_SESSION['user_category']=='deloge') {
 ?>
     <div id="container-accueil" class="container bg-saumon">
         <div class="content">
+            <section class="tableau-de-bord flex wrap">
                 <a class="flex center column" href='/offer/besoin/don'>
                     <img class="icone" src="../images/dons-ajout.png" alt="">
                     <h3>Dons</h3>
