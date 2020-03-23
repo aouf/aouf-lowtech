@@ -22,10 +22,10 @@ if (isset($_POST['title'])) {
     $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
     $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
 
-    // insertion de l'offre en base
+    // insertion du besoin en base
     $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'offer'])) {
+    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'besoin'])) {
 
         // on met a jour le lastactivity de l'utilisateur
         $lastactivity = date('Y-m-d H:i:s');
@@ -39,7 +39,7 @@ if (isset($_POST['title'])) {
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
         $body_mail = "Bonjour,
 
-Nouvelle offre postée par l'utilisateur $user_id :
+Nouveau besoin posté par l'utilisateur $user_id :
 
 $title
 
@@ -48,21 +48,21 @@ $description
 --
 L'equipe Aouf
 ";
-        mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
+        mail($conf['mail']['admin'],'[aouf] Nouvelle besoin',$body_mail,$headers_mail);
 
-        // Temporaire : Notification SMS pour tous les deloges (TODO : filtrer selon accept_mailing / arrondissement)
-        $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
-        $statement = $pdo->query($req);
-        while ($data = $statement->fetch()) {
-            $phone_number = $data['phonenumber'];
-            $body_sms = 'Nouvelle+offre+via+AOUF+:+https://beta.aouf.fr/accueil';
-            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_exec($ch);
-            curl_close($ch);
-        }
+        // TODO : Notification email + SMS? pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
+        //$req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
+        //$statement = $pdo->query($req);
+        //while ($data = $statement->fetch()) {
+        //    $phone_number = $data['phonenumber'];
+        //    $body_sms = 'Nouvelle+besoin+via+AOUF+:+https://beta.aouf.fr/accueil';
+        //    $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+        //    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //    curl_exec($ch);
+        //    curl_close($ch);
+        //}
 
-        echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> postée, merci&nbsp;!</div>";
+        echo "<div class='erreur noir bg-saumon center'>Besoin <strong>$title</strong> posté, merci&nbsp;!</div>";
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur à la création : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
@@ -85,48 +85,48 @@ $user_address = $data['address'];
 //$user_accept_mailing = $data['accept_mailing'];
 
 $uri = $_SERVER['REQUEST_URI'];
-$placeholdertitre = "Ce que je propose en 1 ligne…";
-$description = "Décrivez ce que vous proposez";
-$placeholder1 = "Je propose…";
+$placeholdertitre = "Ce que j'ai besoin en 1 ligne…";
+$description = "Décrivez ce dont vous avez besoin";
+$placeholder1 = "J'ai besoin…";
 $placeholder2 = "";
 $placeholder3 = "";
-if (preg_match('#^/offer/new/restauration#', $uri)) {
+if (preg_match('#^/offer/besoin/restauration#', $uri)) {
     $category = 'restauration';
-    $placeholdertitre = "Couscous végétarien, mercredi midi, pour 6 personnes";
-    $description = "Détails sur l'offre de restauration";
-    $placeholder1 = "Je propose un repas complet pour 3 personnes…";
-    $placeholder2 = "Le repas peut être consommé sur place ou à emporter…";
+    $placeholdertitre = "Repas végétarien mercredi midi pour 6 personnes";
+    $description = "Détails sur le besoin de restauration";
+    $placeholder1 = "J'ai besoin d'un repas complet pour 6 personnes…";
+    $placeholder2 = "Le repas sera consommé sur place ou à emporter…";
     $placeholder3 = "Le repas est de type sans porc / végétarien / végétalien / hallal / casher / sans gluten…";
-} elseif (preg_match('#^/offer/new/blanchisserie#', $uri)) {
+} elseif (preg_match('#^/offer/besoin/blanchisserie#', $uri)) {
     $category = 'blanchisserie';
-    $placeholdertitre = "Lessive à mon domicile le lundi";
-    $description = "Préciser le lieu, si la lessive est fournie, si le séchage a lieu sur place, la quantité possible et les plages horaires auxquelles vous êtes disponible";
-} elseif (preg_match('#^/offer/new/mobilite#', $uri)) {
+    $placeholdertitre = "Lessive de draps blancs le lundi";
+    $description = "Préciser le lieu, si besoin de lessive, de séchage, la quantité nécessaire et les plages horaires auxquelles vous êtes disponible";
+} elseif (preg_match('#^/offer/besoin/mobilite#', $uri)) {
     $category = 'mobilite';
-    $description = "Décrivez ce que vous proposez (temps disponible ? place dans votre véhicule ? etc.). Vous vous engagez à être assuré et en possession d'un permis de conduire valide.";
-    $placeholder1 = "Je propose un trajet en (modèle du véhicule) (place et taille) (vos disponibilités)";
+    $description = "Décrivez ce sont vous avez besoin (temps disponible ? place dans votre véhicule ? etc.).";
+    $placeholder1 = "J'ai besoin d'un trajet en (type du véhicule) (place et taille) (vos disponibilités)";
     $placeholder2 = "Je peux aider à charger/ décharger le véhicule ou j’ai besoin d’aide";
-} elseif (preg_match('#^/offer/new/loisir#', $uri)) {
+} elseif (preg_match('#^/offer/besoin/loisir#', $uri)) {
     $category = 'loisir';
-    $description = "Décrivez ce que vous proposez (activité ? pour qui ? où ? nombre de places ? etc.)
+    $description = "Décrivez ce que vous avez besoin (activité ? pour qui ? où ? nombre de personnes ? etc.)
 ";
-} elseif (preg_match('#^/offer/new/don#', $uri)) {
+} elseif (preg_match('#^/offer/besoin/don#', $uri)) {
     $category = 'don';
-    $description = "Précisez ce que vous donnez et la taille s’il s’agit de vêtements";
-} elseif (preg_match('#^/offer/new/autre#', $uri)) {
+    $description = "Précisez le type de dons que vous souhaitez";
+} elseif (preg_match('#^/offer/besoin/autre#', $uri)) {
     $category = 'autre';
 }
 ?>
 <div class="container bg-blanc noir full-size">
     <div class="content">
 
-        <h2>Je propose une offre de <?php echo $category; ?></h2>
+        <h2>J'ai besoin de <?php echo $category; ?></h2>
             <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
             <label for="title">Titre <span class="saumon">*</span></label>
             <input type='text' name='title' placeholder='<?php echo $placeholdertitre; ?>' required>
             <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
             <select name='arrondissement' required>
-                <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon offre</option>
+                <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon besoin</option>
                 <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
                 <option value='2' <?php if ($user_arrondissement == 2) print "selected='selected'"; ?>>Marseille 2eme</option>
                 <option value='3' <?php if ($user_arrondissement == 3) print "selected='selected'"; ?>>Marseille 3eme</option>
@@ -145,17 +145,17 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
                 <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
             </select>
             <label for="address">Adresse (facultatif)</label>
-            <input type='text' name='address' placeholder="Je donne l'adresse où se trouve mon offre" value='<?php print $user_address; ?>'>
+            <input type='text' name='address' placeholder="Je donne l'adresse où se trouve mon besoin" value='<?php print $user_address; ?>'>
             <!--<label for="allDay">Toute la journée <input type="checkbox" name="allDay" value="yes"></label>-->
             <section class="flex column center">
-                <span>Début de l'offre <span class="saumon">*</span></span>
+                <span>Début du besoin <span class="saumon">*</span></span>
                     <section class="flex">
                         <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>"></section>
                         <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value="<?php echo date('H:i'); ?>"></section>
                     </section>
             </section>
             <section class="flex column center">
-                <span>Fin de l'offre <span class="saumon">*</span></span>
+                <span>Fin du besoin <span class="saumon">*</span></span>
                     <section class="flex">
                         <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" min="<?php echo date('Y-m-d', time() + 7200); ?>" value="<?php echo date('Y-m-d', time() + 7200); ?>"></section>
                         <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 7200); ?>"></section>
@@ -165,7 +165,7 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
             <textarea name='description1' placeholder="<?php echo $placeholder1; ?>" required></textarea>
             <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
             <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
-            <label for="">Photo illustrant l'offre (facultatif)</label><input type='file' name='picture'>
+            <label for="">Photo illustrant le besoin (facultatif)</label><input type='file' name='picture'>
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
             <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>

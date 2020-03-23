@@ -3,43 +3,19 @@ require_once 'head.php';
 require_once 'header.php';
 
 if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')) {
-   $what = "Liste de mes besoins";
-} else {
-   $what = "Liste de mes offres";
+    die("permission denied");
 }
 
 $user_id = $_SESSION['user_id'];
 $max_length = 60;
 
-
-if ($_SESSION['user_category']=='deloge') {
-        //echo '<div class="header2 bg-blanc flex center">
-        //        <h2 class="saumon">Exprimer un besoin</h2>
-        //    </div>';
 ?>
-    <div id="container-accueil" class="container bg-saumon">
-        <div class="content">
-                <a class="flex center column" href='/offer/besoin/don'>
-                    <img class="icone" src="../images/dons-ajout.png" alt="">
-                    <h3>Dons</h3>
-                </a>
-                <a class="flex center column" href='/offer/besoin/autre'>
-                    <img class="icone" src="../images/autre-ajout.png" alt="">
-                    <h3>Autre</h3>
-                </a>
-            </section>
-        </div>
-    </div>
-<!--    <a class="feedback-link blanc" href="/whatineed">Pas trouvé d'annonce pour votre besoin&nbsp;? Dites le nous&nbsp;!</a> -->
-
-<?php
-}?>
 <div class="container bg-blanc noir">
-    <h2 class="saumon"><?php echo ucfirst($what); ?></h2>
+    <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
     <div class="bg-saumon list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-        $req = "SELECT * FROM offers WHERE user_id = $user_id";
+        $req = "SELECT * FROM offers WHERE offer_type='besoin'";
         $statement = $pdo->query($req);
 
         while ($data = $statement->fetch()) {
@@ -71,7 +47,7 @@ if ($_SESSION['user_category']=='deloge') {
                 $picture = "";
             }
 
-            echo "<a class='offre flex bg-blanc' href='/offer/edit/$offer_id'>";
+            echo "<a class='offre flex bg-blanc' href='/offer/show/$offer_id'>";
                 echo" <div class='bloc-offre bloc-offre-text'>";
                     echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
                         echo "<p class='noskew'>";
