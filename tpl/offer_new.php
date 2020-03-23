@@ -14,7 +14,9 @@ if (isset($_POST['title'])) {
     $category = $_POST['category'];
     $title = $_POST['title'];
     $arrondissement = $_POST['arrondissement'];
-    $address = $_POST['address'];
+    if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
+    $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
+    if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
     $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
@@ -23,19 +25,19 @@ if (isset($_POST['title'])) {
     // insertion de l'offre en base
     $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    $statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture]);
+    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture])) {
 
-    // on met a jour le lastactivity de l'utilisateur
-    $lastactivity = date('Y-m-d H:i:s');
-    $req = "UPDATE users set date_lastactivity = $lastactivity WHERE id = $user_id";
-    $statement = $pdo->prepare($req);
-    $statement->execute();
+        // on met a jour le lastactivity de l'utilisateur
+        $lastactivity = date('Y-m-d H:i:s');
+        $req = "UPDATE users set date_lastactivity = $lastactivity WHERE id = $user_id";
+        $statement = $pdo->prepare($req);
+        $statement->execute();
 
-    // notification par email
-    $headers_mail = "MIME-Version: 1.0\n";
-    $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-    $body_mail = "Bonjour,
+        // notification par email
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
 Nouvelle offre postée par l'utilisateur $user_id :
 
@@ -46,23 +48,26 @@ $description
 --
 L'equipe Aouf
 ";
-    mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
+        mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
 
-    echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> postée, merci&nbsp;!</div>";
+        // Temporaire : Notification SMS pour tous les deloges (TODO : filtrer selon accept_mailing / arrondissement)
+        $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
+        $statement = $pdo->query($req);
+        while ($data = $statement->fetch()) {
+            $phone_number = $data['phonenumber'];
+            $body_sms = 'Nouvelle+offre+via+AOUF+:+https://beta.aouf.fr/accueil';
+            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($ch);
+            curl_close($ch);
+        }
 
-    // Temporaire : Notification SMS pour tous les deloges (TODO : filtrer selon accept_mailing / arrondissement)
-    $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
-    $statement = $pdo->query($req);
-    while ($data = $statement->fetch()) {
-        $phone_number = $data['phonenumber'];
-        $body_sms = 'Nouvelle+offre+via+AOUF+:+https://beta.aouf.fr/accueil';
-        $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_exec($ch);
-        curl_close($ch);
+        echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> postée, merci&nbsp;!</div>";
+    } else {
+        echo "<div class='erreur noir bg-saumon center'>Erreur à la création : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
 
-
+skip:
 }
 
 $req = "SELECT * FROM users where id = $user_id LIMIT 1";

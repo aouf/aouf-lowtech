@@ -19,13 +19,15 @@ if (!($offer_id>0)) {
 }
 
 if (isset($_POST['title'])) {
-    $status = $_POST['status'];
-    $title = $_POST['title'];
+    if (isset($_POST['status'])&&($_POST['status'] == "enabled")) $status= 'enabled'; else $status= 'disabled';
+    $title = $pdo->quote($_POST['title']);
     $arrondissement = $_POST['arrondissement'];
-    $address = $_POST['address'];
+    if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
+    $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
+    if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
-    $description = $_POST['description'];
+    $description = $pdo->quote($_POST['description']);
     if (($_FILES['picture']['tmp_name'])||(isset($_POST['picturesuppr']))) {
         $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
         $req = "UPDATE offers SET title='$title',description='$description',status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=? WHERE id=$offer_id";
@@ -41,13 +43,13 @@ if (isset($_POST['title'])) {
     $lastactivity = date('Y-m-d H:i:s');
     $req = "UPDATE users set date_lastactivity = $lastactivity WHERE id = $user_id";
     $statement = $pdo->prepare($req);
-    $statement->execute();
+    if ($statement->execute()) {
 
-    // notification par email
-    $headers_mail = "MIME-Version: 1.0\n";
-    $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-    $body_mail = "Bonjour,
+        // notification par email
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
 Modification offre postée par l'utilisateur $user_id :
 
@@ -60,7 +62,12 @@ L'equipe Aouf
 ";
     mail($conf['mail']['admin'],'[aouf] Modification offre',$body_mail,$headers_mail);
 
-    echo "<div class='erreur noir bg-saumon center'>Offre <strong>$title</strong> modifiée&nbsp;!</div>";
+    echo "<div class='erreur noir bg-saumon center'>Offre <strong>".$_POST['title']."</strong> modifiée&nbsp;!</div>";
+    } else {
+        echo "<div class='erreur noir bg-saumon center'>Erreur à la modification : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+    }
+
+skip:
 }
 
 ?>

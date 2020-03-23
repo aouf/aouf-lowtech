@@ -124,10 +124,10 @@ $user_hotel = $data['hotel'];
         <h3>Mon profil</h3>
         
         
-        <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required>
-        <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required>
-        <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?>>
-        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>' <?php if ($_SESSION['user_category']=='deloge') print "required"; ?>>
+        <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required pattern="[a-zA-Z\-\'\ ]+">
+        <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required pattern="[a-zA-Z\-\'\ ]+">
+        <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?> >
+        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>' <?php if ($_SESSION['user_category']=='deloge') print "required"; ?> pattern="[0-9\+\-\(\)\.\ ]+">
         <label for="arrondissement">Arrondissement (Marseille)</label>
         <select name='arrondissement' required>
             <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
