@@ -89,7 +89,7 @@ $nomComplet = $prenom.' '.$nom;
 $req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
 $statement = $pdo->query($req);
 
-if ($_SESSION['user_category']!='deloge') {
+if ($_SESSION['user_category']=='deloge') {
     print "<a href='/offer/list/$categorie'>";
 } else {
     print "<a href='/offer/yourlist'>";

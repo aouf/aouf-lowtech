@@ -1,45 +1,49 @@
 <?php
-    require_once 'head.php';
-    require_once 'header.php';
-        if ($_SESSION['user_category']=='admin') 
-        {
-            echo '<a href="/admin/moderation">
-                <div class="header2 bg-saumon flex center">
-                    <h2 class="blanc margin-left">Modération</h2>
-                    <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
-                </div>
-            </a>';
-        }
-        if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') 
-        {
-            echo '<a href="/offer/mylist">
-                <div class="header2 bg-blanc flex center">
-                    <h2 class="saumon margin-left">Mes offres</h2>
-                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
-                </div>
-            </a>';
-            echo '<a href="/offer/yourlist">
-                <div class="header2 bg-blanc flex center">
-                    <h2 class="saumon margin-left">Besoins exprimés</h2>
-                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
-                </div>
-            </a>';
-        }
-        else
-        {
-            echo '<a href="/offer/mylist">
-                <div class="header2 bg-blanc flex center">
-                    <h2 class="saumon margin-left">Mes besoins</h2>
-                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
-                </div>
-            </a>';
+require_once 'head.php';
+require_once 'header.php';
 
-            echo '<div class="header2 bg-saumon flex center">
-                    <h2 class="blanc">Offres disponibles</h2>
-                </div>';
-        }
-    ?>
-        
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')) {
+    die("permission denied");
+}
+
+if ($_SESSION['user_category']=='admin') 
+{
+    echo '<a href="/admin/moderation">
+        <div class="header2 bg-saumon flex center">
+            <h2 class="blanc margin-left">Modération</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
+        </div>
+    </a>';
+}
+if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') 
+{
+    echo '<a href="/offer/mylist">
+        <div class="header2 bg-blanc flex center">
+            <h2 class="saumon margin-left">Mes offres</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+        </div>
+    </a>';
+    echo '<a href="/offer/yourlist">
+        <div class="header2 bg-blanc flex center">
+            <h2 class="saumon margin-left">Besoins exprimés</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+        </div>
+    </a>';
+}
+else
+{
+    echo '<a href="/offer/mylist">
+        <div class="header2 bg-blanc flex center">
+            <h2 class="saumon margin-left">Mes besoins</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+        </div>
+    </a>';
+
+    echo '<div class="header2 bg-saumon flex center">
+            <h2 class="blanc">Offres disponibles</h2>
+        </div>';
+}
+?>
 
 <?php
     // if ($_SESSION['user_category']=='admin') {
