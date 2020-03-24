@@ -51,7 +51,7 @@ L'equipe Aouf
         mail($conf['mail']['admin'],'[aouf] Nouvelle offre',$body_mail,$headers_mail);
 
         // Temporaire : Notification SMS pour tous les deloges (TODO : filtrer selon accept_mailing / arrondissement)
-        $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
+        $req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='email+sms' )";
         $statement = $pdo->query($req);
         while ($data = $statement->fetch()) {
             $phone_number = $data['phonenumber'];

@@ -50,17 +50,43 @@ L'equipe Aouf
 ";
         mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
 
-        // TODO : Notification email + SMS? pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
-        //$req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
-        //$statement = $pdo->query($req);
-        //while ($data = $statement->fetch()) {
-        //    $phone_number = $data['phonenumber'];
-        //    $body_sms = 'Nouvelle+besoin+via+AOUF+:+https://beta.aouf.fr/accueil';
-        //    $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-        //    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        //    curl_exec($ch);
-        //    curl_close($ch);
-        //}
+        $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
+        $statement = $pdo->query($req);
+        while ($data = $statement->fetch()) {
+            $notification = $data['notification']; 
+            // Notification email pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
+            $email_addr = $data['email'];
+            if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
+                $headers_mail = "MIME-Version: 1.0\n";
+                $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+                $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+                $body_mail = "Bonjour,
+
+Un nouveau besoin a été posté sur AOUF :
+
+$title
+
+$description
+
+Pour répondre :
+https://beta.aouf.fr/offer/yourlist
+
+-- 
+L'equipe Aouf
+";
+                mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
+            }
+
+            // Notification SMS pour tous les benevoles (TODO : filtrer selon arrondissement)
+            $phone_number = $data['phonenumber'];
+            if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
+                $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';
+                $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                curl_exec($ch);
+                curl_close($ch);
+            }
+        }
 
         echo "<div class='erreur noir bg-saumon center'>Besoin <strong>$title</strong> posté, merci&nbsp;!</div>";
     } else {
