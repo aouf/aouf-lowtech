@@ -97,7 +97,7 @@ $statement = $pdo->query($req);
 </a>
 <div class='background-noir-offre bg-noir'>
     <div class="background-blanc-offre bg-blanc">
-        <h3 class="noir">Proposé par <?php echo $nomComplet; ?></h3>
+        <h3 class="noir">Par <?php echo $nomComplet; ?></h3>
         <p class="saumon"><image class='ico-mini' src='/images/horloge.png' /> <?php echo $offer_date_start ; ?> - <?php echo $offer_date_end ; ?></p>
         <p class="saumon"><image class='ico-mini' src='/images/localisation.png' /> <?php echo $offer_arrondissement; echo $offer_adress != NULL ? ' - '. $offer_adress: ""; ?></p>
         <?php 

@@ -18,12 +18,12 @@
                     <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
                 </div>
             </a>';
-            //echo '<a href="/offer/yourlist">
-            //    <div class="header2 bg-blanc flex center">
-            //        <h2 class="saumon margin-left">Besoins exprimés</h2>
-            //        <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
-            //    </div>
-            //</a>';
+            echo '<a href="/offer/yourlist">
+                <div class="header2 bg-blanc flex center">
+                    <h2 class="saumon margin-left">Besoins exprimés</h2>
+                    <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+                </div>
+            </a>';
         }
         else
         {

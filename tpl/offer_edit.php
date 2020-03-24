@@ -10,7 +10,7 @@ $uri = $_SERVER['REQUEST_URI'];
 preg_match('#^/offer/edit/(\d+)$#', $uri, $matches);
 $offer_id = (int)$matches[1];
 if (!($offer_id>0)) {
-    print "Erreur, offre inexistante";
+    print "Erreur, offre inexistante ou besoin inexistant";
     die();
 }
 
@@ -47,7 +47,7 @@ if (isset($_POST['title'])) {
         $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
         $body_mail = "Bonjour,
 
-Modification offre postée par l'utilisateur $user_id :
+Modification offre/besoin posté par l'utilisateur $user_id :
 
 ".$_POST['title']."
 
@@ -57,9 +57,9 @@ Modification offre postée par l'utilisateur $user_id :
 --
 L'equipe Aouf
 ";
-    mail($conf['mail']['admin'],'[aouf] Modification offre',$body_mail,$headers_mail);
+    mail($conf['mail']['admin'],'[aouf] Modification offre/besoin',$body_mail,$headers_mail);
 
-    echo "<div class='erreur noir bg-saumon center'>Offre <strong>".$_POST['title']."</strong> modifiée&nbsp;!</div>";
+    echo "<div class='erreur noir bg-saumon center'><strong>".$_POST['title']."</strong> modifié&nbsp;!</div>";
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur à la modification : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
@@ -89,12 +89,12 @@ skip:
         list($offer_dateend,$offer_timeend) = preg_split("/ /", $data['date_end']);
         ?>
 
-        <h2>Édition de mon offre de <?php echo $offer_category; ?></h2>
+        <h2>Édition catégorie <?php echo $offer_category; ?></h2>
 
         <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
         <section>
-            <input type='radio' name='status' value='enabled' <?php if ($offer_status == 'enabled') print "checked"; ?>> Offre active
-            &nbsp;<input type='radio' name='status' value='disabled' <?php if ($offer_status == 'disabled') print "checked"; ?>> Offre inactive<br>
+            <input type='radio' name='status' value='enabled' <?php if ($offer_status == 'enabled') print "checked"; ?>> Actif
+            &nbsp;<input type='radio' name='status' value='disabled' <?php if ($offer_status == 'disabled') print "checked"; ?>> Inactif<br>
         </section>
         <label for="title">Titre <span class="saumon">*</span></label><input type='text' name='title' value='<?php print $offer_title; ?>' required>
         <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
@@ -116,17 +116,17 @@ skip:
             <option value='15' <?php if ($offer_arrondissement == 15) print "selected='selected'"; ?>>Marseille 15eme</option>
             <option value='16' <?php if ($offer_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
         </select>
-        <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $offer_address; ?>' placeholder="Je donne l'adresse où se trouve mon offre">
+        <label for="address">Adresse (facultative)</label><input type='text' name='address' value='<?php print $offer_address; ?>' placeholder="Je donne l'adresse où se trouve mon offre/besoin">
         <!--<label for="allDay">Toute la journée <input type="checkbox" name="allDay" value="yes"></label>-->
         <section class="flex column center">
-            <span>Début de l'offre</span>
+            <span>Début</span>
                 <section class="flex">
                     <section class="flex column center"><label for="dateStart">Jour</label><input type='date' name="dateStart" value="<?php echo $offer_datestart; ?>"></section>
                     <section class="flex column center"><label for="timeStart">Heure</label><input type='time' name="timeStart" value="<?php echo preg_replace('/(\d\d:\d\d):\d\d/','$1',$offer_timestart); ?>"></section>
                 </section>
         </section>
         <section class="flex column center">
-            <span>Fin de l'offre</span>
+            <span>Fin</span>
                 <section class="flex">
                     <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" value="<?php echo $offer_dateend; ?>"></section>
                     <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo preg_replace('/(\d\d:\d\d):\d\d/','$1',$offer_timeend); ?>"></section>
@@ -134,7 +134,7 @@ skip:
         </section>
         <textarea name='description' required><?php echo $offer_description; ?></textarea>
         <?php if ($offer_picture == 'NULL') {
-            ?><label for="photo">Photo illustrant l'offre</label><input type='file' name='picture'>
+            ?><label for="photo">Photo illustrant</label><input type='file' name='picture'>
         <?php } else {
             echo "<div class='bloc-offre bloc-offre-image'><div id='parallelogram' class='parallelogram-img'><div class='image noskew' style='background-image: url(data:image/jpg;base64,".base64_encode($offer_picture).")'></div></div></div>";
             echo "<label for='picturesuppr'> Supprimer l'image <input type='checkbox' name='picturesuppr' value='yes'></label>";

@@ -11,7 +11,7 @@ $max_length = 60;
 
 ?>
 <div class="container bg-blanc noir">
-    <h2 class="saumon"><?php echo ucfirst("Liste de mes offres"); ?></h2>
+    <h2 class="saumon"><?php echo ucfirst("Liste des besoins exprimés"); ?></h2>
     <div class="bg-saumon list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
@@ -21,6 +21,7 @@ $max_length = 60;
         while ($data = $statement->fetch()) {
 
             $offer_id = $data['id'];
+            $offer_userid = $data['user_id'];
             $titre = ucfirst($data['title']);
 
             $description = $data['description'];
@@ -47,7 +48,7 @@ $max_length = 60;
                 $picture = "";
             }
 
-            echo "<a class='offre flex bg-blanc' href='/offer/show/$offer_id'>";
+            echo "<a class='offre flex bg-blanc' href='/offer/show/$offer_id/$offer_userid'>";
                 echo" <div class='bloc-offre bloc-offre-text'>";
                     echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
                         echo "<p class='noskew'>";

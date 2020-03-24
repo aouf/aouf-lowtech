@@ -48,7 +48,7 @@ $description
 --
 L'equipe Aouf
 ";
-        mail($conf['mail']['admin'],'[aouf] Nouvelle besoin',$body_mail,$headers_mail);
+        mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
 
         // TODO : Notification email + SMS? pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
         //$req = "select phonenumber from users where category='deloge' and status='enabled' and ( notification='sms' or notification='sms+email' )";
