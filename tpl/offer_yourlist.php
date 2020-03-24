@@ -15,7 +15,7 @@ $max_length = 60;
     <div class="bg-saumon list-offres">
     <?php
         $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-        $req = "SELECT * FROM offers WHERE offer_type='besoin'";
+        $req = "SELECT * FROM offers WHERE offer_type='besoin' AND status='enabled' AND date_start < NOW() and date_end > NOW()";
         $statement = $pdo->query($req);
 
         while ($data = $statement->fetch()) {
