@@ -183,8 +183,8 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
             <section class="flex column center">
                 <span>Fin du besoin <span class="saumon">*</span></span>
                     <section class="flex">
-                        <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" min="<?php echo date('Y-m-d', time() + 7200); ?>" value="<?php echo date('Y-m-d', time() + 7200); ?>"></section>
-                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 7200); ?>"></section>
+                        <section class="flex column center"><label for="dateEnd">Jour</label><input type='date' name="dateEnd" min="<?php echo date('Y-m-d', time() + 7200); ?>" value="<?php echo date('Y-m-d', time() + 3456000); ?>"></section>
+                        <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 3456000); ?>"></section>
                     </section>
             </section>
             <p><?php echo $description ?> <span class="saumon">*</span></p>
