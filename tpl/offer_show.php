@@ -114,38 +114,13 @@ if ($_SESSION['user_category']=='deloge') {
             }
         ?>
         <p class="noir"><?php echo $offer_description; ?></p>
-        <p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
+        <!--<p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>-->
     </div>
-</div>
 
 <div class="header2 bg-saumon flex center">
-    <h2 class="blanc">Message</h2>
+    <h2 class="blanc">Message privé pour <?php echo $nomComplet; ?></h2>
 </div>
-<section class="conversation bg-blanc">
-        
-<?php 
-while ($data2 = $statement->fetch()) {
-    if ($data2['from_id'] == $user_id) {
-        echo "<div class='right'>";
-            echo "<div class='message-div message-div-droite border-vert'>";
-                echo "<p class='message left noir'>".$data2['message']."</p>";
-                echo "<p class='message-date right vert'>".date("H:i",strtotime($data2['date_create']))."</p>";
-                echo "<div class='fleche fleche-droite'></div>";
-            echo "</div>";
-        echo "</div>";
-    } else {
-        echo "<div class='left'>";
-            echo "<div class='message-div message-div-gauche border-saumon'>";
-                echo "<p class='message left noir'>".$data2['message']."</p>";
-                echo "<p class='message-date right saumon'>".date("H:i",strtotime($data2['date_create']))."</p>";
-                echo "<div class='fleche fleche-gauche'></div>";
-            echo "</div>";
-        echo "</div>";
-    }
-}
-?>
-<p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
-</section>
+
 <section class="message-form bg-saumon">
     <form id="sendMessageForm" class="flex center" method='post'>
         <input type='hidden' name='to' value='<?php echo $with_id; ?>'>
@@ -154,6 +129,10 @@ while ($data2 = $statement->fetch()) {
             <button class="submit-message" type='submit' value='Ok'>ok</button>
         </section>
     </form>
+</section>
+
+<section class="conversation bg-blanc">
+<p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
 </section>
 
 <?php
