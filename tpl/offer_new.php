@@ -88,8 +88,8 @@ $uri = $_SERVER['REQUEST_URI'];
 $placeholdertitre = "Ce que je propose en 1 ligne…";
 $description = "Décrivez ce que vous proposez";
 $placeholder1 = "Je propose…";
-$placeholder2 = "";
-$placeholder3 = "";
+$placeholder2 = "Je suis disponible pour l'échange le week-end…";
+$placeholder3 = "Vous pouvez me joindre via la messagerie sécurisé de la plateforme Aouf… ou par email/téléphone…";
 if (preg_match('#^/offer/new/restauration#', $uri)) {
     $category = 'restauration';
     $placeholdertitre = "Couscous végétarien, mercredi midi, pour 6 personnes";
@@ -108,12 +108,19 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
     $placeholder2 = "Je peux aider à charger/ décharger le véhicule ou j’ai besoin d’aide";
 } elseif (preg_match('#^/offer/new/loisir#', $uri)) {
     $category = 'loisir';
-    $description = "Décrivez ce que vous proposez (activité ? pour qui ? où ? nombre de places ? etc.)
+    $description = "Décrivez l'activité de e-loisir que vous proposez (pour qui ? pour combien ? comment y accéder ? etc.)
 ";
 } elseif (preg_match('#^/offer/new/don#', $uri)) {
     $category = 'don';
     $description = "Précisez ce que vous donnez et la taille s’il s’agit de vêtements";
-} elseif (preg_match('#^/offer/new/autre#', $uri)) {
+} elseif (preg_match('#^/offer/new/course#', $uri)) {
+    $category = 'course';
+    $description = "Détails sur les courses que vous pouvez faire, si vous avez un véhicule, besoin de sacs, etc.";
+} elseif (preg_match('#^/offer/new/pret#', $uri)) {
+    $category = 'pret';
+    $description = "Détails sur l'objet que vous pouvez prêter, combien de temps, comment le remettre ?";
+//} elseif (preg_match('#^/offer/new/autre#', $uri)) {
+} else {
     $category = 'autre';
 }
 ?>

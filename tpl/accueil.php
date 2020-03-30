@@ -73,17 +73,17 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
                     <img class="icone" src="./images/restauration-ajout.png" alt="">
                     <h3>Restauration</h3>
                 </a>
-                <a class="flex center column" href='/offer/new/blanchisserie'>
-                    <img class="icone" src="./images/blanchisserie-ajout.png" alt="">
-                    <h3>Blanchisserie</h3>
+                <a class="flex center column" href='/offer/new/course'>
+                    <img class="icone" src="./images/courses-ajout.png" alt="">
+                    <h3>Course</h3>
                 </a>
-                <a class="flex center column" href='/offer/new/mobilite'>
-                    <img class="icone" src="./images/mobilite-ajout.png" alt="">
-                    <h3>Mobilité</h3>
+                <a class="flex center column" href='/offer/new/pret'>
+                    <img class="icone" src="./images/prets-ajout.png" alt="">
+                    <h3>Prêt</h3>
                 </a>
                 <a class="flex center column" href='/offer/new/loisir'>
-                    <img class="icone" src="./images/loisirs-ajout.png" alt="">
-                    <h3>Loisir</h3>
+                    <img class="icone" src="./images/eloisirs-ajout.png" alt="">
+                    <h3>e-Loisir</h3>
                 </a>
                 <a class="flex center column" href='/offer/new/don'>
                     <img class="icone" src="./images/dons-ajout.png" alt="">
