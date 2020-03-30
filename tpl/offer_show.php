@@ -64,6 +64,10 @@ L'equipe Aouf
         curl_exec($ch);
         curl_close($ch);
     }
+    
+   // redirect to discuss
+   header("Location: /message/write/$offer_id/$with_id/");
+   exit;
 }
 
 
