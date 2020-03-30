@@ -66,7 +66,7 @@ L'equipe Aouf
     }
     
    // redirect to discuss
-   header("Location: /message/write/$offer_id/$with_id/");
+   header("Location: /message/write/$offer_id/$with_id");
    exit;
 }
 
