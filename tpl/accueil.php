@@ -18,9 +18,9 @@ if ($_SESSION['user_category']=='admin')
 if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') 
 {
     echo '<a href="/offer/mylist">
-        <div class="header2 bg-blanc flex center">
-            <h2 class="saumon margin-left">Mes offres</h2>
-            <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+        <div class="header2 bg-saumon flex center">
+            <h2 class="blanc margin-left">Mes offres</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
         </div>
     </a>';
     echo '<a href="/offer/yourlist">
@@ -33,9 +33,9 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole
 else
 {
     echo '<a href="/offer/mylist">
-        <div class="header2 bg-blanc flex center">
-            <h2 class="saumon margin-left">Mes besoins</h2>
-            <img class="fleche-droite" src="../images/fleche-droite-saumon.png" alt="">
+        <div class="header2 bg-saumon flex center">
+            <h2 class="blanc margin-left">Mes besoins</h2>
+            <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
         </div>
     </a>';
 
