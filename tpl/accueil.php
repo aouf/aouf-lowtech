@@ -113,7 +113,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     <img class="icone" src="./images/restauration.png" alt="">
                     <h3>Restauration</h3>
                 </a>
-                <a class="flex center column" href='/offer/list/courses'>
+                <a class="flex center column" href='/offer/list/course'>
                     <img class="icone" src="./images/courses.png" alt="">
                     <h3>Course</h3>
                 </a>
