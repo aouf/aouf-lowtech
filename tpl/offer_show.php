@@ -89,8 +89,8 @@ $prenom = ucfirst($data1['firstname']);
 $nom = strtoupper(substr($data1['name'], 0, 1)).'.';
 $nomComplet = $prenom.' '.$nom;
 
-$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
-$statement = $pdo->query($req);
+//$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
+//$statement = $pdo->query($req);
 
 if ($offer_type=='offer') {
     print "<a href='/offer/list/$categorie'>";
