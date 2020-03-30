@@ -79,8 +79,9 @@ $offer_address = $data['address'];
 $offer_date_start = $data['date_start'];
 $offer_date_end = $data['date_end'];
 $categorie = $data['category'];
+$offer_type = $data['offer_type'];
 
-$req = "SELECT * FROM users WHERE id=$with_id limit 1";
+$req = "SELECT * FROM users WHERE id=$with_id LIMIT 1";
 $statement = $pdo->query($req);
 $data1 = $statement->fetch();
 
@@ -91,7 +92,7 @@ $nomComplet = $prenom.' '.$nom;
 $req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
 $statement = $pdo->query($req);
 
-if ($_SESSION['user_category']=='deloge') {
+if ($offer_type=='offer') {
     print "<a href='/offer/list/$categorie'>";
 } else {
     print "<a href='/offer/yourlist'>";
