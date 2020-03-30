@@ -691,6 +691,7 @@ header {
 }
 .background-blanc-offre p {
   margin: 10px;
+  word-wrap: break-word;
 }
 .background-blanc-offre h3 {
   margin: 10px;
