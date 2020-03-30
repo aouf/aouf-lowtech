@@ -113,17 +113,17 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     <img class="icone" src="./images/restauration.png" alt="">
                     <h3>Restauration</h3>
                 </a>
-                <a class="flex center column" href='/offer/list/blanchisserie'>
-                    <img class="icone" src="./images/blanchisserie.png" alt="">
-                    <h3>Blanchisserie</h3>
+                <a class="flex center column" href='/offer/list/courses'>
+                    <img class="icone" src="./images/courses.png" alt="">
+                    <h3>Course</h3>
                 </a>
-                <a class="flex center column" href='/offer/list/mobilite'>
-                    <img class="icone" src="./images/mobilite.png" alt="">
-                    <h3>Mobilité</h3>
+                <a class="flex center column" href='/offer/list/pret'>
+                    <img class="icone" src="./images/prets.png" alt="">
+                    <h3>Prêt</h3>
                 </a>
                 <a class="flex center column" href='/offer/list/loisir'>
-                    <img class="icone" src="./images/loisirs.png" alt="">
-                    <h3>Loisir</h3>
+                    <img class="icone" src="./images/eloisirs.png" alt="">
+                    <h3>e-Loisir</h3>
                 </a>
                 <a class="flex center column" href='/offer/list/don'>
                     <img class="icone" src="./images/dons.png" alt="">
