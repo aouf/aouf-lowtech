@@ -55,7 +55,9 @@ L'equipe Aouf
 ";
         mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
     }
-    if (($notification == 'sms')&&($phone_number != '')) {
+
+    // Notification SMS
+    if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
         $body_sms = 'Nouveau+message+via+AOUF+:+https://beta.aouf.fr/message/list';
         $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
