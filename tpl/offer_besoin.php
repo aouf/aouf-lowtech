@@ -62,13 +62,16 @@ L'equipe Aouf
                 $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
                 $body_mail = "Bonjour,
 
-Un nouveau besoin a été posté sur AOUF :
+Un nouveau besoin a été posté sur AOUF !
+
+Attention, merci de ne PAS répondre par email mais
+de répondre via https://beta.aouf.fr/offer/yourlist
 
 $title
 
 $description
 
-Pour répondre :
+Rappel : merci de répondre via
 https://beta.aouf.fr/offer/yourlist
 
 -- 
