@@ -24,7 +24,7 @@ if (isset($_POST['title'])) {
     $arrondissement = $_POST['arrondissement'];
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
-    if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
+    //if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
     $description = $pdo->quote($_POST['description']);
