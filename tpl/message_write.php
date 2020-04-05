@@ -97,7 +97,7 @@ while ($data2 = $statement->fetch()) {
         echo "<div class='right'>";
             echo "<div class='message-div message-div-droite border-vert'>";
                 echo "<p class='message left noir'>".$data2['message']."</p>";
-                echo "<p class='message-date right vert'>".date("H:i",strtotime($data2['date_create']))."</p>";
+                echo "<p class='message-date right vert'>".date("H:i (d.m.Y)",strtotime($data2['date_create']))."</p>";
                 echo "<div class='fleche fleche-droite'></div>";
             echo "</div>";
         echo "</div>";
@@ -105,7 +105,7 @@ while ($data2 = $statement->fetch()) {
         echo "<div class='left'>";
             echo "<div class='message-div message-div-gauche border-saumon'>";
                 echo "<p class='message left noir'>".$data2['message']."</p>";
-                echo "<p class='message-date right saumon'>".date("H:i",strtotime($data2['date_create']))."</p>";
+                echo "<p class='message-date right saumon'>".date("H:i (d.m.Y)",strtotime($data2['date_create']))."</p>";
                 echo "<div class='fleche fleche-gauche'></div>";
             echo "</div>";
         echo "</div>";
