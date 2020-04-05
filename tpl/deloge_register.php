@@ -125,10 +125,10 @@ skip:
                 <button class="unmask" type="button" id="viewPassword" title="Mask/Unmask password to check content" onclick="togglePasswordView()">Unmask</button>
             </section>
 
-            <label for="nom">Nom</label>
-            <input type='text' name='name' placeholder="Votre nom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="prenom">Prénom</label>
             <input type='text' name='firstname' placeholder="Votre prénom" required pattern="[a-zA-Z\-\'\ ]+">
+            <label for="nom">Nom</label>
+            <input type='text' name='name' placeholder="Votre nom" required pattern="[a-zA-Z\-\'\ ]+">
             <label for="phone">Téléphone portable</label>
             <input type='text' name='phone' placeholder="0612345678" required pattern="[0-9\+\-\(\)\.\ ]+">
             <label for="email">e-mail <span class="saumon">(optionnel)</span></label>
