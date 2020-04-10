@@ -176,7 +176,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
                     elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
                     elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
-                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/courses.png";
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
@@ -231,7 +231,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
                     elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
                     elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
-                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/courses.png";
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
@@ -288,7 +288,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
                     elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
                     elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
-                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/courses.png";
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
