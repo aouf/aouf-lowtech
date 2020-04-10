@@ -97,7 +97,8 @@ $nomComplet = $prenom.' '.$nom;
 //$statement = $pdo->query($req);
 
 if ($offer_type=='offer') {
-    print "<a href='/offer/list/$categorie'>";
+    //print "<a href='/offer/list/$categorie'>";
+    print "<a href='/accueil'>";
 } else {
     print "<a href='/offer/yourlist'>";
 }
