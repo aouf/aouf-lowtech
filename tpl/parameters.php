@@ -199,7 +199,7 @@ $user_hotel = $data['hotel'];
         <input type='checkbox' name="notif_email" value="accept" <?php if (($user_notification=='email')||($user_notification=='email+sms')) print "checked"; ?>> email
         <input type='checkbox' name="notif_sms" value="accept" <?php if (($user_notification=='sms')||($user_notification=='email+sms')) print "checked"; ?>> SMS<br><br>
         
-            <label for="cgu"><input type="checkbox" name="cgu" value="accept" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
+            <label for="cgu"><input type="checkbox" name="cgu" value="accept" required> J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a> et je m'engage à respecter l'ensemble des gestes barrières contre le Coronavirus</label>
             <label><input type="checkbox" name="rgpd" value="accept" required> J'accepte que les informations saisies soient utilisées pour la gestion de l'application <strong>Aouf</strong></label>
             <label for=""><input type="checkbox" name="acceptinfos" value="accept" <?php if ($user_accept_mailing=='yes') print "checked"; ?>> J'accepte de recevoir des informations sur les annonces au sein de l'application et des nouvelles du projet Aouf<span class="saumon">(optionnel)</span></label>
 

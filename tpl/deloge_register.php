@@ -188,7 +188,7 @@ skip:
 
             <section>
                 <label class="checkboxLabel" for="cgu"><input type="checkbox" name="cgu" value="accept" required>
-                J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a></label>
+                J'ai lu et j'accepte les <a class="small-text saumon" href="/cgu">CGU</a> et je m'engage à respecter l'ensemble des gestes barrières contre le Coronavirus</label>
             </section>
             <br>
             <section>
