@@ -157,7 +157,7 @@ $max_length = 60;
                 if ($debut == $fin) $intervalle = $debut;
                 if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
 
-                echo "<a class='offre' href='/offer/show/$offer_id/$offer_userid'>";
+                //echo "<a class='offre' href='/offer/show/$offer_id/$offer_userid'>";
                 if ($data['picture'] != 'NULL') {
                     $picture = base64_encode($data['picture']);
                 } else {
