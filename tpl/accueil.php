@@ -139,7 +139,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     <h3>Autre</h3>
                 </a>
             </section>-->
-
+</div>
     <div class="bg-saumon list-offres">
         <?php
 
@@ -153,14 +153,13 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
-
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
                 {
                     $offset = ($max_length - 3) - strlen($description);
                     $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
                 }
-
+                $category= $data['category'];
                 $offer_arrondissement = $data['arrondissement'];
                 $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
                 $name = $data['name'];
@@ -172,9 +171,16 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
 
                 if ($data['picture'] != 'NULL') {
-                    $picture = base64_encode($data['picture']);
+                    $picture = "data:image/jpg;base64,".base64_encode($data['picture']);
                 } else {
-                    $picture = "";
+                    if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
+                    elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
+                    elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
+                    elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
+                    elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
                 ?>
                 
@@ -188,7 +194,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                         </div>
                         <div class='bloc-offre bloc-offre-image'>
                             <div id='parallelogram' class='parallelogram-img'>
-                                <div class='image noskew' style='background-image: url("data:image/jpg;base64,<?php echo $picture; ?>")'></div>
+                                <div class='image noskew' style='background-image: url("<?php echo $picture; ?>")'></div>
                             </div>
                         </div>
                 </a>
@@ -203,14 +209,13 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
-
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
                 {
                     $offset = ($max_length - 3) - strlen($description);
                     $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
                 }
-
+                $category= $data['category'];
                 $offer_arrondissement = $data['arrondissement'];
                 $name = $data['name'];
                 $firstname = $data['firstname'];
@@ -220,13 +225,18 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 $intervalle = "$debut - $fin";
                 if ($debut == $fin) $intervalle = $debut;
                 if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
-
                 if ($data['picture'] != 'NULL') {
-                    $picture = base64_encode($data['picture']);
+                    $picture = "data:image/jpg;base64,".base64_encode($data['picture']);
                 } else {
-                    $picture = "";
+                    if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
+                    elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
+                    elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
+                    elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
+                    elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
-
                 ?>
                 
                 <a class='offre flex bg-blanc' href='<?php echo "/offer/show/$offer_id/$offer_userid"; ?>'>
@@ -239,7 +249,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                         </div>
                         <div class='bloc-offre bloc-offre-image'>
                             <div id='parallelogram' class='parallelogram-img'>
-                                <div class='image noskew' style='background-image: url("data:image/jpg;base64,<?php echo $picture; ?>")'></div>
+                                <div class='image noskew' style='background-image: url("<?php echo $picture; ?>")'></div>
                             </div>
                         </div>
                 </a>
@@ -254,14 +264,13 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                 $offer_id = $data['id'];
                 $offer_userid = $data['user_id'];
                 $titre = ucfirst($data['title']);
-                
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
                 {
                     $offset = ($max_length - 3) - strlen($description);
                     $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
                 }
-
+                $category= $data['category'];
                 $offer_arrondissement = $data['arrondissement'];
                 $name = $data['name'];
                 $firstname = $data['firstname'];
@@ -274,11 +283,17 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
 
                 echo "<a class='offre' href='/offer/show/$offer_id/$offer_userid'>";
                 if ($data['picture'] != 'NULL') {
-                    $picture = base64_encode($data['picture']);
+                    $picture = "data:image/jpg;base64,".base64_encode($data['picture']);
                 } else {
-                    $picture = "";
+                    if ($category == 'don') $picture = "https://beta.aouf.fr/images/dons.png";
+                    elseif ($category == 'restauration') $picture = "https://beta.aouf.fr/images/restauration.png";
+                    elseif ($category == 'blanchisserie') $picture = "https://beta.aouf.fr/images/blanchisserie.png";
+                    elseif ($category == 'course') $picture = "https://beta.aouf.fr/images/course.png";
+                    elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
+                    elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
+                    elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
-
                 ?>
                 
                 <a class='offre flex bg-blanc' href='<?php echo "/offer/show/$offer_id/$offer_userid"; ?>'>
@@ -291,14 +306,13 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                         </div>
                         <div class='bloc-offre bloc-offre-image'>
                             <div id='parallelogram' class='parallelogram-img'>
-                                <div class='image noskew' style='background-image: url("data:image/jpg;base64,<?php echo $picture; ?>")'></div>
+                                <div class='image noskew' style='background-image: url("<?php echo $picture; ?>")'></div>
                             </div>
                         </div>
                 </a>
             <?php }
         }
         ?>
-    </div>
 
 <?php
 }?>
