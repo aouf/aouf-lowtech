@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -24,13 +24,13 @@ if (isset($_POST['login'])) {
     if (!preg_match("/^([\p{L}-' ]+)$/u", $firstname)) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom invalide&nbsp;!</div>"; goto skip; }
     if (strlen($firstname)<1) { print "<div class='erreur noir bg-saumon center'>Erreur, prénom trop court&nbsp;!</div>"; goto skip; }
     $email = ($_POST['email'] != "") ? strtolower(strip_tags($_POST['email'])) : null;
-    if (($email == null)&&($_SESSION['user_category']!='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir une adresse email&nbsp;!</div>"; goto skip; }
+    if ((($email == null)&&($_SESSION['user_category']!='deloge')) || (($email == null)&&($_SESSION['user_category']!='coordinateur'))) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir une adresse email&nbsp;!</div>"; goto skip; }
     if (($email != null)&&(!filter_var($email, FILTER_VALIDATE_EMAIL))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email invalide&nbsp;!</div>"; goto skip; }
     $req = "SELECT COUNT(*) FROM users WHERE email='$email' AND id != $user_id LIMIT 1";
     $statement = $pdo->query($req);
     if (($email != null)&&($statement->fetchColumn()>0)) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse email déjà utilisée&nbsp;!</div>"; goto skip; }
     $phone = ($_POST['phone'] != "") ? strip_tags($_POST['phone']) : null;
-    if (($phone == null)&&($_SESSION['user_category']=='deloge')) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
+    if ((($phone == null)&&($_SESSION['user_category']=='deloge')) || (($phone == null)&&($_SESSION['user_category']=='coordinateur'))) { print "<div class='erreur noir bg-saumon center'>Erreur, vous devez avoir un numéro de téléphone&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(!preg_match("/^([\d\.+\-\(\) ]+)$/", $phone))) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone invalide&nbsp;!</div>"; goto skip; }
     if (($phone != null)&&(strlen($phone)<7)) { print "<div class='erreur noir bg-saumon center'>Erreur, numéro de téléphone trop court&nbsp;!</div>"; goto skip; }
     $req = "SELECT COUNT(*) FROM users WHERE phonenumber='$phone' AND id != $user_id LIMIT 1";
@@ -127,7 +127,7 @@ $user_hotel = $data['hotel'];
         <label for="name">Nom</label><input type='text' name='name' value='<?php print $user_name; ?>' required pattern="[a-zA-Z\-\'\ ]+">
         <label for="firstname">Prénom</label><input type='text' name='firstname' value='<?php print $user_firstname; ?>' required pattern="[a-zA-Z\-\'\ ]+">
         <label for="email">Email <?php if ($_SESSION['user_category']=='benevole') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='email' value='<?php print $user_email; ?>' <?php if ($_SESSION['user_category']=='benevole') print "required"; ?> >
-        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>' <?php if ($_SESSION['user_category']=='deloge') print "required"; ?> pattern="[0-9\+\-\(\)\.\ ]+">
+        <label for="phone">Numéro de téléphone portable <?php if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') { ?><span class="saumon">*</span><?php } ?></label><input type='text' name='phone' value='<?php print $user_phonenumber; ?>' <?php if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') print "required"; ?> pattern="[0-9\+\-\(\)\.\ ]+">
         <label for="arrondissement">Arrondissement (Marseille)</label>
         <select name='arrondissement' required>
             <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
@@ -147,7 +147,7 @@ $user_hotel = $data['hotel'];
             <option value='15' <?php if ($user_arrondissement == 15) print "selected='selected'"; ?>>Marseille 15eme</option>
             <option value='16' <?php if ($user_arrondissement == 16) print "selected='selected'"; ?>>Marseille 16eme</option>
         </select>
-<?php if ($_SESSION['user_category']=='deloge') { ?>
+<?php if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') { ?>
             <label for="hotel">Hôtel <span class="saumon">(facultatif)</span></label>
             <select name='hotel'>
                 <option value='0' <?php if ($user_hotel == null) print "selected='selected'"; ?>>Hôtel</option>

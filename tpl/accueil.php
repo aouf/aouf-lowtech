@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -102,7 +102,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
 
 <?php } ?>
 <?php
-if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')) 
+if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')||($_SESSION['user_category']=='coordinateur')) 
 {
     if ($_SESSION['user_category']=='admin') 
     {
