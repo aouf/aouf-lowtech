@@ -48,7 +48,10 @@ $description
 --
 L'equipe Aouf
 ";
-        mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
+
+        if ($_SESSION['user_category']!='couches') {
+            mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
+        }
 
         $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
         $statement = $pdo->query($req);
@@ -77,17 +80,21 @@ https://beta.aouf.fr/offer/yourlist
 -- 
 L'equipe Aouf
 ";
-                mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
+                if ($_SESSION['user_category']!='couches') {
+                    mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
+                }
             }
 
             // Notification SMS pour tous les benevoles (TODO : filtrer selon arrondissement)
-            $phone_number = $data['phonenumber'];
-            if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
-                $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';
-                $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-                curl_exec($ch);
-                curl_close($ch);
+            if ($_SESSION['user_category']!='couches') {
+                $phone_number = $data['phonenumber'];
+                if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
+                    $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';
+                    $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_exec($ch);
+                    curl_close($ch);
+                }
             }
         }
 
