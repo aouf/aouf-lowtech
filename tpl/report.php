@@ -1,7 +1,7 @@
 <?php
 require_once 'head.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
     die("permission denied");
 }
 

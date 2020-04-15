@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
     die("permission denied");
 }
 
@@ -16,7 +16,7 @@ $user_id = $_SESSION['user_id'];
 $max_length = 60;
 
 
-if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') {
+if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur' || $_SESSION['user_category']=='couches') {
         //echo '<div class="header2 bg-blanc flex center">
         //        <h2 class="saumon">Exprimer un besoin</h2>
         //    </div>';

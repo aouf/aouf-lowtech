@@ -17,7 +17,7 @@ session_start();
 // Get URI request
 $uri = $_SERVER['REQUEST_URI'];
 
-if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/coordinateur/register#', $uri)&&!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lost#', $uri))&&(!preg_match('#^/validation#', $uri))&&(!preg_match('#^/cgu#', $uri))&&(!preg_match('#^/reset#', $uri))) {
+if ((!preg_match('#^/$#', $uri))&&(!preg_match('#^/couches/register#', $uri)&&(!preg_match('#^/coordinateur/register#', $uri)&&!preg_match('#^/deloge/register#', $uri))&&(!preg_match('#^/benevole/register#', $uri))&&(!preg_match('#^/register#', $uri))&&(!preg_match('#^/lost#', $uri))&&(!preg_match('#^/validation#', $uri))&&(!preg_match('#^/cgu#', $uri))&&(!preg_match('#^/reset#', $uri)))) {
     if (!isset($_SESSION['user_id']))
     header("Location: /");
 }
@@ -62,6 +62,8 @@ if (preg_match('#^/$#', $uri)) {
     include( AOUF_BASE . '../tpl/deloge_register.php');
 } elseif (preg_match('#^/coordinateur/register#', $uri)) {
     include( AOUF_BASE . '../tpl/coordinateur_register.php');
+} elseif (preg_match('#^/couches/register#', $uri)) {
+    include( AOUF_BASE . '../tpl/couches_register.php');
 } elseif (preg_match('#^/admin/moderation#', $uri)) {
     include( AOUF_BASE . '../tpl/admin_moderation.php');
 } elseif (preg_match('#^/feedback#', $uri)) {
