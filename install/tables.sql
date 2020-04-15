@@ -22,6 +22,7 @@ CREATE TABLE users (
     create_token VARCHAR(100),
     notification VARCHAR(100),
     accept_mailing VARCHAR(100),
+    hotel VARCHAR(100),
     PRIMARY KEY (`id`)
 );
 
@@ -67,4 +68,3 @@ CREATE TABLE messages (
     message TEXT,
     PRIMARY KEY (`id`)
 );
-
