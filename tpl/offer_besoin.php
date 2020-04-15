@@ -12,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['title'])) {
     $category = $_POST['category'];
-    $title = $_POST['title'];
+    $title = $_SESSION['user_category']=='couches' ? '[MCS] '.$_POST['title'] : $_POST['title'];
     $arrondissement = $_POST['arrondissement'];
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
