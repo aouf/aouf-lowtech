@@ -40,16 +40,14 @@ if (isset($_POST['login'])) {
     if (isset($_POST['acceptinfos'])) $acceptinfos = 'yes'; else $acceptinfos = 'no';
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $category = "coordinateur";
-    $hotel = ((isset($_POST['hotel']))&&($_POST['hotel']!="0")) ? strtolower(strip_tags($_POST['hotel'])) : null;
-    if (($hotel != null)&&(!ctype_alpha($hotel))) { print "<div class='erreur noir bg-saumon center'>Erreur, nom d'hôtel invalide&nbsp;!</div>"; goto skip; }
     $token = sha1(random_bytes(128));
 
     // éviter brute force bourrin (TODO: à améliorer)
     sleep(1);
 
-    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing,hotel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $req = "INSERT INTO users(login,category,status,email,phonenumber,name,firstname,gender,arrondissement,address,password,create_token,notification,accept_mailing) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($req);
-    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,$token,'sms',$acceptinfos,$hotel])) {
+    if ($statement->execute([$login,$category,'unvalidated',$email,$phone,$name,$firstname,$gender,$arrondissement,$address,$password,$token,'sms',$acceptinfos])) {
 
         //echo "Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br>";
         //echo "<div class='erreur noir bg-saumon center'>Compte <strong>$login</strong> en cours d'enregistrement&nbsp;!<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
@@ -152,27 +150,6 @@ skip:
                 <option value='14'>Marseille 14ème</option>
                 <option value='15'>Marseille 15ème</option>
                 <option value='16'>Marseille 16ème</option>
-            </select>
-            <label for="hotel">Hôtel <span class="saumon">(optionnel)</span></label>
-            <select name='hotel'>
-                <option value='0' selected='selected'>Hôtel</option>
-                <option value='no'>Non logé dans un hôtel</option>
-                <option value='roosevelt'>Hôtel Roosevelt (Marseille 1er)</option>
-                <option value='ibissaintcharles'>IBIS St Charles (Marseille 1er)</option>
-                <option value='apparthotelportedaix'>Appart Hôtel Porte d’Aix (Marseille 1er)</option>
-                <option value='toyokoinn'>Toyoko Inn (Marseille 3ème)</option>
-                <option value='bbhoteljoliette'>BB Hôtel Joliette (Marseille 2ème)</option>
-                <option value='adagiojoliette'>ADAGIO Joliette (Marseille 2ème)</option>
-                <option value='ibiscolbert'>IBIS Colbert (Marseille 2ème)</option>
-                <option value='ibisjoliette'>IBIS Joliette (Marseille 2ème)</option>
-                <option value='ibistimone'>IBIS Timone (Marseille 5ème)</option>
-                <option value='ibisbudgettimone'>IBIS Budget Timone (Marseille 5ème)</option>
-                <option value='odalyscanebiere'>ODALYS Canebière (Marseille 1er)</option>
-                <option value='leryad'>LE RYAD (Marseille 1er)</option>
-                <option value='residencepapere'>Résidence Papère (Marseille 1er)</option>
-                <option value='novoteljoliette'>NOVOTEL Joliette (Marseille 2ème)</option>
-                <option value='bbhoteltimone'>BB Hôtel Timone (Marseille 5ème)</option>
-                <option value='autre'>Autre hôtel (à envoyer en feedback)</option>
             </select>
             <label for="address">Adresse <span class="saumon">(optionnel)</span></label>
             <input type='text' name='address' placeholder="">
