@@ -24,7 +24,7 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole
 {
     echo '<a href="/offer/mylist">
         <div class="header2 bg-saumon flex center">
-            <h2 class="blanc margin-left">Mes offres</h2>
+            <h2 class="blanc margin-left">Mes offres'.($_SESSION['user_category']=='admin' ? '/besoins' : '').'</h2>
             <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
         </div>
     </a>';

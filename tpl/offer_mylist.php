@@ -9,7 +9,7 @@ if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevol
 if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')) {
    $what = "Liste de mes besoins";
 } else {
-   $what = "Liste de mes offres";
+   $what = "Liste de mes offres".($_SESSION['user_category']=='admin' ? '/besoins' : '');
 }
 
 $user_id = $_SESSION['user_id'];
