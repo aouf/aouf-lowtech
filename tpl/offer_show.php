@@ -92,6 +92,7 @@ $data1 = $statement->fetch();
 $prenom = ucfirst($data1['firstname']);
 $nom = strtoupper(substr($data1['name'], 0, 1)).'.';
 $nomComplet = $prenom.' '.$nom;
+$userCategorie = $data1['category'];
 
 //$req = "SELECT * FROM messages WHERE offer_id = $offer_id AND ( ( from_id=$user_id AND to_id=$with_id ) OR ( from_id=$with_id AND to_id=$user_id ) )";
 //$statement = $pdo->query($req);
@@ -102,6 +103,8 @@ if ($offer_type=='offer') {
 } else {
     print "<a href='/offer/yourlist'>";
 }
+
+if (($userCategorie != 'couches' && $_SESSION['user_category']!='admin') || ($userCategorie == 'couches' && $_SESSION['user_category']=='admin') || ($userCategorie != 'couches' && $_SESSION['user_category']=='admin')){
 ?>
     <div class="header2 bg-blanc flex center">
         <img class="fleche-gauche" src="/images/fleche-gauche-saumon.png" alt="">
@@ -142,6 +145,6 @@ if ($offer_type=='offer') {
 <section class="conversation bg-blanc">
 <p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>
 </section>
-
 <?php
+}
 require_once 'footer.php';
