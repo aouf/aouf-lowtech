@@ -27,7 +27,7 @@ $max_length = 60;
             $statementUser = $pdo->query($reqUser);
             $dataUser = $statementUser->fetch();
             
-            if ($dataUser['category'] != 'couches' && $_SESSION['user_category']!='admin'){
+            if (($dataUser['category'] != 'couches' && $_SESSION['user_category']!='admin') || ($dataUser['category'] == 'couches' && $_SESSION['user_category']=='admin') || ($dataUser['category'] != 'couches' && $_SESSION['user_category']=='admin') ){
                 
                 $titre = ucfirst($data['title']);
                 
