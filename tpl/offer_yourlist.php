@@ -22,46 +22,55 @@ $max_length = 60;
 
             $offer_id = $data['id'];
             $offer_userid = $data['user_id'];
-            $titre = ucfirst($data['title']);
-
-            $description = $data['description'];
-            if (strlen($description) > $max_length)
-            {
-                $offset = ($max_length - 3) - strlen($description);
-                $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
-            }
-
-            $offer_arrondissement = $data['arrondissement'];
-            $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
-            $status = $data['status'];
-            $status_text = "";
-            if ($status == 'disabled') $status_text = "(désactivée)";
-            $debut = date('d/m/y', strtotime($data['date_start']));
-            $fin = date('d/m/y', strtotime($data['date_end']));
-            $intervalle = "$debut - $fin";
-            if ($debut == $fin) $intervalle = $debut;
-            if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
             
-            if ($data['picture'] != 'NULL') {
-                $picture = base64_encode($data['picture']);
-            } else {
-                $picture = "";
-            }
-
-            echo "<a class='offre flex bg-blanc' href='/offer/show/$offer_id/$offer_userid'>";
+            $reqUser = "SELECT category FROM users WHERE id=$offer_userid LIMIT 1";
+            $statementUser = $pdo->query($reqUser);
+            $dataUser = $statementUser->fetch();
+            
+            if ($dataUser['category'] != 'couches' && $_SESSION['user_category']!='admin'){
+                
+                $titre = ucfirst($data['title']);
+                
+                $description = $data['description'];
+                if (strlen($description) > $max_length)
+                {
+                    $offset = ($max_length - 3) - strlen($description);
+                    $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
+                }
+                
+                $offer_arrondissement = $data['arrondissement'];
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
+                $status = $data['status'];
+                $status_text = "";
+                if ($status == 'disabled') $status_text = "(désactivée)";
+                $debut = date('d/m/y', strtotime($data['date_start']));
+                $fin = date('d/m/y', strtotime($data['date_end']));
+                $intervalle = "$debut - $fin";
+                if ($debut == $fin) $intervalle = $debut;
+                if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
+                
+                if ($data['picture'] != 'NULL') {
+                    $picture = base64_encode($data['picture']);
+                } else {
+                    $picture = "";
+                }
+                
+                echo "<a class='offre flex bg-blanc' href='/offer/show/$offer_id/$offer_userid'>";
                 echo" <div class='bloc-offre bloc-offre-text'>";
-                    echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
-                        echo "<p class='noskew'>";
-                            echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
-                        echo "</p>";
-                    echo "</div>";
+                echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
+                echo "<p class='noskew'>";
+                echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                echo "</p>";
+                echo "</div>";
                 echo "</div>";
                 echo "<div class='bloc-offre bloc-offre-image'>";
-                    echo "<div id='parallelogram' class='parallelogram-img'>";
-                        echo "<div class='image noskew' style='background-image: url(data:image/jpg;base64,$picture)'></div>";
-                    echo "</div>";
+                echo "<div id='parallelogram' class='parallelogram-img'>";
+                echo "<div class='image noskew' style='background-image: url(data:image/jpg;base64,$picture)'></div>";
                 echo "</div>";
-            echo"</a>";
+                echo "</div>";
+                echo"</a>";
+                
+            }
 
         }
 
