@@ -21,55 +21,49 @@ if (isset($_POST['title'])) {
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
     $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
     $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
-    
-    $verifreq = "SELECT count(id) FROM offers WHERE user_id=$user_id AND category='$category' AND title='$title' AND description='$description' AND arrondissement=$arrondissement;";
-    $verifstatement = $pdo->query($verifreq);
-    $verifdata = $verifstatement->fetch();
 
-    if($verifdata["count(id)"] == 0)
-    {
-        // insertion du besoin en base
-        $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    // insertion du besoin en base
+    $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    $statement = $pdo->prepare($req);
+    if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'besoin'])) {
+
+        // on met a jour le lastactivity de l'utilisateur
+        $lastactivity = date('Y-m-d H:i:s');
+        $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
         $statement = $pdo->prepare($req);
-        if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'besoin'])) {
+        $statement->execute();
 
-            // on met a jour le lastactivity de l'utilisateur
-            $lastactivity = date('Y-m-d H:i:s');
-            $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
-            $statement = $pdo->prepare($req);
-            $statement->execute();
+        // notification par email
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
-            // notification par email
-            $headers_mail = "MIME-Version: 1.0\n";
-            $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-            $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-            $body_mail = "Bonjour,
+Nouveau besoin posté par l'utilisateur $user_id :
 
-    Nouveau besoin posté par l'utilisateur $user_id :
+$title
 
-    $title
+$description
 
-    $description
+--
+L'equipe Aouf
+";
 
-    --
-    L'equipe Aouf
-    ";
+        if ($_SESSION['user_category']!='couches') {
+            mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
+        }
 
-            if ($_SESSION['user_category']!='couches') {
-                mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
-            }
-
-            $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
-            $statement = $pdo->query($req);
-            while ($data = $statement->fetch()) {
-                $notification = $data['notification']; 
-                // Notification email pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
-                $email_addr = $data['email'];
-                if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
-                    $headers_mail = "MIME-Version: 1.0\n";
-                    $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-                    $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-                    $body_mail = "Bonjour,
+        $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
+        $statement = $pdo->query($req);
+        while ($data = $statement->fetch()) {
+            $notification = $data['notification']; 
+            // Notification email pour tous les benevoles (TODO : filtrer selon accept_mailing / arrondissement)
+            $email_addr = $data['email'];
+            if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
+                $headers_mail = "MIME-Version: 1.0\n";
+                $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+                $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+                $body_mail = "Bonjour,
 
 Un nouveau besoin a été posté sur AOUF !
 
@@ -81,41 +75,36 @@ $title
 $description
 
 Rappel : merci de répondre via
-    https://beta.aouf.fr/offer/yourlist
+https://beta.aouf.fr/offer/yourlist
 
 -- 
 L'equipe Aouf
 ";
-                    if ($_SESSION['user_category']!='couches') {
-                        mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
-                    }
-                }
-
-                // Notification SMS pour tous les benevoles (TODO : filtrer selon arrondissement)
                 if ($_SESSION['user_category']!='couches') {
-                    $phone_number = $data['phonenumber'];
-                    if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
-                        $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';
-                        $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-                        curl_exec($ch);
-                        curl_close($ch);
-                    }
+                    mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
                 }
             }
 
-            echo "<div class='erreur noir bg-saumon center'>Besoin <strong>$title</strong> posté, merci&nbsp;!</div>";
-        } else {
-            echo "<div class='erreur noir bg-saumon center'>Erreur à la création : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+            // Notification SMS pour tous les benevoles (TODO : filtrer selon arrondissement)
+            if ($_SESSION['user_category']!='couches') {
+                $phone_number = $data['phonenumber'];
+                if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
+                    $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';
+                    $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_exec($ch);
+                    curl_close($ch);
+                }
+            }
         }
 
-    skip:
+        echo "<div class='erreur noir bg-saumon center'>Besoin <strong>$title</strong> posté, merci&nbsp;!</div>";
+    } else {
+        echo "<div class='erreur noir bg-saumon center'>Erreur à la création : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
-    else {
-        echo "<div class='erreur noir bg-saumon center'>Cette demande a déjà été postée.</div>";
-    }
-}
 
+skip:
+}
 
 $req = "SELECT * FROM users where id = $user_id LIMIT 1";
 $statement = $pdo->query($req);

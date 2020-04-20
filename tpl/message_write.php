@@ -26,59 +26,48 @@ if (!($with_id>0)) {
 if (isset($_POST['message'])) {
     $message = $_POST['message'];
     $to_id = $_POST['to'];
+    $req = "INSERT INTO messages(offer_id,from_id,to_id,message) VALUES (?,?,?,?)";
+    $statement = $pdo->prepare($req);
+    $statement->execute([$offer_id, $user_id, $to_id, $message]);
 
-    $verifreq = "SELECT count(offer_id) FROM messages WHERE offer_id=$offer_id AND from_id=$user_id AND message='$message' AND to_id=$to_id;";
-    $verifstatement = $pdo->query($verifreq);
-    $verifdata = $verifstatement->fetch();
+    // send email for notification
+    $req = "SELECT email,phonenumber,notification,category FROM users WHERE id=$to_id LIMIT 1";
+    $statement = $pdo->query($req);
+    $data = $statement->fetch();
+    $email_addr = $data['email'];
+    $phone_number = $data['phonenumber'];
+    $notification = $data['notification'];
+    $category = $data['category'];
+    if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
+        $headers_mail = "MIME-Version: 1.0\n";
+        $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
+        $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+        $body_mail = "Bonjour,
 
-    if($verifdata["count(offer_id)"] == 0)
-    {
-        $req = "INSERT INTO messages(offer_id,from_id,to_id,message) VALUES (?,?,?,?)";
-        $statement = $pdo->prepare($req);
-        $statement->execute([$offer_id, $user_id, $to_id, $message]);
+Vous avez reçu un nouveau message via AOUF :
 
-        // send email for notification
-        $req = "SELECT email,phonenumber,notification,category FROM users WHERE id=$to_id LIMIT 1";
-        $statement = $pdo->query($req);
-        $data = $statement->fetch();
-        $email_addr = $data['email'];
-        $phone_number = $data['phonenumber'];
-        $notification = $data['notification'];
-        $category = $data['category'];
-        if ((($notification == 'email')||($notification == 'email+sms'))&&($email_addr != '')) {
-            $headers_mail = "MIME-Version: 1.0\n";
-            $headers_mail .= 'From: Aouf <'.$conf['mail']['from'].">\n";
-            $headers_mail .= 'Content-Type: text/plain; charset="utf-8"'."\n";
-            $body_mail = "Bonjour,
+$message
 
-    Vous avez reçu un nouveau message via AOUF :
+Pour répondre :
+https://beta.aouf.fr/message/list
 
-    $message
-
-    Pour répondre :
-    https://beta.aouf.fr/message/list
-
-    -- 
-    L'equipe Aouf
-    ";
-            if ($_SESSION['user_category']!='couches') {
-                mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
-            }
-        }
-
-        // Notification SMS
+-- 
+L'equipe Aouf
+";
         if ($_SESSION['user_category']!='couches') {
-            if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
-                $body_sms = 'Nouveau+message+via+AOUF+:+https://beta.aouf.fr/message/list';
-                $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-                curl_exec($ch);
-                curl_close($ch);
-            }
+            mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
         }
     }
-    else {
-        echo "<div class='erreur noir bg-saumon center'>Ce message a déjà été posté.</div>";
+
+    // Notification SMS
+    if ($_SESSION['user_category']!='couches') {
+        if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
+            $body_sms = 'Nouveau+message+via+AOUF+:+https://beta.aouf.fr/message/list';
+            $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($ch);
+            curl_close($ch);
+        }
     }
 }
 
