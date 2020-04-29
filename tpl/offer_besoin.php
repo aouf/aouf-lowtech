@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -12,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['title'])) {
     $category = $_POST['category'];
-    $title = $_SESSION['user_category']=='couches' ? '[MCS] '.$_POST['title'] : $_POST['title'];
+    $title = preg_match('#^/offer/besoin/couche#', $uri) ? '[MCS] '.$_POST['title'] : $_POST['title'];
     $arrondissement = $_POST['arrondissement'];
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
@@ -55,7 +55,7 @@ if (isset($_POST['title'])) {
     L'equipe Aouf
     ";
 
-            if ($_SESSION['user_category']!='couches') {
+            if ($category!='couches') {
                 mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
             }
 
@@ -86,13 +86,13 @@ Rappel : merci de répondre via
 -- 
 L'equipe Aouf
 ";
-                    if ($_SESSION['user_category']!='couches') {
+                    if ($category!='couches') {
                         mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
                     }
                 }
 
                 // Notification SMS pour tous les benevoles (TODO : filtrer selon arrondissement)
-                if ($_SESSION['user_category']!='couches') {
+                if ($category!='couches') {
                     $phone_number = $data['phonenumber'];
                     if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
                         $body_sms = 'Nouveau+besoin+via+AOUF+:+https://beta.aouf.fr/offer/yourlist';

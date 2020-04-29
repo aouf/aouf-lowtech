@@ -2,7 +2,7 @@
     if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole') {
         $couleur = 'vert';
     }
-    elseif ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur' || $_SESSION['user_category']=='couches')
+    elseif ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur')
     {
         $couleur = 'saumon';
     }

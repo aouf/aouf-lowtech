@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -104,7 +104,7 @@ if ($offer_type=='offer') {
     print "<a href='/offer/yourlist'>";
 }
 
-if (($userCategorie != 'couches' && $_SESSION['user_category']!='admin') || ($userCategorie == 'couches' && $_SESSION['user_category']=='admin') || ($userCategorie != 'couches' && $_SESSION['user_category']=='admin')){
+if (($categorie != 'couches' && $_SESSION['user_category']!='admin') || ($categorie == 'couches' && $_SESSION['user_category']=='admin') || ($categorie != 'couches' && $_SESSION['user_category']=='admin')){
 ?>
     <div class="header2 bg-blanc flex center">
         <img class="fleche-gauche" src="/images/fleche-gauche-saumon.png" alt="">

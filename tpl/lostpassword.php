@@ -45,7 +45,7 @@ L'equipe Aouf
             mail($email_addr,'Changement de mot de passe de votre compte Aouf',$body_mail,$headers_mail);
         }
 
-        if ((($category=='deloge')&&($phone_number != '')) || (($category=='coordinateur')&&($phone_number != '')) || (($category=='couches')&&($phone_number != ''))) {
+        if ((($category=='deloge')&&($phone_number != '')) || (($category=='coordinateur')&&($phone_number != ''))) {
             $body_sms = "Changer+votre+mot+de+passe+AOUF+:+https://beta.aouf.fr/reset/$token";
             $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);

@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -22,15 +22,10 @@ $max_length = 60;
 
             $offer_id = $data['id'];
             $offer_userid = $data['user_id'];
-            
-            $reqUser = "SELECT category FROM users WHERE id=$offer_userid LIMIT 1";
-            $statementUser = $pdo->query($reqUser);
-            $dataUser = $statementUser->fetch();
-            
-            if (($dataUser['category'] != 'couches' && $_SESSION['user_category']!='admin') || ($dataUser['category'] == 'couches' && $_SESSION['user_category']=='admin') || ($dataUser['category'] != 'couches' && $_SESSION['user_category']=='admin') ){
-                
+            $category = $data['category'];
+
+            if (($category != 'couches' && $_SESSION['user_category']!='admin') || ($category == 'couches' && $_SESSION['user_category']=='admin') || ($category != 'couches' && $_SESSION['user_category']=='admin') ){
                 $titre = ucfirst($data['title']);
-                
                 $description = $data['description'];
                 if (strlen($description) > $max_length)
                 {

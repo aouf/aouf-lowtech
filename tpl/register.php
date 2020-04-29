@@ -18,9 +18,6 @@ require_once 'head.php';
                     <form class="flex column center" action="/deloge/register" method="post">
                         <button class='bg-saumon noir' type="submit"value='Connexion'>J'ai besoin d'aide</button>
                     </form>
-                    <form class="flex column center" action="/couches/register" method="post">
-                        <button class='bg-saumon noir' type='submit' value='Connexion'>J'ai besoin de couches/lait</button>
-                    </form>
                     <center class="register-small-links"><a class="small-text under vert" href='/'>Retour</a></center>
                 </div>
             </div>

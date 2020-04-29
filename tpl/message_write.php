@@ -2,7 +2,7 @@
 require_once 'head.php';
 require_once 'header.php';
 
-if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')&&($_SESSION['user_category']!='couches')) {
+if (($_SESSION['user_category']!='admin')&&($_SESSION['user_category']!='benevole')&&($_SESSION['user_category']!='deloge')&&($_SESSION['user_category']!='coordinateur')) {
     die("permission denied");
 }
 
@@ -27,6 +27,11 @@ if (isset($_POST['message'])) {
     $message = $_POST['message'];
     $to_id = $_POST['to'];
     $column = "messages";
+    
+    $categoryOfferReq = "SELECT category FROM offers WHERE id = $offer_id;";
+    $categoryOfferstatement = $pdo->query($categoryOfferReq);
+    $categoryOfferdata = $categoryOfferstatement->fetch();
+    $categoryOffer = $categoryOfferdata[0];
 
     $verifreq = "SELECT count(id) FROM messages WHERE id = (SELECT MAX(id) FROM messages) AND offer_id=$offer_id AND from_id=$user_id AND message =".$pdo->quote($message)." AND to_id=$to_id;";
     $verifstatement = $pdo->query($verifreq);
@@ -62,13 +67,13 @@ if (isset($_POST['message'])) {
     -- 
     L'equipe Aouf
     ";
-            if ($_SESSION['user_category']!='couches') {
+            if ($categoryOffer!='couches') {
                 mail($email_addr,'Nouveau message Aouf',$body_mail,$headers_mail);
             }
         }
 
         // Notification SMS
-        if ($_SESSION['user_category']!='couches') {
+        if ($categoryOffer!='couches') {
             if ((($notification == 'sms')||($notification == 'email+sms'))&&($phone_number != '')) {
                 $body_sms = 'Nouveau+message+via+AOUF+:+https://beta.aouf.fr/message/list';
                 $ch = curl_init("https://api.smsmode.com/http/1.6/sendSMS.do?accessToken=".$conf['sms']['smsmodeapikey']."&message=".$body_sms."&numero=$phone_number");
