@@ -24,10 +24,23 @@ if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordin
     <div id="container-accueil" class="container bg-saumon">
         <div class="content">
             <section class="tableau-de-bord flex wrap">
-                <a class="flex center column" href='/offer/besoin/don'>
-                    <img class="icone" src="../images/dons-ajout.png" alt="">
-                    <h3>Dons</h3>
-                </a>
+                <?php
+                if ($_SESSION['user_category']=='deloge' ) {
+                    ?>
+                    <a class="flex center column" href='/offer/besoin/don'>
+                        <img class="icone" src="../images/dons-ajout.png" alt="">
+                        <h3>Dons</h3>
+                    </a>
+                    <?php
+                } elseif ($_SESSION['user_category']=='coordinateur') {
+                    ?>
+                    <a class="flex center column" href='/offer/besoin/couche'>
+                        <img class="icone" src="../images/couches-ajout.png" alt="">
+                        <h3>Couches/lait</h3>
+                    </a>
+                    <?php
+                }
+                ?>
                 <a class="flex center column" href='/offer/besoin/autre'>
                     <img class="icone" src="../images/autre-ajout.png" alt="">
                     <h3>Autre</h3>

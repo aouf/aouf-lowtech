@@ -19,8 +19,10 @@ if (isset($_POST['title'])) {
     //if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
     $date_start = $_POST['dateStart'].' '.$_POST['timeStart'];
     $date_end = $_POST['dateEnd'].' '.$_POST['timeEnd'];
-    $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
-    $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
+    if (!preg_match('#^/offer/besoin/couche#', $uri)) {
+        $description = $_POST['description1']."\n".$_POST['description2']."\n".$_POST['description3'];
+        $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
+    }
     
     $verifreq = "SELECT count(id) FROM offers WHERE id = (SELECT MAX(id) FROM offers) AND user_id=$user_id AND category=".$pdo->quote($category)." AND title=".$pdo->quote($title)." AND description=".$pdo->quote($description)." AND arrondissement=$arrondissement;";
     $verifstatement = $pdo->query($verifreq);
@@ -144,6 +146,10 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
     $placeholder1 = "J'ai besoin d'un repas complet pour 6 personnes…";
     $placeholder2 = "Le repas sera consommé sur place ou à emporter…";
     $placeholder3 = "Le repas est de type sans porc / végétarien / végétalien / hallal / casher / sans gluten…";
+} elseif (preg_match('#^/offer/besoin/couche#', $uri)) {
+    $category = 'couches';
+    $placeholdertitre = "Couches pour 2 bébés";
+    $description = "Préciser le lieu, si besoin de lessive, de séchage, la quantité nécessaire et les plages horaires auxquelles vous êtes disponible";
 } elseif (preg_match('#^/offer/besoin/blanchisserie#', $uri)) {
     $category = 'blanchisserie';
     $placeholdertitre = "Lessive de draps blancs le lundi";
@@ -167,11 +173,11 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
 <div class="container bg-blanc noir full-size">
     <div class="content">
 
-        <h2>J'ai besoin de <?php echo $category; ?></h2>
-            <form class="full-size flex center column" method='post' enctype='multipart/form-data'>
+        <h2 style="margin:20px;">J'ai besoin de <?php echo $category; ?></h2>
+            <form id="add-besoin" class="full-size flex center column" method='post' enctype='multipart/form-data'>
             <label for="title">Titre <span class="saumon">*</span></label>
             <input type='text' name='title' placeholder="<?php echo $placeholdertitre; ?>" required>
-            <label for="">Arrondissement (Marseille)<span class="saumon">*</span></label>
+            <label for="arrondissement">Arrondissement (Marseille)<span class="saumon">*</span></label>
             <select name='arrondissement' required>
                 <option value='0' selected='selected' disabled='disabled'>Je choisis l'arrondissement où se trouve mon besoin</option>
                 <option value='1' <?php if ($user_arrondissement == 1) print "selected='selected'"; ?>>Marseille 1er</option>
@@ -208,16 +214,96 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
                         <section class="flex column center"><label for="timeEnd">Heure</label><input type='time' name="timeEnd" value="<?php echo date('H:i', time() + 3456000); ?>"></section>
                     </section>
             </section>
-            <p><?php echo $description ?> <span class="saumon">*</span></p>
-            <textarea name='description1' placeholder="<?php echo $placeholder1; ?>" required></textarea>
-            <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
-            <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
-            <label for="">Photo illustrant le besoin (facultatif)</label><input type='file' name='picture'>
+            <?php if (!preg_match('#^/offer/besoin/couche#', $uri)) { ?>
+                <p><?php echo $description ?> <span class="saumon">*</span></p>
+                <textarea name='description1' placeholder="<?php echo $placeholder1; ?>" required></textarea>
+                <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
+                <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
+                <label for="">Photo illustrant le besoin (facultatif)</label><input type='file' name='picture'>
+            <?php } ?>
+            <?php if (preg_match('#^/offer/besoin/couche#', $uri)) { ?>
+                <section class="full-size flex center column">
+                    <label for="collectif">Nom du collectif</label>
+                    <input type="text" name="collectif" placeholder="Nom du collectif" required>
+                    <section class="full-size flex center column">
+                        <label for="referent-name">Prénom du référent</label>
+                        <input type="text" name="referent-name" placeholder="Prénom" required>
+                        <label for="referent-number">Numéro de téléphone du référent</label>
+                        <input type="tel" name="referent-number" pattern="[0-9]{10}" required placeholder="0612345678">
+                    </section>
+                    <span style="margin:20px;">Bénéficiez-vous de paniers de légumes de la Métropole ?</span>
+                    <div class="panier">
+                        <label>Oui <input id="panier-oui" type="radio" name="panier" value="true" required></label>
+                        <label>Non <input id="panier-non" type="radio" name="panier" value="false"></label>
+                    </div>
+                    <span style="margin:20px;">Informations à remplir pour chaque enfant en situation d'urgence</span>
+                    <section class="full-size flex center column" style="padding:20px;">
+                        <label for="child-name-1">Prénom du 1 er enfant</label>
+                        <input type="text" name="child-name-1" class="child-name child-name-1" placeholder="Prénom" required>
+                        <label for="child-age-1">Âge</label>
+                        <input type="text" name="child-age-1" class="child-age child-age-1" placeholder="6 mois" required>
+                        <label for="child-poids-1">Poids</label>
+                        <input type="text" name="child-poids-1" class="child-poids child-poids-1" placeholder="7 kgs" required>
+                        <label for="child-taille-1">Taille de couche</label>
+                        <input type="text" name="child-taille" class="child-taille child-taille-1" placeholder="Taille 3" required>
+                        <span style="margin:20px;">Besoin de lait ?</span>
+                        <div class="lait lait-1">
+                            <label>Oui <input type="radio" name="lait-1" class="lait lait-true-1" value="true" required></label>
+                            <label>Non <input type="radio" name="lait-1" class="lait lait-false-1" value="false"></label>
+                        </div>
+                        <label for="marque" style="margin-top:20px;">Si oui, veuillez préciser l'âge</label>
+                        <select name="lait-age-1" class="lait-age lait-age-1">
+                            <option value="aucun">Pas de lait</option>
+                            <option value="1">1 er âge</option>
+                            <option value="2">2 ème âge</option>
+                            <option value="croissance">Lait de croissance</option>
+                            <option value="standard">Lait de vache standard</option>
+                        </select>
+                        <label for="marque" style="margin-top:20px;">Marque</label>
+                        <select name="marque-lait-1" class="marque-lait marque-lait-1">
+                            <option value="aucune">Pas de marque précise (conseillé)</option>
+                            <option value="bledilait">Bledilait</option>
+                            <option value="gallia">Gallia</option>
+                            <option value="guigoz">Guigoz</option>
+                            <option value="physiolac">Physiolac</option>
+                        </select>
+                    </section>
+                    <button id="add-child" type="button" name="button" value="add-child">Ajouter un enfant</button>
+                </section>
+            <?php } ?>
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
             <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>
 
     </div>
 </div>
+<script type="text/javascript">
+var addChild = document.getElementById('add-child');
+var i = 1;
+addChild.onclick = function() {
+    i++;
+    var parentDiv = addChild.parentNode;
+    var newElement = document.createElement("section");
+    newElement.setAttribute("id", "child-"+i);
+    newElement.classList.add("child-"+i);
+    newElement.classList.add("full-size");
+    newElement.classList.add("flex");
+    newElement.classList.add("center");
+    newElement.classList.add("column");
+    // newElement.classList.add("bg-saumon");
+    newElement.style.padding = '20px';
+    newElement.innerHTML = "<label for='child-name-"+i+"'>Prénom du "+i+" ème enfant</label><input type='text' name='child-name-"+i+"' class='child-name child-name-"+i+"' placeholder='Prénom' required><label for='child-age-"+i+"'>Âge</label><input type='text' name='child-age-"+i+"' class='child-age child-age-"+i+"' placeholder='6 mois' required><label for='child-poids-"+i+"'>Poids</label><input type='text' name='child-poids-"+i+"' class='child-poids child-poids-"+i+"' placeholder='7 kgs' required><label for='child-taille-"+i+"'>Taille de couche</label><input type='text' name='child-taille' class='child-taille child-taille-"+i+"' placeholder='Taille 3' required><span style='margin:20px;'>Besoin de lait ?</span><div class='lait lait-"+i+"'><label>Oui <input type='radio' name='lait-"+i+"' class='lait lait-true-"+i+"' value='true' required></label><label>Non <input type='radio' name='lait-"+i+"' class='lait lait-false-"+i+"' value='false'></label></div><label for='marque' style='margin-top:20px;'>Si oui, veuillez préciser l'âge</label><select name='lait-age-"+i+"' class='lait-age lait-age-"+i+"'><option value='aucun'>Pas de lait</option><option value='1'>1 er âge</option><option value='2'>2 ème âge</option><option value='croissance'>Lait de croissance</option><option value='standard'>Lait de vache standard</option></select><label for='marque' style='margin-top:20px;'>Marque</label><select name='marque-lait-"+i+"' class='marque-lait marque-lait-"+i+"'><option value='aucune'>Pas de marque précise (conseillé)</option><option value='bledilait'>Bledilait</option><option value='gallia'>Gallia</option><option value='guigoz'>Guigoz</option><option value='physiolac'>Physiolac</option></select><button name='remove-child-"+i+"' id='remove-child-"+i+"' class='bg-saumon remove-child remove-child-"+i+"' type='button' value='remove-child' onclick='deleteThisChild(this)'>Retirer cet enfant</button>";
+    parentDiv.insertBefore(newElement, addChild);
+};
+
+function deleteThisChild(el) {
+    var idToArray = el.id.split("-");
+    var id = idToArray[2];
+    var sectionToDelete = document.getElementById("child-"+id);
+    sectionToDelete.parentNode.removeChild(sectionToDelete);
+    i--;
+}
+
+</script>
 <?php
 require_once 'footer.php';
