@@ -45,6 +45,12 @@ CREATE TABLE offers (
     picture LONGBLOB,
     admin_comments TEXT,
     offer_type VARCHAR(100),
+    collectif TEXT,
+    referent_name TEXT,
+    referent_phonenumber VARCHAR(100),
+    panier tinyint(1),
+    related_products TEXT,
+    nb_children int(11),
     PRIMARY KEY (`id`)
 );
 
@@ -66,5 +72,18 @@ CREATE TABLE messages (
     from_id BIGINT NOT NULL,
     to_id BIGINT NOT NULL,
     message TEXT,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE messages (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    offer_id BIGINT,
+    child_name TEXT,
+    child_age TEXT,
+    child_weight TEXT,
+    layer_size TEXT,
+    milk tinyint(1),
+    milk_age TEXT,
+    milk_brand TEXT,
     PRIMARY KEY (`id`)
 );
