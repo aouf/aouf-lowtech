@@ -141,7 +141,7 @@ L'equipe Aouf
                         echo "\nPDO::errorInfo():\n";
                         print_r($pdo->errorInfo());
                     }
-                    if ($childstatement->execute([$offer_id,$child_name,$child_age,$child_weight,$child_weight,$milk,$milk_age,$milk_brand])) {
+                    if ($childstatement->execute([$offer_id,$child_name,$child_age,$child_weight,$layer_size,$milk,$milk_age,$milk_brand])) {
                         
                     } else {
                         echo "\nPDO::errorInfo():\n";
