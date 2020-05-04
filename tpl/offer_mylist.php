@@ -16,23 +16,23 @@ $user_id = $_SESSION['user_id'];
 $max_length = 60;
 
 
-if ($_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') {
-        //echo '<div class="header2 bg-blanc flex center">
-        //        <h2 class="saumon">Exprimer un besoin</h2>
-        //    </div>';
+if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='deloge' || $_SESSION['user_category']=='coordinateur') {
+        echo '<div class="header2 bg-blanc flex center">
+               <h2 class="saumon">Exprimer un nouveau besoin</h2>
+           </div>';
 ?>
     <div id="container-accueil" class="container bg-saumon">
         <div class="content">
             <section class="tableau-de-bord flex wrap">
                 <?php
-                if ($_SESSION['user_category']=='deloge' ) {
+                if ($_SESSION['user_category']=='deloge') {
                     ?>
                     <a class="flex center column" href='/offer/besoin/don'>
                         <img class="icone" src="../images/dons-ajout.png" alt="">
                         <h3>Dons</h3>
                     </a>
                     <?php
-                } elseif ($_SESSION['user_category']=='coordinateur') {
+                } elseif ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='coordinateur') {
                     ?>
                     <a class="flex center column" href='/offer/besoin/couche'>
                         <img class="icone" src="../images/couches-ajout.png" alt="">
