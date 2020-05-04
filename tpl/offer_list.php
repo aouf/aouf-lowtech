@@ -79,7 +79,7 @@ $max_length = 60;
                 </a>
             <?php }
             echo "<hr><h3>Offres dans les autres arrondissements</h3>";
-            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.offer_type = 'offer' AND $offer_category_cond AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement AND offers.date_start < NOW() and offers.date_end > NOW() ORDER BY offers.id DESC";
+            $req = "SELECT offers.id, offers.user_id, offers.title, offers.description, offers.arrondissement, offers.picture, offers.date_start,  offers.date_end, users.name, users.firstname FROM offers,users WHERE offers.user_id = users.id AND offers.offer_type = 'offer' AND $offer_category_cond AND offers.status='enabled' AND users.status='enabled' AND offers.arrondissement!=$arrondissement AND offers.date_start < NOW() and offers.date_end > NOW() ORDER BY offers.arrondissement ASC, offers.id DESC";
 
             $statement = $pdo->query($req);
             
