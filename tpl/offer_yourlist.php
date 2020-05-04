@@ -23,6 +23,8 @@ $max_length = 60;
             $offer_id = $data['id'];
             $offer_userid = $data['user_id'];
             $category = $data['category'];
+            $collectif = $data['collectif'];
+            $nb_children = $data['nb_children'] > 1 ? $data['nb_children'] ." enfants" : $data['nb_children'] . " enfant";
 
             if (($category != 'couches' && $_SESSION['user_category']!='admin') || ($category == 'couches' && $_SESSION['user_category']=='admin') || ($category != 'couches' && $_SESSION['user_category']=='admin') ){
                 $titre = ucfirst($data['title']);
@@ -54,7 +56,11 @@ $max_length = 60;
                 echo" <div class='bloc-offre bloc-offre-text'>";
                 echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
                 echo "<p class='noskew'>";
-                echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                if ($category != 'couches') {
+                    echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                } else {
+                    echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>Collectif : $collectif</span><br><span class='description noir'>Demande concernant $nb_children </span>";
+                }
                 echo "</p>";
                 echo "</div>";
                 echo "</div>";

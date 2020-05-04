@@ -84,6 +84,12 @@ $offer_date_start = $data['date_start'];
 $offer_date_end = $data['date_end'];
 $categorie = $data['category'];
 $offer_type = $data['offer_type'];
+$collectif = $data['collectif'];
+$referent_name = $data['referent_name'];
+$referent_phonenumber = $data['referent_phonenumber'];
+$panier = $data['panier'] == 1 ? 'Oui' : 'Non';
+$related_products = $data['related_products'] == 'NULL' ? 'Aucun' : $data['related_products'];
+$nb_children = $data['nb_children'];
 
 $req = "SELECT * FROM users WHERE id=$with_id LIMIT 1";
 $statement = $pdo->query($req);
@@ -123,8 +129,45 @@ if (($categorie != 'couches' && $_SESSION['user_category']!='admin') || ($catego
                 <div class="image-offre" style='background-image: url("data:image/jpg;base64,<?php echo $picture; ?>")'></div>
                 <?php
             }
+            echo "<p class='noir'>$offer_description</p>";
+            if ($categorie == 'couches') {
+                $req = "SELECT * FROM children where offer_id = $offer_id";
+                $statement = $pdo->query($req);
+
+                echo "<p class='noir'><strong>Collectif : </strong>$collectif </p>";
+                echo "<p class='noir'><strong>Prénom du référent : </strong>$referent_name </p>";
+                echo "<p class='noir'><strong>Télphone du référent : </strong>$referent_phonenumber </p>";
+                echo "<p class='noir'><strong>Bénéficie de paniers de légumes de la Métropole ? </strong>$panier</p>";
+                echo "<p class='noir'><strong>Besoin en produits annexes : </strong>$related_products </p>";
+                echo "<p class='noir'><strong>Nombre d'enfants concernés par cette demande : </strong>$nb_children </p>";
+                echo "<p class='noir'><strong>Liste des enfants concernés :</strong><ul>";
+                while ($data = $statement->fetch()) {
+                    $child_name = $data['child_name'];
+                    $child_age = $data['child_age'];
+                    $child_weight = $data['child_weight'];
+                    $layer_size = $data['layer_size'];
+                    if ($data['milk'] == 1) {
+                        $milk = "Besoin en lait";
+                        switch ($data['layer_size']) {
+                            case '1':
+                                $milk_age = " de type 1er âge";
+                                break;
+                            case '2':
+                                $milk_age = " de type 2ème âge";
+                                break;
+                        }
+                        $milk_brand = 'Marque préférée : ' . $data['milk_brand'];
+                    } else {
+                        $milk = "Aucun besoin en lait";
+                        $milk_age = "";
+                        $milk_brand = "";
+                    }
+                    
+                    echo "<li class='noir'>$child_name - $child_age - $child_weight - $layer_size <br>$milk$milk_age. $milk_brand</li>";
+                }
+                echo "</ul>";
+            }
         ?>
-        <p class="noir"><?php echo $offer_description; ?></p>
         <!--<p><a class="small-text saumon" href='/report'><image class='ico-mini' src='/images/attention.png' /> <span class="under">Signaler un problème</span></a></p>-->
     </div>
 
