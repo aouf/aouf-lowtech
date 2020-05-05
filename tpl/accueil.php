@@ -70,8 +70,8 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
     <div class="header2 bg-saumon flex center">
             <h2 class="blanc">Déposer une offre</h2>
     </div>
-    <div id="container-accueil" class="container bg-saumon">
-        <div class="content">
+    <div id="container-accueil" class="container bg-saumon <?php echo ($_SESSION['user_category']!='admin' ? "h100" : ""); ?>">
+        <div class="content-accueil <?php echo ($_SESSION['user_category']!='admin' ? "h100" : ""); ?>">
             <section class="tableau-de-bord flex wrap">
                 <a class="flex center column" href='/offer/new/restauration'>
                     <img class="icone" src="./images/restauration-ajout.png" alt="">
@@ -98,7 +98,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
                     <h3>Autre</h3>
                 </a>
             </section>
-
+        </div>
 <?php } ?>
 <?php
 if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge')||($_SESSION['user_category']=='coordinateur')) 
@@ -110,8 +110,8 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
             </div>';
     }
 ?>
-    <div id="container-accueil" class="container bg-saumon">
-        <div class="content">
+    <!-- <div id="container-accueil" class="container bg-saumon"> -->
+        <!-- <div class="content"> -->
             <!--<section class="tableau-de-bord flex wrap">
                 <a class="flex center column" href='/offer/list/restauration'>
                     <img class="icone" src="./images/restauration.png" alt="">
@@ -138,8 +138,9 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     <h3>Autre</h3>
                 </a>
             </section>-->
-</div>
+<!-- </div> -->
     <div class="bg-saumon list-offres">
+        <div class="content">
         <?php
 
         if (($arrondissement != '')&&($arrondissement != '0')) {
@@ -315,7 +316,9 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
 
 <?php
 }?>
-
+        </div>
+        </div>
+        </div>
     </div>
 </div>
 <?php require_once 'footer.php'; ?>

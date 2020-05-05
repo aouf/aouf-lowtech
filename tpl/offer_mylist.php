@@ -55,58 +55,60 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='deloge' 
 <div class="container bg-blanc noir">
     <h2 class="saumon"><?php echo ucfirst($what); ?></h2>
     <div class="bg-saumon list-offres">
-    <?php
-        $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-        $req = "SELECT * FROM offers WHERE user_id = $user_id";
-        $statement = $pdo->query($req);
+        <div class="content">
+        <?php
+            $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
+            $req = "SELECT * FROM offers WHERE user_id = $user_id";
+            $statement = $pdo->query($req);
 
-        while ($data = $statement->fetch()) {
+            while ($data = $statement->fetch()) {
 
-            $offer_id = $data['id'];
-            $titre = ucfirst($data['title']);
+                $offer_id = $data['id'];
+                $titre = ucfirst($data['title']);
 
-            $description = $data['description'];
-            if (strlen($description) > $max_length)
-            {
-                $offset = ($max_length - 3) - strlen($description);
-                $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
+                $description = $data['description'];
+                if (strlen($description) > $max_length)
+                {
+                    $offset = ($max_length - 3) - strlen($description);
+                    $description = substr($description, 0, strrpos($description, ' ', $offset)) . '...';
+                }
+
+                $offer_arrondissement = $data['arrondissement'];
+                $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
+                $status = $data['status'];
+                $status_text = "";
+                if ($status == 'disabled') $status_text = "(désactivée)";
+                $debut = date('d/m/y', strtotime($data['date_start']));
+                $fin = date('d/m/y', strtotime($data['date_end']));
+                $intervalle = "$debut - $fin";
+                if ($debut == $fin) $intervalle = $debut;
+                if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
+                
+                if ($data['picture'] != 'NULL') {
+                    $picture = base64_encode($data['picture']);
+                } else {
+                    $picture = "";
+                }
+
+                echo "<a class='offre flex bg-blanc' href='/offer/edit/$offer_id'>";
+                    echo" <div class='bloc-offre bloc-offre-text'>";
+                        echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
+                            echo "<p class='noskew'>";
+                                echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
+                            echo "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                    echo "<div class='bloc-offre bloc-offre-image'>";
+                        echo "<div id='parallelogram' class='parallelogram-img'>";
+                            echo "<div class='image noskew' style='background-image: url(data:image/jpg;base64,$picture)'></div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo"</a>";
+
             }
 
-            $offer_arrondissement = $data['arrondissement'];
-            $offer_arrondissement == '1' ? $offer_arrondissement = $offer_arrondissement.'er' : $offer_arrondissement = $offer_arrondissement.'ème' ;
-            $status = $data['status'];
-            $status_text = "";
-            if ($status == 'disabled') $status_text = "(désactivée)";
-            $debut = date('d/m/y', strtotime($data['date_start']));
-            $fin = date('d/m/y', strtotime($data['date_end']));
-            $intervalle = "$debut - $fin";
-            if ($debut == $fin) $intervalle = $debut;
-            if (($debut == $fin)&&($debut == date('d/m/y'))) $intervalle = "aujourd'hui";
-            
-            if ($data['picture'] != 'NULL') {
-                $picture = base64_encode($data['picture']);
-            } else {
-                $picture = "";
-            }
-
-            echo "<a class='offre flex bg-blanc' href='/offer/edit/$offer_id'>";
-                echo" <div class='bloc-offre bloc-offre-text'>";
-                    echo "<div id='parallelogram' class='bg-blanc parallelogram-text'>";
-                        echo "<p class='noskew'>";
-                            echo "<span class='noir titre-offre'>$titre</span><br><image class='ico-mini' src='/images/horloge.png' /> <span class='date-lieu saumon'>$intervalle <image class='ico-mini' src='/images/localisation.png' />  $offer_arrondissement</span><br><span class='description noir'>$description</span>";
-                        echo "</p>";
-                    echo "</div>";
-                echo "</div>";
-                echo "<div class='bloc-offre bloc-offre-image'>";
-                    echo "<div id='parallelogram' class='parallelogram-img'>";
-                        echo "<div class='image noskew' style='background-image: url(data:image/jpg;base64,$picture)'></div>";
-                    echo "</div>";
-                echo "</div>";
-            echo"</a>";
-
-        }
-
-    ?>
+        ?>
+        </div>
     </div>
 </div>
 <?php
