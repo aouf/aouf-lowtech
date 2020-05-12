@@ -43,7 +43,7 @@ if(isset($_GET['arrondissements'])) {
                     </ul>
                 </div>
             </dd>
-            <button type="submit" name="arrondissement-button" value="filtrer">Filtrer</button>
+            <button class='bg-vert noir' type="submit" name="arrondissement-button" value="filtrer">Filtrer</button>
         </dl>
     </form>
     <h2 class="saumon"><?php echo ucfirst("Liste des besoins exprimés"); ?></h2>
