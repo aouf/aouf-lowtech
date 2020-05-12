@@ -276,6 +276,89 @@ button:not(#viewPassword) {
   text-transform: uppercase;
 }
 
+/* MultiSelect checkbox */
+
+a.arrondissement-select:hover ,a.arrondissement-select:visited,a.arrondissement-select {
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+dl.dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.dropdown dd,
+.dropdown dt {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dropdown ul {
+  margin: -1px 0 0 0;
+}
+
+.dropdown dd {
+  position: relative;
+}
+
+.dropdown a,
+.dropdown a:visited {
+  text-decoration: none;
+  outline: none;
+  font-size: 12px;
+}
+
+.dropdown dt a {
+  background-color: #eeecea;
+  display: block;
+  padding: 8px 20px 5px 10px;
+  min-height: 25px;
+  line-height: 24px;
+  overflow: hidden;
+  border: 0;
+  width: 272px;
+}
+
+.dropdown dt a span,
+.multiSel span {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 3px 2px 0;
+}
+
+.dropdown dd ul {
+  background-color: #ffffff;
+  border: 0;
+  display: none;
+  left: 0px;
+  padding: 2px 15px 2px 5px;
+  position: absolute;
+  top: 2px;
+  left: -150px;
+  width: 280px;
+  list-style: none;
+  height: 370px;
+  overflow: auto;
+  border: 2px solid #cdc7d2;
+  z-index: 1;
+}
+
+.dropdown span.value {
+  display: none;
+}
+
+.dropdown dd ul li a {
+  padding: 5px;
+  display: block;
+}
+
 /* Page de connexion*/
 
 .button {
