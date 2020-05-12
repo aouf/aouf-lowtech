@@ -75,7 +75,7 @@ if(isset($_GET['arrondissements'])) {
             } else {
                 echo "<h3>Besoins dans votre arrondissement ($arrondissement_beautify)</h3>";
                 $pdo = new PDO('mysql:host='.SERVEUR.';dbname='.BASE,NOM,PASSE);
-                $req = "SELECT * FROM offers WHERE offer_type='besoin' AND arrondissement='$user_arrondissement' AND status='enabled' AND date_start < NOW() and date_end > NOW() AND user_id!=$user_id ORDER BY id DESC";
+                $req = "SELECT * FROM offers WHERE offer_type='besoin' AND arrondissement='$user_arrondissement' AND status='enabled' AND date_start < NOW() and date_end > NOW() AND user_id!=$user_id ORDER BY LENGTH(arrondissement), arrondissement ASC,  id DESC";
                 $statement = $pdo->query($req);
             }
             while ($data = $statement->fetch()) {
