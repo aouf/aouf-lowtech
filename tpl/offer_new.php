@@ -14,6 +14,7 @@ if (isset($_POST['title'])) {
     $category = $_POST['category'];
     $title = $_POST['title'];
     $arrondissement = $_POST['arrondissement'];
+    $show_offer = $_POST['show-offer'] == "true" ? 1 : 0;
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
     //if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
@@ -28,9 +29,9 @@ if (isset($_POST['title'])) {
     if($verifdata["count(id)"] == 0)
     {
         // insertion de l'offre en base
-        $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $req = "INSERT INTO offers(user_id,category,title,description,status,date_start,date_end,arrondissement,address,picture,offer_type,show_offer) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         $statement = $pdo->prepare($req);
-        if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'offer'])) {
+        if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'offer',$show_offer])) {
 
             // on met a jour le lastactivity de l'utilisateur
             $lastactivity = date('Y-m-d H:i:s');
@@ -182,6 +183,7 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
             <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
             <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
             <label for="">Photo illustrant l'offre (facultatif)</label><input type='file' name='picture'>
+            <label for="show-offer">Rendre mon offre visible pour les bénévoles</label><input type='checkbox' name='show-offer' value="true">
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
             <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>

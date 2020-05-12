@@ -27,6 +27,14 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='benevole
             <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
         </div>
     </a>';
+    if ($_SESSION['user_category']=='benevole') {
+        echo '<a href="/offer/list">
+        <div class="header2 bg-saumon flex center">
+        <h2 class="blanc margin-left">Offres proposées</h2>
+        <img class="fleche-droite" src="../images/fleche-droite-blanche.png" alt="">
+        </div>
+        </a>';
+    }
     echo '<a href="/offer/yourlist">
         <div class="header2 bg-blanc flex center">
             <h2 class="saumon margin-left">Besoins exprimés</h2>
@@ -110,35 +118,6 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
             </div>';
     }
 ?>
-    <!-- <div id="container-accueil" class="container bg-saumon"> -->
-        <!-- <div class="content"> -->
-            <!--<section class="tableau-de-bord flex wrap">
-                <a class="flex center column" href='/offer/list/restauration'>
-                    <img class="icone" src="./images/restauration.png" alt="">
-                    <h3>Restauration</h3>
-                </a>
-                <a class="flex center column" href='/offer/list/course'>
-                    <img class="icone" src="./images/courses.png" alt="">
-                    <h3>Course</h3>
-                </a>
-                <a class="flex center column" href='/offer/list/pret'>
-                    <img class="icone" src="./images/prets.png" alt="">
-                    <h3>Prêt</h3>
-                </a>
-                <a class="flex center column" href='/offer/list/loisir'>
-                    <img class="icone" src="./images/eloisirs.png" alt="">
-                    <h3>e-Loisir</h3>
-                </a>
-                <a class="flex center column" href='/offer/list/don'>
-                    <img class="icone" src="./images/dons.png" alt="">
-                    <h3>Dons</h3>
-                </a>
-                <a class="flex center column" href='/offer/list/autre'>
-                    <img class="icone" src="./images/autre.png" alt="">
-                    <h3>Autre</h3>
-                </a>
-            </section>-->
-<!-- </div> -->
     <div class="bg-saumon list-offres">
         <div class="content">
         <?php
