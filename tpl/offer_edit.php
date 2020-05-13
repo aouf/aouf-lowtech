@@ -22,6 +22,7 @@ if (isset($_POST['title'])) {
     if (isset($_POST['status'])&&($_POST['status'] == "enabled")) $status= 'enabled'; else $status= 'disabled';
     $title = $pdo->quote($_POST['title']);
     $arrondissement = $_POST['arrondissement'];
+    $show_offer = $_POST['show-offer'] == "true" ? 1 : 0;
     if (!ctype_digit($arrondissement)) { print "<div class='erreur noir bg-saumon center'>Erreur, arrondissement invalide&nbsp;!</div>"; goto skip; }
     $address = ($_POST['address'] != "") ? strip_tags($_POST['address']) : null;
     //if (($address != null)&&(!ctype_print($address))) { print "<div class='erreur noir bg-saumon center'>Erreur, adresse invalide&nbsp;!</div>"; goto skip; }
@@ -30,11 +31,11 @@ if (isset($_POST['title'])) {
     $description = $pdo->quote($_POST['description']);
     if (($_FILES['picture']['tmp_name'])||(isset($_POST['picturesuppr']))) {
         $picture = ($_FILES['picture']['tmp_name']) ? file_get_contents($_FILES['picture']['tmp_name']) : 'NULL';
-        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=? WHERE id=$offer_id";
+        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',picture=?,show_offer=$show_offer WHERE id=$offer_id";
         $statement = $pdo->prepare($req);
         $statement->execute([$picture]);
     } else {
-        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end' WHERE id=$offer_id";
+        $req = "UPDATE offers SET title=$title,description=$description,status='$status',arrondissement='$arrondissement',address='$address',date_start='$date_start',date_end='$date_end',show_offer=$show_offer WHERE id=$offer_id";
         $statement = $pdo->prepare($req);
         $statement->execute();
     }
@@ -89,6 +90,7 @@ skip:
         $offer_arrondissement = $data['arrondissement'];
         $offer_address = $data['address'];
         $offer_picture = $data['picture'];
+        $offer_show = $data['show_offer'];
         list($offer_datestart,$offer_timestart) = preg_split("/ /", $data['date_start']);
         list($offer_dateend,$offer_timeend) = preg_split("/ /", $data['date_end']);
         ?>
@@ -142,7 +144,10 @@ skip:
         <?php } else {
             echo "<div class='bloc-offre bloc-offre-image'><div id='parallelogram' class='parallelogram-img'><div class='image noskew' style='background-image: url(data:image/jpg;base64,".base64_encode($offer_picture).")'></div></div></div>";
             echo "<label for='picturesuppr'> Supprimer l'image <input type='checkbox' name='picturesuppr' value='yes'></label>";
-        } ?>
+        } 
+        $checked = $offer_show == '1' ? 'checked' : '';
+        ?>
+        <label for="show-offer">Rendre mon offre visible pour les autres bénévoles</label><input type='checkbox' name='show-offer' value="true" <?php echo $checked; ?>>
         <button class='bg-vert noir' type="submit" name="button" value="Modifier">Modifier</button>
         </form>
 
