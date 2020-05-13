@@ -183,7 +183,7 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
             <textarea name='description2' placeholder="<?php echo $placeholder2; ?>"></textarea>
             <textarea name='description3' placeholder="<?php echo $placeholder3; ?>"></textarea>
             <label for="">Photo illustrant l'offre (facultatif)</label><input type='file' name='picture'>
-            <label for="show-offer">Rendre mon offre visible pour les bénévoles</label><input type='checkbox' name='show-offer' value="true">
+            <label for="show-offer">Rendre mon offre visible pour les autres bénévoles</label><input type='checkbox' name='show-offer' value="true">
             <input type='hidden' name='category' value='<?php echo $category; ?>'>
             <button class='bg-vert noir' type="submit" name="button" value="Publier">Publier</button>
             </form>
