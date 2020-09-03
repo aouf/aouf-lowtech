@@ -11,11 +11,11 @@ require_once 'head.php';
                 <div class="formulaires flex column center">
                     <form class="flex column center" action="/benevole/register" method="post">
                         <button class='bg-vert' type='submit' value='Connexion'>Je veux aider</button>
-                        <center>Je veux proposer mon aide, répondre a un besoin</center>
+                        <center>Je veux proposer mon aide bénévolement, répondre a un besoin</center>
                     </form>
                     <form class="flex column center" action="/coordinateur/register" method="post">
-                        <button class='bg-saumon noir' type='submit' value='Connexion'>Je veux coordonner de l'aide/MCS</button>
-                        <center>Collectif, asso, travailleur social… je souhaite commander couches/lait pour des familles ou poster un besoin</center>
+                        <button class='bg-saumon noir' type='submit' value='Connexion'>Je veux coordonner de l'aide</button>
+                        <center>Collectif, asso, travailleur social… je souhaite coordonner de l'aide pour des familles ou poster un besoin</center>
                     </form>
                     <form class="flex column center" action="/deloge/register" method="post">
                         <button class='bg-saumon noir' type="submit"value='Connexion'>J'ai besoin d'aide</button>
