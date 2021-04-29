@@ -73,7 +73,7 @@ if (isset($_POST['title'])) {
     ";
 
             if ($category!='couches') {
-                mail($conf['mail']['admin'],'[aouf] Nouveau besoin dans votre arrondissement',$body_mail,$headers_mail);
+                mail($conf['mail']['admin'],'[aouf admin] Nouveau besoin',$body_mail,$headers_mail);
             }
 
             $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled' and arrondissement=$arrondissement";
@@ -104,7 +104,7 @@ Rappel : merci de répondre via
 L'equipe Aouf
 ";
                     if ($category!='couches') {
-                        mail($email_addr,'Nouveau besoin via Aouf',$body_mail,$headers_mail);
+                        mail($email_addr,'[aouf] Nouveau besoin dans votre arrondissement',$body_mail,$headers_mail);
                     }
                 }
 
