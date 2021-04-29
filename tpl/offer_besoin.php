@@ -73,10 +73,10 @@ if (isset($_POST['title'])) {
     ";
 
             if ($category!='couches') {
-                mail($conf['mail']['admin'],'[aouf] Nouveau besoin',$body_mail,$headers_mail);
+                mail($conf['mail']['admin'],'[aouf] Nouveau besoin dans votre arrondissement',$body_mail,$headers_mail);
             }
 
-            $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
+            $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled' and arrondissement=$arrondissement";
             $statement = $pdo->query($req);
             while ($data = $statement->fetch()) {
                 $notification = $data['notification']; 
