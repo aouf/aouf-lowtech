@@ -40,9 +40,9 @@ if (isset($_POST['title'])) {
         $statement->execute();
     }
 
-    // on met a jour le lastactivity de l'utilisateur
+    // on met a jour le lastactivity/modify de l'utilisateur
     $lastactivity = date('Y-m-d H:i:s');
-    $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
+    $req = "UPDATE users set date_lastactivity = '$lastactivity', date_modify = '$lastactivity' WHERE id = $user_id";
     $statement = $pdo->prepare($req);
     if ($statement->execute()) {
 
@@ -66,7 +66,7 @@ L'equipe Aouf
 
     echo "<div class='erreur noir bg-saumon center'><strong>".$_POST['title']."</strong> modifié&nbsp;!</div>";
     } else {
-        echo "<div class='erreur noir bg-saumon center'>Erreur à la modification : titre invalide ou autre erreur...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
+        echo "<div class='erreur noir bg-saumon center'>Erreur à la modification : merci de recommencer...<br><a class='small-text under' href='/'>Retour à l'accueil</a></div>";
     }
 
 skip:

@@ -37,6 +37,13 @@ if (isset($_POST['login'])) {
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_category'] = $category;
         $_SESSION['user_arrondissement'] = $arrondissement;
+
+        // on met a jour le lastactivity/modify de l'utilisateur
+        $lastactivity = date('Y-m-d H:i:s');
+        $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
+        $statement = $pdo->prepare($req);
+        $statement->execute();
+
         header("Location: accueil");
         exit;
     } else {

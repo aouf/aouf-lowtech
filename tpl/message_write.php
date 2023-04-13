@@ -43,6 +43,12 @@ if (isset($_POST['message'])) {
         $statement = $pdo->prepare($req);
         $statement->execute([$offer_id, $user_id, $to_id, $message]);
 
+        // on met a jour le lastactivity/modify de l'utilisateur
+        $lastactivity = date('Y-m-d H:i:s');
+        $req = "UPDATE users set date_lastactivity = '$lastactivity', date_modify = '$lastactivity' WHERE id = $user_id";
+        $statement = $pdo->prepare($req);
+        $statement->execute();
+
         // send email for notification
         $req = "SELECT email,phonenumber,notification,category FROM users WHERE id=$to_id LIMIT 1";
         $statement = $pdo->query($req);

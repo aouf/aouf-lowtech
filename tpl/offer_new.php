@@ -33,9 +33,9 @@ if (isset($_POST['title'])) {
         $statement = $pdo->prepare($req);
         if ($statement->execute([$user_id,$category,$title,$description,'enabled',$date_start,$date_end,$arrondissement,$address,$picture,'offer',$show_offer])) {
 
-            // on met a jour le lastactivity de l'utilisateur
+            // on met a jour le lastactivity/modify de l'utilisateur
             $lastactivity = date('Y-m-d H:i:s');
-            $req = "UPDATE users set date_lastactivity = '$lastactivity' WHERE id = $user_id";
+            $req = "UPDATE users set date_lastactivity = '$lastactivity', date_modify = '$lastactivity' WHERE id = $user_id";
             $statement = $pdo->prepare($req);
             $statement->execute();
 
