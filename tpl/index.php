@@ -46,6 +46,8 @@ if (isset($_POST['login'])) {
 
         header("Location: accueil");
         exit;
+    } elseif ((password_verify($password,$hash_password)) && ($status == 'needverification')) {
+        echo "<div class='erreur noir bg-saumon center'>Erreur votre profil est en cours de vérification, contactez vite toctoc@aouf.fr&nbsp;!</div>";
     } else {
         echo "<div class='erreur noir bg-saumon center'>Erreur de mot de passe ou compte inexistant/inactif&nbsp;!</div>";
     }
