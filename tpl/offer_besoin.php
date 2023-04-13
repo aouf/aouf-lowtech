@@ -197,7 +197,7 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
 } elseif (preg_match('#^/offer/besoin/couche#', $uri)) {
     $category = 'couches';
     $placeholdertitre = "Couches pour 2 bébés";
-    $description = "Préciser le lieu, si besoin de lessive, de séchage, la quantité nécessaire et les plages horaires auxquelles vous êtes disponible";
+    $description = "Préciser les tailles souhaitées et si vous pouvez vous déplacer";
 } elseif (preg_match('#^/offer/besoin/blanchisserie#', $uri)) {
     $category = 'blanchisserie';
     $placeholdertitre = "Lessive de draps blancs le lundi";
@@ -214,6 +214,13 @@ if (preg_match('#^/offer/besoin/restauration#', $uri)) {
 } elseif (preg_match('#^/offer/besoin/don#', $uri)) {
     $category = 'don';
     $description = "Précisez le type de don que vous souhaitez";
+} elseif (preg_match('#^/offer/besoin/logement#', $uri)) {
+    $category = 'logement';
+    $placeholdertitre = "Logement pour 3 personnes";
+    $description = "Détails sur le besoin de logement";
+    $placeholder1 = "J'ai besoin d'un appartement partagé ou entier…";
+    $placeholder2 = "Préférences de quartier…";
+    $placeholder3 = "Dates souhaitées…";
 } elseif (preg_match('#^/offer/besoin/autre#', $uri)) {
     $category = 'autre';
 }

@@ -129,6 +129,13 @@ if (preg_match('#^/offer/new/restauration#', $uri)) {
 } elseif (preg_match('#^/offer/new/pret#', $uri)) {
     $category = 'pret';
     $description = "Détails sur l'objet que vous pouvez prêter, combien de temps, comment le remettre ?";
+} elseif (preg_match('#^/offer/new/logement#', $uri)) {
+    $category = 'logement';
+    $placeholdertitre = "Appartement pour 3 personnes quartier Belle de Mai";
+    $description = "Détails sur l'offre de logement";
+    $placeholder1 = "Je propose un appartement pour 3 personnes…";
+    $placeholder2 = "Le logement est située rue Belle de Mai (ne mettez pas le numéro) au 2e étage sans ascenseur…";
+    $placeholder3 = "Le repas est disponible du 1er mai au 30 juin…";
 //} elseif (preg_match('#^/offer/new/autre#', $uri)) {
 } else {
     $category = 'autre';

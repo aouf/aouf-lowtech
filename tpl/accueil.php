@@ -81,6 +81,10 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
     <div id="container-accueil" class="container bg-saumon <?php echo ($_SESSION['user_category']!='admin' ? "h100" : ""); ?>">
         <div class="content-accueil <?php echo ($_SESSION['user_category']!='admin' ? "h100" : ""); ?>">
             <section class="tableau-de-bord flex wrap">
+                <a class="flex center column" href='/offer/new/logement'>
+                    <img class="icone" src="./images/logement-ajout.png" alt="">
+                    <h3>Restauration</h3>
+                </a>
                 <a class="flex center column" href='/offer/new/restauration'>
                     <img class="icone" src="./images/restauration-ajout.png" alt="">
                     <h3>Restauration</h3>
@@ -93,10 +97,10 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
                     <img class="icone" src="./images/prets-ajout.png" alt="">
                     <h3>Prêt</h3>
                 </a>
-                <a class="flex center column" href='/offer/new/loisir'>
+                <!--<a class="flex center column" href='/offer/new/loisir'>
                     <img class="icone" src="./images/eloisirs-ajout.png" alt="">
                     <h3>e-Loisir</h3>
-                </a>
+                </a>-->
                 <a class="flex center column" href='/offer/new/don'>
                     <img class="icone" src="./images/dons-ajout.png" alt="">
                     <h3>Dons</h3>
@@ -159,6 +163,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    elseif ($category == 'logement') $picture = "https://beta.aouf.fr/images/logement.png";
                     else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
                 ?>
@@ -214,6 +219,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    elseif ($category == 'logement') $picture = "https://beta.aouf.fr/images/logement.png";
                     else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
                 ?>
@@ -271,6 +277,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='deloge'
                     elseif ($category == 'loisir') $picture = "https://beta.aouf.fr/images/eloisirs.png";
                     elseif ($category == 'mobilite') $picture = "https://beta.aouf.fr/images/mobilite.png";
                     elseif ($category == 'pret') $picture = "https://beta.aouf.fr/images/prets.png";
+                    elseif ($category == 'logement') $picture = "https://beta.aouf.fr/images/logement.png";
                     else $picture = "https://beta.aouf.fr/images/autre.png";
                 }
                 ?>

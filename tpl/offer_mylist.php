@@ -33,6 +33,10 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='deloge' 
                     <?php
                 }
                 ?>
+                <a class="flex center column" href='/offer/besoin/logement'>
+                    <img class="icone" src="../images/logement-ajout.png" alt="">
+                    <h3>Logement</h3>
+                </a>
                 <a class="flex center column" href='/offer/besoin/restauration'>
                     <img class="icone" src="../images/restauration-ajout.png" alt="">
                     <h3>Repas</h3>
@@ -49,10 +53,10 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='deloge' 
                         <img class="icone" src="../images/couches-ajout.png" alt="">
                         <h3>Couches/lait</h3>
                 </a>
-                <!--<a class="flex center column" href='/offer/besoin/loisirs'>
+                <a class="flex center column" href='/offer/besoin/loisirs'>
                     <img class="icone" src="../images/loisirs-ajout.png" alt="">
                     <h3>Loisirs</h3>
-                </a>-->
+                </a>
                 <a class="flex center column" href='/offer/besoin/don'>
                     <img class="icone" src="../images/dons-ajout.png" alt="">
                     <h3>Dons</h3>
