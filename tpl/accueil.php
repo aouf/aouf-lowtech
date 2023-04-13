@@ -83,7 +83,7 @@ if (($_SESSION['user_category']=='admin')||($_SESSION['user_category']=='benevol
             <section class="tableau-de-bord flex wrap">
                 <a class="flex center column" href='/offer/new/logement'>
                     <img class="icone" src="./images/logement-ajout.png" alt="">
-                    <h3>Restauration</h3>
+                    <h3>Logement</h3>
                 </a>
                 <a class="flex center column" href='/offer/new/restauration'>
                     <img class="icone" src="./images/restauration-ajout.png" alt="">
