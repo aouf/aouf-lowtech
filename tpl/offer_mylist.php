@@ -27,20 +27,36 @@ if ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='deloge' 
                 <?php
                 if ($_SESSION['user_category']=='deloge') {
                     ?>
-                    <a class="flex center column" href='/offer/besoin/don'>
-                        <img class="icone" src="../images/dons-ajout.png" alt="">
-                        <h3>Dons</h3>
-                    </a>
                     <?php
                 } elseif ($_SESSION['user_category']=='admin' || $_SESSION['user_category']=='coordinateur') {
                     ?>
-                    <a class="flex center column" href='/offer/besoin/couche'>
-                        <img class="icone" src="../images/couches-ajout.png" alt="">
-                        <h3>Couches/lait</h3>
-                    </a>
                     <?php
                 }
                 ?>
+                <a class="flex center column" href='/offer/besoin/restauration'>
+                    <img class="icone" src="../images/restauration-ajout.png" alt="">
+                    <h3>Repas</h3>
+                </a>
+                <a class="flex center column" href='/offer/besoin/blanchisserie'>
+                    <img class="icone" src="../images/blanchisserie-ajout.png" alt="">
+                    <h3>Lessive</h3>
+                </a>
+                <a class="flex center column" href='/offer/besoin/mobilite'>
+                    <img class="icone" src="../images/mobilite-ajout.png" alt="">
+                    <h3>Transport</h3>
+                </a>
+                <a class="flex center column" href='/offer/besoin/couche'>
+                        <img class="icone" src="../images/couches-ajout.png" alt="">
+                        <h3>Couches/lait</h3>
+                </a>
+                <!--<a class="flex center column" href='/offer/besoin/loisirs'>
+                    <img class="icone" src="../images/loisirs-ajout.png" alt="">
+                    <h3>Loisirs</h3>
+                </a>-->
+                <a class="flex center column" href='/offer/besoin/don'>
+                    <img class="icone" src="../images/dons-ajout.png" alt="">
+                    <h3>Dons</h3>
+                </a>
                 <a class="flex center column" href='/offer/besoin/autre'>
                     <img class="icone" src="../images/autre-ajout.png" alt="">
                     <h3>Autre</h3>

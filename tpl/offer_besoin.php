@@ -77,6 +77,10 @@ if (isset($_POST['title'])) {
             }
 
             $req = "select email,phonenumber,notification from users where category='benevole' and status='enabled' and arrondissement=$arrondissement";
+            // Hack temporaire si besoin d'une notification email/SMS élargie
+            //$req = "select email,phonenumber,notification from users where category='benevole' and status='enabled'";
+            //$req = "select email,phonenumber,notification from users where category='benevole' and status='enabled' and ( arrondissement=3 or arrondissement=1 or arrondissement=4 )";
+            //$req = "select email,phonenumber,notification from users where category='benevole' and status='enabled' and ( arrondissement=6 or arrondissement=1 or arrondissement=5 or arrondissement=4 or arrondissement=8 or arrondissement=12 )";
             $statement = $pdo->query($req);
             while ($data = $statement->fetch()) {
                 $notification = $data['notification']; 
